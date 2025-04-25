@@ -1,35 +1,40 @@
-import React from 'react'
-import { Button, Cell } from '@nutui/nutui-react-taro'
-import { Add, Dongdong, UserAdd, Minus } from '@nutui/icons-react-taro'
-const Demo2 = () => {
-  const marginStyle = {
-    margin: 8,
-  }
+// src/pages/somePage/index.jsx (示例页面)
+
+import React from 'react';
+import Taro from '@tarojs/taro'; 
+import CustomNavBar from '../../components/CustomNavBar/CustomNavBar'
+import Footer from '../../components/Footer'
+import './index.less';
+import { View } from '@tarojs/components';
+
+// 获取系统信息，用于计算页面内容偏移量
+const systemInfo = Taro.getSystemInfoSync();
+const statusBarHeight = systemInfo.statusBarHeight; // 状态栏高度
+const customNavHeight = 44; // 自定义导航栏的高度
+const totalNavHeight = statusBarHeight + customNavHeight; // 导航栏总高度
+
+const SomePage = () => {
   return (
-    <Cell style={{ flexWrap: 'wrap' }}>
-      <Button type="primary" style={marginStyle}>
-        Primary
-      </Button>
-      <Button type="info" style={marginStyle}>
-        Info
-      </Button>
-      <Button type="default" style={marginStyle}>
-        Default
-      </Button>
-      <Button type="danger" style={marginStyle}>
-        Danger
-      </Button>
-      <Button type="warning" style={marginStyle}>
-        Warning
-      </Button>
-      <Button type="success" style={marginStyle}>
-        Success
-      </Button>
-      <Add color="red" style={{ marginRight: 10 }} />
-      <UserAdd style={{ marginRight: 10 }} />
-      <Dongdong style={{ marginRight: 10 }} />
-      <Minus />
-    </Cell>
-  )
-}
-export default Demo2
+    <View className='page-container'>
+    <View>
+      
+    </View>
+      <CustomNavBar title='首页' />
+      {/* 内容区域 */}
+      <View
+        className='page-content'
+        style={{
+          marginTop: `${totalNavHeight}px`, // 内容区域向下偏移导航栏总高度
+        }}
+      >
+      {/* 底部区域 */}
+       <View>
+       <Footer/>
+       </View>
+        
+      </View>
+    </View>
+  );
+};
+
+export default SomePage;

@@ -1,0 +1,46 @@
+/* src/components/CustomNavBar/index.less */
+
+.custom-navbar {
+  position: fixed; // 固定在顶部
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; // 使返回按钮、标题、右侧内容分开
+  background-color: #fff; // 导航栏背景色
+  z-index: 100; // 确保在页面内容之上
+  box-sizing: border-box; // 包含 padding 在高度内
+  padding-left: 10px; // 左侧内边距
+  padding-right: 10px; // 右侧内边距
+}
+
+.back-button {
+  width: 40px; // 返回按钮的可点击区域宽度
+  height: 100%; // 高度占满导航栏
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px; // 内部留白
+}
+
+.back-icon {
+  width: 20px; // 返回图标的实际大小
+  height: 20px;
+}
+
+.navbar-title {
+  flex-grow: 1; // 标题占据剩余空间
+  text-align: center; // 标题居中
+  font-size: 25px; // 标题字体大小
+  font-weight: bold;
+  // 确保标题不会被返回按钮或右侧内容挤压
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.right-placeholder {
+  width: 40px; // 右侧占位，与返回按钮宽度一致，使标题在有返回按钮时居中
+  // 如果没有返回按钮，这个占位可能需要隐藏或调整宽度
+}

@@ -1,3 +1,3 @@
-export default definePageConfig({
-  navigationBarTitleText: '首页'
-})
+export default {
+  navigationStyle:'custom', // 设置导航自定义
+}

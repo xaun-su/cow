@@ -3,7 +3,6 @@
 import React from 'react';
 import Taro from '@tarojs/taro'; 
 import CustomNavBar from '../../components/CustomNavBar/CustomNavBar'
-import Footer from '../../components/Footer'
 import './index.less';
 import { View } from '@tarojs/components';
 
@@ -27,10 +26,7 @@ const SomePage = () => {
           marginTop: `${totalNavHeight}px`, // 内容区域向下偏移导航栏总高度
         }}
       >
-      {/* 底部区域 */}
-       <View>
-       <Footer/>
-       </View>
+
         
       </View>
     </View>

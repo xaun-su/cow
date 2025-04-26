@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Taro from '@tarojs/taro';
 import CustomNavBar from '../../components/CustomNavBar/CustomNavBar';
 import './index.less'; // 引入首页的样式文件
-import { View, Text, Image } from '@tarojs/components'; // 导入 Image 组件
+import { View, Text, Image , Navigator} from '@tarojs/components'; // 导入 Image 组件
 import { Clock } from '@nutui/icons-react-taro'
 // 注意：如果你不使用 NutUI 的 Tabs 图标，只使用组件，可以移除这里的 Tabs 导入
 // import { Clock, Tabs } from '@nutui/icons-react-taro'
@@ -70,13 +70,13 @@ const Index = () => {
 
         {/* 设备 */}
         {/* 使用 Image 组件代替 img 标签 */}
-        <View className='device'>
+        <Navigator className='device' url='/pages/device/index'>
           <View className='device-content'>
             <Image src={imge1} className='device-icon' /> {/* 添加类名方便控制大小 */}
             <Text className='device-title'>设备异常</Text>
           </View>
-          <Text>34</Text>
-        </View>
+          <Text>34</Text> 
+        </Navigator>
         <View className='device'>
           <View className='device-content'>
             <Image src={imge2} className='device-icon' /> {/* 添加类名方便控制大小 */}

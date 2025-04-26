@@ -4,7 +4,7 @@ export default defineAppConfig({
     'pages/manage/index',
     'pages/map/index',
     'pages/animal/index',
-
+    'pages/device/index'
   ],
   window: {
     backgroundTextStyle: 'light',

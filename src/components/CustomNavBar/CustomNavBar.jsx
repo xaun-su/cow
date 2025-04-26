@@ -3,9 +3,10 @@
 import React, { useEffect, useState } from 'react';
 import Taro from '@tarojs/taro';
 import { ArrowLeft } from '@nutui/icons-react-taro'
-import './index.less'; 
-import { View,Text } from '@tarojs/components';
-
+import './index.less';
+import { View, Text ,Image} from '@tarojs/components';
+import { Badge } from '@nutui/nutui-react-taro'
+import imge from '../../static/images/铃铛 (2).png'
 // 获取系统信息，用于计算状态栏高度和导航栏总高度
 const systemInfo = Taro.getSystemInfoSync();
 const statusBarHeight = systemInfo.statusBarHeight; // 状态栏高度
@@ -43,10 +44,16 @@ const CustomNavBar = (props) => {
       }}
     >
       {/* 返回按钮区域，只有当 showBackButton 为 true 时才渲染 */}
-      {showBackButton && (
+      {showBackButton ? (
         <View className='back-button' onClick={handleBack}>
-        <ArrowLeft />
+          <ArrowLeft />
         </View>
+      ) : (<View className='back-button' onClick={handleBack}>
+        <View style={{ display: 'flex' }}>
+          <Image src={imge} className='back-icon'></Image>
+           <Badge style={{ marginInlineEnd: '40px' }} value={8} />
+        </View>
+      </View>
       )}
 
       {/* 导航栏标题 */}
@@ -57,7 +64,7 @@ const CustomNavBar = (props) => {
       {/* 右侧占位或其他按钮（如果需要） */}
       <View className='right-placeholder'></View>
     </View>
-    
+
   );
 };
 

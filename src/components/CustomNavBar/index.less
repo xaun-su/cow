@@ -6,6 +6,7 @@
   left: 0;
   right: 0;
   display: flex;
+  width: 85%;
   align-items: center;
   justify-content: space-between; // 使返回按钮、标题、右侧内容分开
   z-index: 100; // 确保在页面内容之上
@@ -23,11 +24,6 @@
   padding: 0 5px; // 内部留白
 }
 
-.back-icon {
-  width: 20px; // 返回图标的实际大小
-  height: 20px;
-}
-
 .navbar-title {
   flex-grow: 1; // 标题占据剩余空间
   text-align: center; // 标题居中
@@ -42,4 +38,8 @@
 .right-placeholder {
   width: 40px; // 右侧占位，与返回按钮宽度一致，使标题在有返回按钮时居中
   // 如果没有返回按钮，这个占位可能需要隐藏或调整宽度
+}
+.back-icon{
+  width: 80px;
+  height: 80px;
 }

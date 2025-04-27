@@ -4,14 +4,21 @@ import { View, Text, Image } from '@tarojs/components';
 import './index.less'; // 引入样式文件
 import imge from '../../static/images/animal.png';
 // 导入需要的 NutUI 组件，包括 ConfigProvider, Cell, CellGroup, 以及图标
-import { Button, Cell, ConfigProvider, CellGroup, Tabs } from '@nutui/nutui-react-taro';
+import { Button, Cell, ConfigProvider, CellGroup, Tabs, CircleProgress } from '@nutui/nutui-react-taro';
 // 导入 NutUI 图标，例如 Battery
 import { Add, ArrowRight } from '@nutui/icons-react-taro'; // 导入电池图标
 import { Steps, Step } from '@nutui/nutui-react-taro'
 import imge2 from '../../static/images/证明.png';
 
+const gradientColor = {
+  '0%': '#FF5E5E',
+  '100%': '#FFA062',
+}
+
 const AnimalDetails = () => {
   const [tab2value, setTab2value] = useState('0');
+  //运动量
+  const [tab1value, setTab1value] = useState('0')
   // 定义一个自定义主题变量对象，用于覆盖 NutUI 的默认样式变量
   const customTheme = {
     // 将 Cell.Group 的外边距设置为 0
@@ -113,8 +120,70 @@ const AnimalDetails = () => {
               </CellGroup>
             </Tabs.TabPane>
             <Tabs.TabPane title='健康信息' value={tabValues.healthInfo}>
-              {' '}
-              Tab 2{' '}
+              <Cell title='活跃度' radius={0} style={
+                {
+                  '--nutui-cell-background-color': '#f5f5f5',
+                }
+              } />
+              <div style={{ display: 'flex', alignContent: 'center', justifyContent: 'space-evenly', padding: '40px 0' }}>
+                <div style={{ fontSize: '30px' }}>活跃</div>
+                <div style={{ fontSize: '30px' }}>123</div>
+              </div>
+              <Cell title='健康指标' radius={0} style={
+                {
+                  '--nutui-cell-background-color': '#f5f5f5',
+                }
+              } />
+              <div style={{ display: 'flex', justifyContent: 'space-evenly', padding: '40px 0' }}>
+                <CircleProgress percent={50} color="#1988fa">
+                  50%
+                </CircleProgress>
+                <CircleProgress percent={100} color={gradientColor}>
+                  100%
+                </CircleProgress>
+              </div>
+              <Cell title='运动量' radius={0} style={
+                {
+                  '--nutui-cell-background-color': '#f5f5f5',
+                }
+              } />
+              <>
+                <Tabs
+                  value={tab1value}
+                  activeType='none'
+                  onChange={(value) => {
+                    setTab1value(value)
+                  }}
+                >
+                  <Tabs.TabPane title="Tab longitem"> 
+                  
+                  </Tabs.TabPane>
+                  <Tabs.TabPane title="Tab 2"> Tab 2 </Tabs.TabPane>
+                  <Tabs.TabPane title="Tab 3"> Tab 3 </Tabs.TabPane>
+                </Tabs>
+              </>
+
+
+              <Cell title='体温' radius={0} style={
+                {
+                  '--nutui-cell-background-color': '#f5f5f5',
+                }
+              } />
+                 <>
+                <Tabs
+                  value={tab1value}
+                  activeType='none'
+                  onChange={(value) => {
+                    setTab1value(value)
+                  }}
+                >
+                  <Tabs.TabPane title="Tab longitem"> 
+                  
+                  </Tabs.TabPane>
+                  <Tabs.TabPane title="Tab 2"> Tab 2 </Tabs.TabPane>
+                  <Tabs.TabPane title="Tab 3"> Tab 3 </Tabs.TabPane>
+                </Tabs>
+              </>
             </Tabs.TabPane>
             <Tabs.TabPane title='检疫信息' value={tabValues.quarantineInfo}>
               <Cell title='检疫信息' radius={0} style={
@@ -151,7 +220,7 @@ const AnimalDetails = () => {
                           检疫人员: 2`134`4234
                         </p>
                         <Image src={imge2} style={{
-                                 width: '250px',
+                          width: '250px',
                           height: '400px'
                         }}></Image>
 
@@ -171,7 +240,7 @@ const AnimalDetails = () => {
                           检疫人员: 2`134`4234
                         </p>
                         <Image src={imge2} style={{
-                           width: '250px',
+                          width: '250px',
                           height: '400px'
                         }}></Image>
 

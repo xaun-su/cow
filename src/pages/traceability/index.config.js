@@ -1,3 +1,3 @@
 export default definePageConfig({
-  navigationBarTitleText: '牲畜详情'
+  navigationBarTitleText: '溯源记录'
 })

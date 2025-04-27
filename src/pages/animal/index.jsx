@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { SearchBar, Avatar } from '@nutui/nutui-react-taro';
-import { View, Text } from '@tarojs/components'; // 确保导入了 Text
+import { View, Text ,Navigator } from '@tarojs/components'; // 确保导入了 Text
 import { ArrowRight, User,Add } from '@nutui/icons-react-taro'; // 确保导入了 User 和 ArrowRight
 import './index.less';
 
@@ -28,9 +28,9 @@ const Demo7 = () => {
             </View>
 
             {/* 右侧：箭头 */}
-            <View className='item-right'> {/* 包裹箭头的容器 */}
+            <Navigator className='item-right' url='/pages/animalDetails/index'> {/* 包裹箭头的容器 */}
               <ArrowRight /> {/* 箭头图标 */}
-            </View>
+            </Navigator>
           </View>
         ))}
       </View>

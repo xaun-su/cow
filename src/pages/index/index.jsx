@@ -35,13 +35,6 @@ const Index = () => {
       <View
         className='index-content'
         style={{
-          // 这里的 marginTop 应该根据背景图片高度和 reports 的 transform 来调整
-          // 当前背景 35vh，reports transform Y 5vh，reports 高度 25vh
-          // reports 顶部在 index-content 内部 translateY(5vh) 的位置
-          // 如果 index-content marginTop 10vh，reports 顶部在整体 10vh + 5vh = 15vh
-          // reports 底部在整体 15vh + 25vh = 40vh
-          // 你的背景图只有 35vh，reports 会超出背景图
-          // 这里保持你原有的 10vh，但需要注意布局可能需要微调
           marginTop: `10vh`,
         }}
       >
@@ -78,7 +71,7 @@ const Index = () => {
           <Text>34</Text> 
         </Navigator>
         <View className='device'>
-          <View className='device-content'>
+          <View className='device-content'> 
             <Image src={imge2} className='device-icon' /> {/* 添加类名方便控制大小 */}
             <Text className='device-title'>监控设备</Text>
           </View>

@@ -1,6 +1,6 @@
 // src/pages/animal-details/index.jsx
 import React, { useState } from 'react';
-import { View, Text, Image } from '@tarojs/components';
+import { View, Text, Image,Navigator } from '@tarojs/components';
 import './index.less'; // 引入样式文件
 import imge from '../../static/images/animal.png';
 // 导入需要的 NutUI 组件，包括 ConfigProvider, Cell, CellGroup, 以及图标
@@ -32,6 +32,8 @@ const AnimalDetails = () => {
       </View>
     );
   };
+
+  console.log('image path:', imge); // 打印图片路径
 
   return (
     <View className='animal-detail'>
@@ -72,7 +74,7 @@ const AnimalDetails = () => {
             <Cell title="当前体重" extra="900KG" radius={0} />
             <Cell title="当前状态" extra="生长中" radius={0} />
           </CellGroup>
-           <button className='btn'>溯源信息</button>
+           <Navigator className='btn' url='/pages/traceability/index'>溯源信息</Navigator>
         </ConfigProvider>
       </View>
     </View>

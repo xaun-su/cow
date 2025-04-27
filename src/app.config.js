@@ -5,7 +5,8 @@ export default defineAppConfig({
     'pages/map/index',
     'pages/animal/index',
     'pages/device/index',
-    'pages/animalDetails/index'
+    'pages/animalDetails/index',
+    'pages/traceability/index'
   ],
   window: {
     backgroundTextStyle: 'light',

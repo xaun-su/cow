@@ -1,0 +1,46 @@
+// 定义一些颜色变量（可选）
+@page-background-color: #f7f7f7; // 页面背景色
+@add-button-color: #0bcb75; // 新增按钮背景色 (绿色)
+@add-button-text-color: #fff; // 新增按钮文字颜色
+
+.quarantine-list-page {
+  background-color: @page-background-color;
+  min-height: 100vh; // 确保页面至少占满一屏高度
+  padding-bottom: 80px; // 为底部固定按钮留出空间，避免内容被遮挡
+  box-sizing: border-box; // 内边距不增加元素总尺寸
+}
+
+.card-list-container {
+  // 列表容器样式，如果需要额外的内边距或布局调整可以在这里添加
+  padding-top: 10px; // 列表顶部留白
+}
+
+// 底部固定新增按钮容器
+.add-button-container {
+  position: fixed; // 固定定位
+  bottom: 0; // 底部对齐
+  left: 0;
+  right: 0;
+  padding: 10px 20px; // 按钮容器内边距
+  background-color: @page-background-color; // 和页面背景色一致或稍有不同
+  // 添加阴影或其他样式让按钮容器更突出（可选）
+  // box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
+  padding-bottom: calc(10px + env(safe-area-inset-bottom)); // 适配底部安全区域
+}
+
+// 新增按钮样式
+.add-button {
+  width: 100%; // 按钮宽度充满容器
+  height: 100px; // 按钮高度
+  background-color: @add-button-color; // 绿色背景
+  display: flex;
+  justify-content: center; // 文字水平居中
+  align-items: center; // 文字垂直居中
+  cursor: pointer; // 鼠标悬停变手型 (在浏览器环境中)
+}
+
+.add-button-text {
+  font-size: 36px;
+  color: @add-button-text-color; // 白色文字
+  font-weight: bold;
+}

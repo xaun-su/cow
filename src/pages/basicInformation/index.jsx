@@ -1,84 +1,110 @@
-// src/pages/animal-details/index.jsx
 import React, { useState } from 'react';
-import { View, Text, Image,Navigator } from '@tarojs/components';
+import { View, Text, Image } from '@tarojs/components';
+import { Cell, CellGroup, ConfigProvider } from '@nutui/nutui-react-taro';
+import { ArrowRight } from '@nutui/icons-react-taro'; // 导入箭头图标
 import './index.less'; // 引入样式文件
-import imge from '../../static/images/animal.png';
-// 导入需要的 NutUI 组件，包括 ConfigProvider, Cell, CellGroup, 以及图标
-import { Button, Cell, ConfigProvider, CellGroup } from '@nutui/nutui-react-taro';
-// 导入 NutUI 图标，例如 Battery
-import { Add } from '@nutui/icons-react-taro'; // 导入电池图标
 
-const AnimalDetails = () => {
+// 导入一个占位的头像图片，请替换为你自己的图片路径
+import defaultAvatar from '../../static/images/惊叹号、感叹号.png'; // 假设你有一个默认头像图片
 
-  // 定义一个自定义主题变量对象，用于覆盖 NutUI 的默认样式变量
-  const customTheme = {
-    // 将 Cell.Group 的外边距设置为 0
-    '--nutui-cell-group-wrap-margin': '0',
-    '--nutui-cell-group-wrap-padding': '0',
-    '--nutui-button-border-radius':'0'
-  };
-  const marginStyle = {width: '100%'}
-  // 渲染电池和 IMEI 的函数或组件
-  const renderBatteryInfo = (percentage, imei) => {
-    // 根据百分比选择电池图标（这里简化，只用一个图标，实际可以根据值选择不同状态的图标）
-    const batteryColor = percentage > 20 ? '#0bcb75' : '#ff4d4f'; // 绿色或红色
-    const batteryIcon = <Add size={16} color={batteryColor} style={{ verticalAlign: 'middle' }} />; // 添加样式调整位置
+const UserProfile = () => {
+  // 模拟用户数据，实际应用中这些数据会从后端获取或通过状态管理维护
+  const [userInfo, setUserInfo] = useState({
+    avatarUrl: defaultAvatar, // 用户头像 URL
+    name: '未填写',
+    gender: '未选择',
+    email: '未填写',
+    phone: '未填写',
+  });
 
-    return (
-      <View className='battery-info'> {/* 添加一个容器方便布局 */}
-        <Text style={{ color: batteryColor,  fontSize: '12px' }}>{percentage}%</Text>
-        {batteryIcon}
-        <Text style={{ color: '#a0a0a0', fontSize: '12px' }}>{imei}</Text>
-      </View>
-    );
+  // 自定义 NutUI Cell 的样式变量
+  const customCellTheme = {
+    // 可以根据需要覆盖 NutUI 的默认 Cell 样式
+    // '--nutui-cell-padding': '15px 16px', // 调整 Cell 的内边距
+    // '--nutui-cell-border-bottom': '1px solid #eee', // 调整 Cell 的底部边框
+    '--nutui-cell-desc-color': '#999', // 右侧描述文字颜色
   };
 
-  console.log('image path:', imge); // 打印图片路径
+  // 处理点击信息项的函数（例如跳转到编辑页面）
+  const handleEditInfo = (field) => {
+    console.log(`点击了编辑 ${field}`);
+    // 在实际应用中，你可以在这里实现页面跳转、显示编辑弹窗等逻辑
+    // 例如：Taro.navigateTo({ url: `/pages/edit-profile/index?field=${field}` });
+  };
+
+  // 处理点击退出登录的函数
+  const handleLogout = () => {
+    console.log('点击了退出登录');
+    // 在实际应用中，这里应该执行退出登录的逻辑，例如：
+    // 1. 清除用户登录状态（如 token）
+    // 2. 重定向到登录页面
+    // Taro.removeStorageSync('token');
+    // Taro.redirectTo({ url: '/pages/login/index' });
+  };
 
   return (
-    <View className='animal-detail'>
-      <View className='animal-detail-header'>
-        <Image src={imge} className='animal-detail-header-image' />
-      </View>
-      <View className='animal-detail-content'>
-        {/* 使用 ConfigProvider 包裹需要应用自定义主题的组件 */}
-        <ConfigProvider themeVars={customTheme}>
-            <Cell
-              title="牲畜编号"
-              extra="偏瘦" // 右侧内容
-              isLink // 添加箭头
-              radius={0} // Cell 本身不带圆角
-            />
-          {/* 设备信息分组 */}
-          <CellGroup title="设备信息" radius={0} >
-            <Cell
-              title="智能耳标"
-              extra={renderBatteryInfo(80, 'IMEI 123456789')} // 自定义右侧内容
-              radius={0}
-            />
-            <Cell
-              title="智能项圈"
-              extra={renderBatteryInfo(1, 'IMEI 123456789')} // 自定义右侧内容
-              radius={0}
-            />
-          </CellGroup>
+    
+    <ConfigProvider themeVars={customCellTheme}>
+      <View className='user-profile-page'>
+        {/* 头像 */}
+        {/* Cell 组件的 extra 属性可以自定义右侧内容 */}
+        {/* isLink 属性会自动在右侧添加一个箭头 */}
+        <Cell
+          title='头像'
+          isLink
+          extra={
+            <View className='avatar-extra'>
+              <Image src={userInfo.avatarUrl} className='avatar-image' mode='aspectFill' style={{
+                width: '30px',
+                height: '30px'
+              }}/>
+              {/* NutUI 的 isLink 会自动添加 ArrowRight 图标，无需手动添加 */}
+              <ArrowRight size={16} color='#999' />
+            </View>
+          }
+          onClick={() => handleEditInfo('头像')}
+        />
 
-          {/* 牲畜信息分组 */}
-          <CellGroup title="牲畜信息" radius={0}>
-            <Cell title="牲畜种类" extra="牛" radius={0} />
-            <Cell title="品种" extra="小黄牛" radius={0} />
-            <Cell title="性别" extra="公" radius={0} />
-            <Cell title="年龄" extra="5岁两个月" radius={0} />
-            <Cell title="当前体重" extra="900KG" radius={0} />
-            <Cell title="当前状态" extra="生长中" radius={0} />
-            <Cell title="是否绝育" extra="否" radius={0} />
-            <Cell title="疫苗" extra="2022-22-22 22:22" radius={0} />
-          </CellGroup>
-           <Navigator className='btn' url='/pages/traceability/index'>前往追踪</Navigator>
-        </ConfigProvider>
+        {/* 其他信息项分组 */}
+        {/* CellGroup 可以将 Cell 分组，提供统一的上下边距和可选的标题 */}
+        {/* 图片中没有分组标题，所以我们不设置 title */}
+        <CellGroup>
+          <Cell
+            title='姓名'
+            extra={userInfo.name}
+            isLink
+            onClick={() => handleEditInfo('姓名')}
+          />
+          <Cell
+            title='性别'
+            extra={userInfo.gender}
+            isLink
+            onClick={() => handleEditInfo('性别')}
+          />
+          <Cell
+            title='邮箱'
+            extra={userInfo.email}
+            isLink
+            onClick={() => handleEditInfo('邮箱')}
+          />
+          <Cell
+            title='电话'
+            extra={userInfo.phone}
+            isLink
+            onClick={() => handleEditInfo('电话')}
+          />
+        </CellGroup>
+
+        {/* 退出登录按钮 */}
+        {/* 使用 Cell 来模拟一个全宽的按钮，并应用自定义样式居中 */}
+        <Cell
+          title='退出登录'
+          className='logout-cell' // 应用自定义 CSS 类
+          onClick={handleLogout}
+        />
       </View>
-    </View>
+    </ConfigProvider>
   );
 };
 
-export default AnimalDetails;
+export default UserProfile;

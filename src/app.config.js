@@ -8,7 +8,17 @@ export default defineAppConfig({
     'pages/animalDetails/index',
     'pages/traceability/index',
     'pages/animalDetailsError/index',
-    'pages/basicInformation/index'
+    'pages/basicInformation/index',
+    'pages/vaccineManagement/index',
+    'pages/reproductionManagement/index',
+    'pages/quarantineRecords/index',
+    'pages/birthControlRecords/index',
+    'pages/estrusRecording/index',
+    'pages/vaccineRecords/index',
+    'pages/quarantineManagement/index',
+    'pages/selectLivestock/index',
+    'pages/breedingManage/index',
+    'pages/newBreeding/index'
   ],
   window: {
     backgroundTextStyle: 'light',

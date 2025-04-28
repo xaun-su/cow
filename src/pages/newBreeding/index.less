@@ -1,0 +1,123 @@
+// 定义一些颜色变量（可选）
+@page-bg-color: #f7f8f9; // 页面背景色
+@section-header-bg-color: #f2f2f2; // 分区头部背景色
+@border-color: #eee; // 分隔线颜色
+@text-color-primary: #333; // 主要文字颜色
+@text-color-secondary: #666; // 次要文字颜色
+@text-color-placeholder: #999; // 占位符文字颜色
+@green-button-color: #0bcb75; // 绿色按钮颜色
+
+.add-mating-record-page { // 更新类名
+  background-color: @page-bg-color;
+  min-height: 100vh; // 确保页面至少占满一屏高度
+  // 如果有底部按钮，需要留出空间
+  // padding-bottom: 160px; // 为底部固定按钮留出空间 (120 * 4/3 = 160)
+}
+
+.page-content {
+  padding: 27px; // 页面内容内边距 (20 * 4/3 ≈ 26.66 -> 27)
+}
+
+.section {
+  background-color: #fff; // 分区背景色
+  margin-bottom: 27px; // 分区底部间距 (20 * 4/3 ≈ 26.66 -> 27)
+  border-radius: 11px; // 分区圆角 (8 * 4/3 ≈ 10.66 -> 11)
+  overflow: hidden; // 确保圆角生效
+}
+
+.section-header {
+  background-color: @section-header-bg-color;
+  padding: 20px 27px; // 分区头部内边距 (15 * 4/3 = 20, 20 * 4/3 ≈ 26.66 -> 27)
+  .section-title {
+    font-size: 40px; // 分区标题字号 (30 * 4/3 = 40)
+    color: @text-color-primary;
+    font-weight: bold;
+  }
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between; // 两端对齐
+  align-items: center; // 垂直居中
+  padding: 20px 27px; // 列表项内边距 (15 * 4/3 = 20, 20 * 4/3 ≈ 26.66 -> 27)
+  font-size: 37px; // 列表项字号 (28 * 4/3 ≈ 37.33 -> 37)
+  color: @text-color-primary;
+
+  .item-label {
+    // 标签样式
+    flex-shrink: 0; // 防止标签被压缩
+    margin-right: 27px; // 标签右侧间距 (20 * 4/3 ≈ 26.66 -> 27)
+  }
+
+  .item-value {
+    flex-grow: 1; // 值占据剩余空间
+    text-align: right; // 值右对齐
+    color: @text-color-secondary; // 值文字颜色
+    word-break: break-word; // 长文本换行
+  }
+
+  .placeholder {
+    color: @text-color-placeholder; // 占位符文字颜色
+  }
+}
+
+.divider {
+  height: 1px; // 保持 1px 清晰可见 (1 * 4/3 ≈ 1.33 -> 1)
+  background-color: @border-color; // 分隔线颜色
+  margin-left: 27px; // 分隔线左侧与标签对齐 (20 * 4/3 ≈ 26.66 -> 27)
+}
+
+.select-livestock-item {
+    .item-value-with-arrow {
+        display: flex;
+        align-items: center;
+        .item-value {
+            margin-right: 13px; // 值与箭头间距 (10 * 4/3 ≈ 13.33 -> 13)
+            flex-grow: 0; // 防止值占据所有空间
+        }
+    }
+}
+
+.notes-section {
+    .list-item {
+        padding-bottom: 0; // 备注标签下方不需要额外内边距
+    }
+    .notes-textarea {
+        width: calc(100% - 53px); // 宽度减去左右 padding (40 * 4/3 ≈ 53.33 -> 53)
+        margin: 0 27px 27px 27px; // 上右下左外边距 (20 * 4/3 ≈ 26.66 -> 27)
+        padding: 20px; // Textarea 内边距 (15 * 4/3 = 20)
+        border: 1px solid @border-color; // Textarea 边框 (1 * 4/3 ≈ 1.33 -> 1)
+        border-radius: 5px; // Textarea 圆角 (4 * 4/3 ≈ 5.33 -> 5)
+        font-size: 37px; // Textarea 字号 (28 * 4/3 ≈ 37.33 -> 37)
+        color: @text-color-primary;
+        background-color: @page-bg-color; // Textarea 背景色与页面背景一致
+        box-sizing: border-box; // 边框和内边距包含在宽度内
+
+        &::placeholder {
+            color: @text-color-placeholder; // 占位符颜色
+        }
+    }
+}
+
+.submit-button-container {
+  position: fixed; // 固定定位
+  bottom: 0; // 底部对齐
+  left: 0;
+  right: 0;
+  padding: 27px; // 按钮容器内边距 (20 * 4/3 ≈ 26.66 -> 27)
+  background-color: #fff; // 容器背景色
+  box-shadow: 0 -3px 11px rgba(0, 0, 0, 0.1); // 顶部阴影 (0 -2px 8px -> 0 -3px 11px)
+  z-index: 10; // 确保在其他内容上方
+
+  .submit-button {
+    background-color: @green-button-color; // 按钮背景色
+    color: #fff; // 按钮文字颜色
+    font-size: 43px; // 按钮字号 (32 * 4/3 ≈ 42.66 -> 43)
+    height: 107px; // 按钮高度 (80 * 4/3 ≈ 106.66 -> 107)
+    border-radius: 53px; // 按钮圆角 (40 * 4/3 ≈ 53.33 -> 53)
+    display: flex;
+    justify-content: center; // 文字水平居中
+    align-items: center; // 文字垂直居中
+  }
+}
+

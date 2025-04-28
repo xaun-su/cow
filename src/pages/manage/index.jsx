@@ -78,23 +78,23 @@ const Index = () => {
             <Avatar icon={<User />} color="#fff" background="#0bcb77" shape="round" size="50" />
             <Text className='text'>牲畜信息</Text>
           </View>
-          <View className='icon-item'>
+          <Navigator className='icon-item' url='/pages/vaccineManagement/index'>
             <Avatar icon={<User />} color="#fff" background="#0bcb77" shape="round" size="50" />
             <Text className='text'>检疫管理</Text>
-          </View>
-          <View className='icon-item'>
+          </Navigator>
+          <Navigator className='icon-item' url='/pages/quarantineManagement/index'>
             <Avatar icon={<User />} color="#fff" background="#0bcb77" shape="round" size="50" />
             <Text className='text'>疫苗管理</Text>
-          </View>
-          <View className='icon-item'>
+          </Navigator>
+          <Navigator className='icon-item' url='/pages/breedingManage/index'>
             <Avatar icon={<User />} color="#fff" background="#0bcb77" shape="round" size="50" />
             <Text className='text'>配种管理</Text>
-          </View>
-          <View className='icon-item'>
+          </Navigator>
+          <Navigator className='icon-item' url='/pages/reproductionManagement/index'>
             <Avatar icon={<User />} color="#fff" background="#0bcb77" shape="round" size="50" />
             <Text className='text'>繁殖管理</Text>
 
-          </View>
+          </Navigator>
           <View className='icon-item'>
             <Avatar icon={<User />} color="#fff" background="#0bcb77" shape="round" size="50" />
             <Text className='text'>牧场信息</Text>

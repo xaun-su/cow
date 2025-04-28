@@ -1,0 +1,107 @@
+// 定义一些颜色变量（可选）
+@card-background: #fff; // 卡片背景色
+@border-color: #eee; // 边框和分隔线颜色
+@text-color-primary: #333; // 主要文字颜色
+@text-color-secondary: #666; // 次要文字颜色
+@text-color-tertiary: #999; // 更浅的文字颜色
+@icon-background-green: #0bcb75; // 绿色图标背景
+
+.quarantine-record-card {
+  background-color: @card-background;
+  margin: 17px; // 13px * 4/3 ≈ 17.33px -> 17px
+  padding: 27px; // 20px * 4/3 ≈ 26.66px -> 27px
+  border-radius: 15px; // 11px * 4/3 ≈ 14.66px -> 15px
+  box-shadow: 0 4px 7px rgba(0, 0, 0, 0.05); // 3px * 4/3 = 4px, 5px * 4/3 ≈ 6.66px -> 7px
+  overflow: hidden; // 确保圆角生效
+}
+
+.card-header {
+  display: flex; // 水平布局
+  align-items: center; // 垂直居中对齐
+  margin-bottom: 27px; // 20px * 4/3 ≈ 26.66px -> 27px
+}
+
+.icon-container {
+  width: 71px; // 53px * 4/3 ≈ 70.66px -> 71px
+  height: 71px; // 53px * 4/3 ≈ 70.66px -> 71px
+  background-color: @icon-background-green; // 绿色背景
+  border-radius: 50%; // 圆形
+  display: flex;
+  justify-content: center; // 图标水平居中
+  align-items: center; // 图标垂直居中
+  margin-right: 17px; // 13px * 4/3 ≈ 17.33px -> 17px
+}
+
+.animal-icon {
+  width: 43px; // 32px * 4/3 ≈ 42.66px -> 43px
+  height: 43px; // 32px * 4/3 ≈ 42.66px -> 43px
+  // 如果你的图标是白色的，可以不需要背景色，直接使用图片
+}
+
+.id-info {
+  flex: 1; // 占据剩余空间
+  display: flex; // 垂直布局
+  flex-direction: column;
+}
+
+.id-label {
+  font-size: 28px; // 21px * 4/3 = 28px
+  color: @text-color-primary;
+  font-weight: bold; // 牲畜编号加粗
+}
+
+.imei {
+  font-size: 21px; // 16px * 4/3 ≈ 21.33px -> 21px
+  color: @text-color-tertiary; // IMEI 使用浅色
+  margin-top: 4px; // 3px * 4/3 = 4px
+}
+
+.arrow-icon {
+  // NutUI ArrowRight 默认有大小，这里只是为了定位
+  margin-left: 17px; // 13px * 4/3 ≈ 17.33px -> 17px
+}
+
+.card-details {
+  margin-bottom: 27px; // 20px * 4/3 ≈ 26.66px -> 27px
+}
+
+.detail-item {
+  display: block; // 每项独占一行
+  font-size: 25px; // 19px * 4/3 ≈ 25.33px -> 25px
+  color: @text-color-secondary;
+  margin-bottom: 9px; // 7px * 4/3 ≈ 9.33px -> 9px
+  word-break: break-word; // 长文本换行
+}
+
+.detail-item:last-child {
+    margin-bottom: 0; // 最后一项不加底部间距
+}
+
+.detail-label {
+  color: @text-color-tertiary; // 标签文字颜色浅一点
+  margin-right: 9px; // 7px * 4/3 ≈ 9.33px -> 9px
+}
+
+
+.separator {
+  height: 1px; // 1px * 4/3 ≈ 1.33px -> 1px (保持 1px 是为了线条清晰可见)
+  background-color: @border-color; // 分隔线颜色
+  margin: 27px 0; // 20px * 4/3 ≈ 26.66px -> 27px
+}
+
+.card-footer {
+  display: flex; // 水平布局
+  justify-content: space-between; // 两端对齐
+  align-items: center; // 垂直居中对齐
+  font-size: 21px; // 16px * 4/3 ≈ 21.33px -> 21px
+  color: @text-color-secondary;
+}
+
+.operator {
+  // 操作员文字样式
+}
+
+.date {
+  // 日期文字样式
+  color: @text-color-tertiary; // 日期使用浅色
+}

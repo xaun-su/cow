@@ -1,0 +1,176 @@
+import React, { useState } from 'react';
+import { View, Text, Textarea, Input } from '@tarojs/components'; // 导入 Input 组件备用
+import Taro from '@tarojs/taro';
+import { ArrowRight } from '@nutui/icons-react-taro'; // 移除未使用的 Add 图标
+import './index.less'; // 引入页面样式文件
+
+const AddReproductionRecord = () => {
+  // 使用 useState 管理表单数据
+  const [formData, setFormData] = useState({
+    herdsmanName: '雷山县动物卫生监督所', // 对应截图中的“牧民”
+    herdsmanPhone: '', // 对应截图中的“电话”
+    herdsmanAddress: '', // 对应截图中的“地址”
+    selectedLivestock: { imei: '12456789111' }, // 已选择的牲畜
+    actualBreedingTime: '', // 对应截图中的“实际**时间”
+    expectedBreedingTime: '', // 对应截图中的“预计**时间”
+    notes: '', // 备注
+    proofImage: null, // 检疫证明文件或路径，这里改为 proofImage 更明确
+  });
+
+  // 通用的输入框变化处理函数
+  const handleInputChange = (key, value) => {
+    setFormData(prevData => ({
+      ...prevData,
+      [key]: value,
+    }));
+  };
+
+  // 处理检疫证明上传点击事件
+  const handleProofUpload = () => {
+    console.log('点击了检疫证明上传'); // 修正 console.log
+    // TODO: 实现图片/文件上传逻辑
+    Taro.chooseImage({
+      count: 1, // 最多选择一张图片
+      sizeType: ['compressed'], // 可以指定原图或压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        const tempFilePaths = res.tempFilePaths;
+        console.log('选择的图片路径:', tempFilePaths);
+        // TODO: 将图片路径或文件上传到服务器，并更新 proofImage 状态
+        // setFormData(prevData => ({ ...prevData, proofImage: tempFilePaths[0] }));
+      },
+    });
+  };
+
+  // 处理选择牲畜点击事件
+  const handleSelectLivestock = () => {
+    console.log('点击了选择牲畜'); // 修正 console.log
+  };
+
+  // 处理日期选择点击事件 (实际/预计时间)
+  const handleTimeSelect = (key) => {
+      console.log(`点击了选择${key === 'actualBreedingTime' ? '实际' : '预计'}时间`);
+  };
+
+
+  // 处理确定提交按钮点击事件
+  const handleSubmit = () => {
+    console.log('点击了确定提交'); // 修正 console.log
+    console.log('待提交的数据:', formData);
+    // TODO: 收集 formData 并调用 API 提交数据
+    // TODO: 提交成功后跳转回列表页或显示成功提示
+  };
+
+  return (
+    <View className='add-quarantine-record-page'> {/* 沿用 Less 中的类名 */}
+      {/* 页面内容区域 */}
+      <View className='page-content'>
+        {/* 牧民信息部分 */}
+        <View className='section'>
+          <View className='section-header'>
+            <Text className='section-title'>牧民信息(操作员)</Text>
+          </View>
+
+          {/* 牧民 */}
+          {/* 这里应该是一个输入框或选择器 */}
+          <View className='list-item' /* onClick={() => handleInputClick('herdsmanName')} */>
+            <Text className='item-label'>牧民</Text>
+            {/* TODO: 替换为 Input 或其他组件 */}
+             <Text className={`item-value ${!formData.herdsmanName && 'placeholder'}`}>
+               {formData.herdsmanName || '请输入牧民姓名'}
+             </Text>
+          </View>
+          <View className='divider'></View> {/* 分隔线 */}
+
+          {/* 电话 */}
+           {/* 这里应该是一个输入框 */}
+          <View className='list-item' /* onClick={() => handleInputClick('herdsmanPhone')} */>
+            <Text className='item-label'>电话</Text>
+             {/* TODO: 替换为 Input 或其他组件 */}
+            <Text className={`item-value ${!formData.herdsmanPhone && 'placeholder'}`}>
+              {formData.herdsmanPhone || '请输入联系电话'}
+            </Text>
+          </View>
+          <View className='divider'></View>
+
+          {/* 地址 */}
+           {/* 这里应该是一个输入框或选择器 */}
+          <View className='list-item' /* onClick={() => handleInputClick('herdsmanAddress')} */>
+            <Text className='item-label'>地址</Text>
+             {/* TODO: 替换为 Input 或其他组件 */}
+            <Text className={`item-value ${!formData.herdsmanAddress && 'placeholder'}`}>
+               {formData.herdsmanAddress || '请输入地址'}
+            </Text>
+          </View>
+          <View className='divider'></View>
+
+           {/* 检疫证明上传 (保留，如果繁殖记录也需要上传证明) */}
+           {/* 如果不需要，可以删除此部分 */}
+          <View className='list-item' onClick={handleProofUpload}>
+            <Text className='item-label'>证明上传</Text> {/* 根据实际用途修改标签 */}
+            <View className='upload-icon-container'>
+               {/* TODO: 如果已上传，这里可以显示缩略图 */}
+               {/* {formData.proofImage ? <Image src={formData.proofImage} className='uploaded-image' /> : <Camera size={27} color='#999' />} */}
+               <View className='upload-icon'></View> {/* 使用样式绘制相机图标 */}
+            </View>
+          </View>
+        </View>
+
+        {/* 添加牲畜部分 */}
+        <View className='section'>
+          <View className='section-header'>
+            <Text className='section-title'>添加牲畜</Text>
+          </View>
+
+          {/* 选择牲畜 */}
+          <View className='list-item select-livestock-item' onClick={handleSelectLivestock}>
+            <Text className='item-label'>选择牲畜</Text>
+            <View className='item-value-with-arrow'>
+              {/* TODO: 显示已选择牲畜的 IMEI 或其他标识 */}
+              <Text className='item-value'>{formData.selectedLivestock?.imei || '请选择牲畜'}</Text> {/* 使用 ?. 防止 selectedLivestock 为 null */}
+              <ArrowRight size={19} color='#999' /> {/* 右箭头 (尺寸已放大) */}
+            </View>
+          </View>
+          <View className='divider'></View>
+
+          {/* 实际**时间 */}
+          {/* 这里应该是一个日期选择器 */}
+          <View className='list-item' onClick={() => handleTimeSelect('actualBreedingTime')}>
+            <Text className='item-label'>绝育时间</Text>
+             {/* TODO: 替换为日期选择器 */}
+            <Text className={`item-value ${!formData.actualBreedingTime && 'placeholder'}`}>
+              {formData.actualBreedingTime || '请选择时间'}
+            </Text>
+          </View>
+          <View className='divider'></View>
+        </View>
+
+        {/* 备注部分 */}
+        <View className='section notes-section'>
+          <View className='list-item'>
+            <Text className='item-label'>备注</Text>
+          </View>
+          {/* Textarea 用于多行输入 */}
+          <Textarea
+            className='notes-textarea'
+            placeholder='请输入备注信息'
+            value={formData.notes} // 绑定状态
+            onInput={(e) => handleInputChange('notes', e.detail.value)} // 更新状态
+            autoHeight // 根据内容自动调整高度
+            maxlength={200} // 设置最大输入长度
+          />
+        </View>
+
+      </View>
+
+      {/* 底部固定按钮 */}
+      <View className='submit-button-container'>
+        <View className='submit-button' onClick={handleSubmit}>
+          <Text className='submit-button-text'>确定提交</Text>
+        </View>
+      </View>
+    </View>
+  );
+};
+
+export default AddReproductionRecord;

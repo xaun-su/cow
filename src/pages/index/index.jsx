@@ -4,18 +4,15 @@ import React, { useState } from 'react';
 import Taro from '@tarojs/taro';
 import CustomNavBar from '../../components/CustomNavBar/CustomNavBar';
 import './index.less'; // 引入首页的样式文件
-import { View, Text, Image , Navigator} from '@tarojs/components'; // 导入 Image 组件
+import { View, Text, Image, Navigator } from '@tarojs/components';
 import { Clock } from '@nutui/icons-react-taro'
-// 注意：如果你不使用 NutUI 的 Tabs 图标，只使用组件，可以移除这里的 Tabs 导入
-// import { Clock, Tabs } from '@nutui/icons-react-taro'
-import { Tabs } from '@nutui/nutui-react-taro' // 从组件库导入 Tabs
-
+import { Tabs ,Badge} from '@nutui/nutui-react-taro'
 import imge1 from '../../static/images/惊叹号、感叹号.png'
 import imge2 from '../../static/images/标示_道路摄像机_在线.png'
 
 // ... 获取系统信息计算导航栏高度的代码 ...
 const systemInfo = Taro.getSystemInfoSync();
-const statusBarHeight = systemInfo.statusBarHeight; // 状态栏高度
+const statusBarHeight = systemInfo.statusBarHeight;
 const customNavHeight = 44; // 自定义导航栏的高度
 const totalNavHeight = statusBarHeight + customNavHeight; // 导航栏总高度
 
@@ -29,9 +26,12 @@ const Index = () => {
       <View className='index-background'></View>
       {/* 导航栏组件，确保它在背景元素的上方 */}
       <CustomNavBar title='首页' className='index-nav-bar' />
-
-
       {/* 内容区域 */}
+      <Navigator className='bell' url='/pages/message/index' >
+          <Badge value={8}>
+            <i className='iconfont icon-lingdang'></i>
+          </Badge>
+        </Navigator>
       <View
         className='index-content'
         style={{
@@ -39,6 +39,8 @@ const Index = () => {
         }}
       >
         {/* 牲畜报道 */}
+   
+
         <View className='reports'>
           <View className='report'>
             <View className='title'> 牲畜报道</View>
@@ -62,17 +64,17 @@ const Index = () => {
         </View>
 
         {/* 设备 */}
-        {/* 使用 Image 组件代替 img 标签 */}
+     
         <Navigator className='device' url='/pages/device/index'>
           <View className='device-content'>
-            <Image src={imge1} className='device-icon' /> {/* 添加类名方便控制大小 */}
+            <i className='iconfont icon-jingtanhaogantanhao'></i>
             <Text className='device-title'>设备异常</Text>
           </View>
-          <Text>34</Text> 
+          <Text>34</Text>
         </Navigator>
         <View className='device'>
-          <View className='device-content'> 
-            <Image src={imge2} className='device-icon' /> {/* 添加类名方便控制大小 */}
+          <View className='device-content'>
+            <i className='iconfont icon-biaoshi_daolushexiangji_zaixian'></i>
             <Text className='device-title'>监控设备</Text>
           </View>
           <Text>34</Text>
@@ -94,7 +96,7 @@ const Index = () => {
             <Tabs.TabPane title="养殖棚1号" >
 
               <View className='environment-content'>
-              <View className='environment-card'>
+                <View className='environment-card'>
                   <View className='card-left'>
                     <Text className='card-title'>空气湿度</Text>
                     <View className='card-body'>
@@ -124,7 +126,7 @@ const Index = () => {
             </Tabs.TabPane>
             <Tabs.TabPane title="养殖棚2号">
               <View className='environment-content'>
-              <View className='environment-card'>
+                <View className='environment-card'>
                   <View className='card-left'>
                     <Text className='card-title'>空气湿度</Text>
                     <View className='card-body'>

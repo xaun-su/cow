@@ -1,0 +1,64 @@
+.alert-list-page {
+  padding: 0 30px; // 页面左右内边距，与图片边缘对齐
+  background-color: #f7f7f7; // 页面背景色，图片背景看起来是这种浅灰色
+  min-height: 100vh; // 确保背景色覆盖整个屏幕
+  box-sizing: border-box; // 盒模型设置为 border-box
+}
+
+.date-group-title {
+  font-size: 28px;
+  color: #666; // 日期标题颜色
+  padding: 30px 0 10px 0; // 上下内边距，底部多一点，与图片间距匹配
+}
+
+.alert-items-container {
+  // 容器，如果需要可以设置一些内边距
+}
+
+.alert-item-card {
+  background-color: #fff; // 卡片背景白色
+  border-radius: 16px; // 圆角大小，与图片匹配
+  margin-bottom: 20px; // 卡片之间的间距
+  padding: 30px; // 卡片内部内边距，上下左右一致，与图片匹配
+  display: flex; // 使用 flex 布局
+  justify-content: space-between; // 内容和箭头左右分开
+  align-items: center; // 垂直居中对齐
+  // 添加阴影效果和边框，图片看起来有轻微阴影和非常浅的边框
+  border: 2px solid #ebebeb; // 非常浅的灰色边框
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); // 轻微的阴影效果
+}
+
+.alert-content {
+  flex-grow: 1; // 内容区域占据剩余空间
+  margin-right: 20px; // 内容和箭头之间的间距
+  display: flex; // 使用 flexbox 布局内容
+  flex-direction: column; // 内容垂直排列
+}
+
+.alert-title {
+  font-size: 30px; // 告警标题字体大小
+  color: #e54d42; // 红色，更接近图片中的红色
+  margin-bottom: 8px; // 标题和下面信息的间距
+  font-weight: normal; // 图片中标题不是加粗的
+}
+
+.alert-detail {
+  font-size: 26px; // 详细信息字体大小
+  color: #969799; // 灰色，与 NutUI 默认 Desc Color 接近，也符合图片
+  line-height: 1.4; // 行高，调整以匹配图片中行的紧密度
+  // 确保 Text 元素没有默认的 margin/padding
+  margin: 0;
+  padding: 0;
+
+  // 为第二行详细信息添加顶部间距
+  &:nth-of-type(2) { // 选中第二个 .alert-detail 元素 (IMEI 行)
+    margin-top: 6px; // 在“牲畜编号”和“IMEI”之间添加一点间距
+  }
+}
+
+.arrow-container {
+  // 箭头的容器，保持垂直居中
+  display: flex;
+  align-items: center;
+  // 箭头颜色在 JSX 中设置了 #999，与图片中的灰色箭头匹配
+}

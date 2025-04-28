@@ -2,6 +2,7 @@
 import { useLaunch } from '@tarojs/taro'
 import '@nutui/nutui-react-taro/dist/style.css'
 import './app.less'
+import './static/iconfont/iconfont.css'
 
 function App({ children }) {
   useLaunch(() => {

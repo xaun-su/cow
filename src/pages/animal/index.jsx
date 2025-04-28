@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { SearchBar, Avatar } from '@nutui/nutui-react-taro';
-import { View, Text ,Navigator } from '@tarojs/components'; // 确保导入了 Text
-import { ArrowRight, User,Add } from '@nutui/icons-react-taro'; // 确保导入了 User 和 ArrowRight
+import { View, Text, Navigator } from '@tarojs/components'; // 确保导入了 Text
+import { ArrowRight, User, Add } from '@nutui/icons-react-taro'; // 确保导入了 User 和 ArrowRight
 import './index.less';
 
 const Demo7 = () => {
@@ -19,8 +19,8 @@ const Demo7 = () => {
             {/* 左侧：头像和文本 */}
             <View className='item-left'> {/* 包裹头像和文本的容器，水平 flex */}
               {/* 确保导入了 User 图标 */}
-              <Avatar icon={<User/>} size="normal" color="#fff"
-        background="#0bcb77" className='normal'/> {/* 头像 */}
+              <Avatar icon={<User />} size="normal" color="#fff"
+                background="#0bcb77" className='normal' /> {/* 头像 */}
               <View className='item-text'> {/* 包裹文本的容器，垂直 flex */}
                 <Text className='item-title'>牲畜编号</Text> {/* 标题文本 */}
                 <Text className='item-imei'>IMEI: 1234567890</Text> {/* IMEI 文本 */}

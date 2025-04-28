@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from '@tarojs/components';
+import { View, Text ,Navigator} from '@tarojs/components';
 // 导入之前创建的检疫记录卡片组件
 import Breeding from '../../components/breeding/index';
 import './index.less'; // 引入页面样式文件
@@ -60,11 +60,11 @@ const QuarantineListPage = () => {
       </View>
 
       {/* 底部固定新增按钮 */}
-      <Navigator className='add-button-container' url='/pages/newBreeding/index'>
-        <View className='add-button' onClick={handleAddClick}>
+      <View className='add-button-container'>
+        <Navigator  className='add-button' onClick={handleAddClick} url='/pages/newBreeding/index'>
           <Text className='add-button-text'>新增</Text>
-        </View>
-      </Navigator>
+        </Navigator>
+      </View>
     </View>
   );
 };

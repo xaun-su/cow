@@ -11,8 +11,6 @@
   justify-content: space-between; // 使返回按钮、标题、右侧内容分开
   z-index: 100; // 确保在页面内容之上
   box-sizing: border-box; // 包含 padding 在高度内
-  padding-left: 10px; // 左侧内边距
-  padding-right: 10px; // 右侧内边距
 }
 
 .back-button {
@@ -33,11 +31,11 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  transform: translateX(60px);
 }
 
 .right-placeholder {
-  width: 40px; // 右侧占位，与返回按钮宽度一致，使标题在有返回按钮时居中
-  // 如果没有返回按钮，这个占位可能需要隐藏或调整宽度
+  width: 40px; 
 }
 .back-icon{
   width: 80px;

@@ -44,17 +44,11 @@ const CustomNavBar = (props) => {
       }}
     >
       {/* 返回按钮区域，只有当 showBackButton 为 true 时才渲染 */}
-      {showBackButton ? (
+      {showBackButton && (
         <View className='back-button' onClick={handleBack}>
           <ArrowLeft />
         </View>
-      ) : (<View className='back-button' onClick={handleBack}>
-        <View style={{ display: 'flex' }}>
-          <Image src={imge} className='back-icon'></Image>
-           <Badge style={{ marginInlineEnd: '40px' }} value={8} />
-        </View>
-      </View>
-      )}
+      ) }
 
       {/* 导航栏标题 */}
       <View className='navbar-title'>

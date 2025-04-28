@@ -6,7 +6,8 @@ export default defineAppConfig({
     'pages/animal/index',
     'pages/device/index',
     'pages/animalDetails/index',
-    'pages/traceability/index'
+    'pages/traceability/index',
+    'pages/animalDetailsError/index'
   ],
   window: {
     backgroundTextStyle: 'light',

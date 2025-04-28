@@ -1,0 +1,74 @@
+.animal-detail{
+  width: 100%;
+  // height: 100vh;  // 移除 height: 100vh，让内容撑开高度
+  background-color: #f7f8f9;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto; /* 添加垂直滚动条 */
+  min-height: 100vh; /* 确保内容至少撑满屏幕高度 */
+}
+.animal-detail-header{
+  width: 100%;
+  height: 400px;
+  position: relative;
+  z-index: 1;
+}
+.animal-detail-header-image{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.animal-detail-content{
+  width: 100%;
+  // flex-grow: 1;  // 移除 flex-grow
+  padding: 0 0px;
+  position: relative;
+  z-index: 2;
+
+  /* 调整 CellGroup 的样式 */
+  .nutui-cell-group--wrap {
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    background-color: #fff;
+    margin: 0;
+  }
+
+  /* 调整 CellGroup 标题的样式 */
+  .nutui-cell-group__title {
+    background-color: #f7f8f9;
+    color: #333;
+    font-weight: bold;
+    font-size: 14px;
+    margin: 0;
+  }
+
+  /* 调整单个 Cell 的样式 */
+  .nutui-cell {
+    // NutUI 默认有底部分割线，如果不需要可以在 ConfigProvider 中设置 --nutui-cell-divider-border-bottom: none;
+    // 如果需要调整单个 Cell 的内边距，可以在 ConfigProvider 中设置 --nutui-cell-padding
+  }
+
+
+  /* 自定义右侧电池信息的容器样式 */
+  .battery-info {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+  }
+
+}
+.nut-cell-group-title{
+  padding: 0;
+  margin: 0;
+}
+
+.btn{
+  width: 100%;
+  height:100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background-color: #0ccb76;
+}

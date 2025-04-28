@@ -1,0 +1,104 @@
+/* src/pages/index/index.less */
+
+.index-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  position: relative; /* 为绝对定位的子元素提供定位上下文 */
+  background-color: #f7f8f9;
+}
+
+.index-nav-bar {
+  position: absolute; /* 绝对定位 */
+  top: 0; /* 位于容器顶部 */
+  left: 0;
+  right: 0;
+  z-index: 2; /* 较高的 z-index，确保它在背景上方 */
+}
+
+.index-background {
+  position: absolute; /* 绝对定位 */
+  top: 0; /* 位于容器顶部 */
+  left: 0;
+  right: 0;
+  height: 35vh; /* 背景图片的高度 */
+  background-image: url('../../static/images/background.png'); /* 你的背景图片路径 */
+  background-size: cover;
+  background-position: center;
+  z-index: 1; /* 较低的 z-index，使其位于导航栏下方 */
+}
+
+.index-content {
+  flex-grow: 1;
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+  /* margin-top 在 JSX 中设置 */
+  position: relative; /* 给内容区域一个 z-index，确保它在背景上方 */
+  z-index: 3; /* 确保内容在背景上方 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.reports{
+  width:90% ;
+  height: 15vh;
+  background-color: #fff;
+  z-index: 4;
+  border-radius: 20px;
+  transform: translateY(16vh); /* 使报告部分向下偏移 */
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  .report-list{
+    width: 80%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .report-item{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .num{
+      font-size: 60px; // 根据实际需要调整字号
+      color: #000;
+      font-weight: 600;
+    }
+    .prompt{
+      font-size: 60px; // 根据实际需要调整字号
+      color: #ffbc44;
+    }
+    .text{
+      font-size: 30px; // 根据实际需要调整字号
+      color: #dfdfdf;
+    }
+  }
+}
+
+.device{
+  margin-top: 110px; 
+  width: 85%;
+  height: 70px;
+  display: flex;
+  background-color: #fff;
+  align-items: center;
+  border-radius: 20px;
+  padding: 20px; // 根据实际需要调整内边距
+  justify-content: space-between;
+  .device-icon { // Image 组件的样式
+     width:40px;
+     height: 40px;
+     margin-right: 25px;
+  }
+  .device-content{
+    display: flex;
+    align-items: center; // 垂直居中图标和文字
+  }
+}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { SearchBar, Avatar } from '@nutui/nutui-react-taro';
 import { View, Text, Navigator } from '@tarojs/components'; // 确保导入了 Text
-import { ArrowRight, User, Add } from '@nutui/icons-react-taro'; // 确保导入了 User 和 ArrowRight
+import { ArrowRight, Add } from '@nutui/icons-react-taro'; // 确保导入了 User 和 ArrowRight
 import './index.less';
 
 const Demo7 = () => {
@@ -10,7 +10,7 @@ const Demo7 = () => {
   return (
     <View className='animal'>
       {/* SearchBar */}
-      <SearchBar onChange={(val) => setValue(val)} maxLength={10} />
+      <SearchBar onChange={(val) => setValue(val)} maxLength={10} placeholder="输入牲畜名称或IMEI查询"/>
 
       <View className='category'>
         {/* 动态生成 category-item */}
@@ -19,7 +19,7 @@ const Demo7 = () => {
             {/* 左侧：头像和文本 */}
             <View className='item-left'> {/* 包裹头像和文本的容器，水平 flex */}
               {/* 确保导入了 User 图标 */}
-              <Avatar icon={<User />} size="normal" color="#fff"
+              <Avatar icon={<Text className='iconfont icon-yaoqingniuren'></Text>} size="normal" color="#fff"
                 background="#0bcb77" className='normal' /> {/* 头像 */}
               <View className='item-text'> {/* 包裹文本的容器，垂直 flex */}
                 <Text className='item-title'>牲畜编号</Text> {/* 标题文本 */}

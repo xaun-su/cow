@@ -7,9 +7,6 @@ import './index.less'; // 引入首页的样式文件
 import { View, Text, Image, Navigator } from '@tarojs/components';
 import { Clock } from '@nutui/icons-react-taro'
 import { Tabs ,Badge} from '@nutui/nutui-react-taro'
-import imge1 from '../../static/images/惊叹号、感叹号.png'
-import imge2 from '../../static/images/标示_道路摄像机_在线.png'
-
 // ... 获取系统信息计算导航栏高度的代码 ...
 const systemInfo = Taro.getSystemInfoSync();
 const statusBarHeight = systemInfo.statusBarHeight;

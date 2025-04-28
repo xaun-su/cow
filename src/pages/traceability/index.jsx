@@ -44,12 +44,20 @@ const AnimalDetails = () => {
   const renderBatteryInfo = (percentage, imei) => {
     // 根据百分比选择电池图标（这里简化，只用一个图标，实际可以根据值选择不同状态的图标）
     const batteryColor = percentage > 20 ? '#0bcb75' : '#ff4d4f'; // 绿色或红色
-    const batteryIcon = <Add size={16} color={batteryColor} style={{ verticalAlign: 'middle' }} />; // 添加样式调整位置
-
+    const batteryIcon = (
+      <Text
+        className='iconfont icon-electricity-full' // iconfont 的基础类和你的电池图标类
+        style={{
+          color: batteryColor, // 根据百分比动态设置颜色
+          fontSize: '16px', // 设置图标大小，根据需要调整
+          verticalAlign: 'middle', // 垂直居中对齐
+          marginRight: '5px' // 图标和 IMEI 之间的间距
+        }}
+      ></Text>
+    )
     return (
-      <View className='battery-info'>
-        {/* 添加一个容器方便布局 */}
-        <Text style={{ color: batteryColor, fontSize: '12px' }}>{percentage}%</Text>
+      <View className='battery-info'> {/* 添加一个容器方便布局 */}
+        <Text style={{ color: batteryColor, fontSize: '12px', marginRight: '5px' }}>{percentage}%</Text> {/* 百分比和图标之间的间距 */}
         {batteryIcon}
         <Text style={{ color: '#a0a0a0', fontSize: '12px' }}>{imei}</Text>
       </View>
@@ -87,7 +95,7 @@ const AnimalDetails = () => {
             <Tabs.TabPane title='基本信息' value={tabValues.basicInfo}>
               <Cell
                 title='牲畜编号'
-                extra='偏瘦' // 右侧内容
+                extra=<Text style={{ color: "#fe5520" }}>偏瘦</Text> // 右侧内容
                 isLink // 添加箭头
                 radius={0} // Cell 本身不带圆角
               />
@@ -155,8 +163,8 @@ const AnimalDetails = () => {
                     setTab1value(value)
                   }}
                 >
-                  <Tabs.TabPane title="Tab longitem"> 
-                  
+                  <Tabs.TabPane title="Tab longitem">
+
                   </Tabs.TabPane>
                   <Tabs.TabPane title="Tab 2"> Tab 2 </Tabs.TabPane>
                   <Tabs.TabPane title="Tab 3"> Tab 3 </Tabs.TabPane>
@@ -169,7 +177,7 @@ const AnimalDetails = () => {
                   '--nutui-cell-background-color': '#f5f5f5',
                 }
               } />
-                 <>
+              <>
                 <Tabs
                   value={tab1value}
                   activeType='none'
@@ -177,8 +185,8 @@ const AnimalDetails = () => {
                     setTab1value(value)
                   }}
                 >
-                  <Tabs.TabPane title="Tab longitem"> 
-                  
+                  <Tabs.TabPane title="Tab longitem">
+
                   </Tabs.TabPane>
                   <Tabs.TabPane title="Tab 2"> Tab 2 </Tabs.TabPane>
                   <Tabs.TabPane title="Tab 3"> Tab 3 </Tabs.TabPane>

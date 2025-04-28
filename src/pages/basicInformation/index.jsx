@@ -5,7 +5,7 @@ import { ArrowRight } from '@nutui/icons-react-taro'; // 导入箭头图标
 import './index.less'; // 引入样式文件
 
 // 导入一个占位的头像图片，请替换为你自己的图片路径
-import defaultAvatar from '../../static/images/惊叹号、感叹号.png'; // 假设你有一个默认头像图片
+import defaultAvatar from '../../static/images/证明.png'; // 假设你有一个默认头像图片
 
 const UserProfile = () => {
   // 模拟用户数据，实际应用中这些数据会从后端获取或通过状态管理维护

@@ -5,8 +5,6 @@ import Taro from '@tarojs/taro';
 import { ArrowLeft } from '@nutui/icons-react-taro'
 import './index.less';
 import { View, Text ,Image} from '@tarojs/components';
-import { Badge } from '@nutui/nutui-react-taro'
-import imge from '../../static/images/铃铛 (2).png'
 // 获取系统信息，用于计算状态栏高度和导航栏总高度
 const systemInfo = Taro.getSystemInfoSync();
 const statusBarHeight = systemInfo.statusBarHeight; // 状态栏高度

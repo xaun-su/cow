@@ -129,7 +129,7 @@ const AddReproductionRecord = () => {
             <Text className='item-label'>选择牲畜</Text>
             <View className='item-value-with-arrow'>
               {/* TODO: 显示已选择牲畜的 IMEI 或其他标识 */}
-              <Text className='item-value'>{formData.selectedLivestock?.imei || '请选择牲畜'}</Text> {/* 使用 ?. 防止 selectedLivestock 为 null */}
+              <Text className='item-value'>{formData.selectedLivestock.imei || '请选择牲畜'}</Text> {/* 使用 ?. 防止 selectedLivestock 为 null */}
               <ArrowRight size={19} color='#999' /> {/* 右箭头 (尺寸已放大) */}
             </View>
           </View>

@@ -7,5 +7,8 @@ module.exports = {
       ts: false,
       compiler: 'webpack5',
     }]
+  ],
+  "plugins": [
+    "@babel/plugin-proposal-optional-chaining"
   ]
 }

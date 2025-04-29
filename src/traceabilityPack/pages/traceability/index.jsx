@@ -115,7 +115,7 @@ const AnimalDetails = () => {
             value={tabIndex} // 绑定当前索引
             onChange={(page) => {
               // 点击 Tab 时，切换 Swiper
-              swiperRef.current?.to(page)
+              swiperRef.current.to(page)
               // setTabIndex(page) // tabIndex 的更新交给 Swiper 的 onChange
             }}
             activeType='none' // 样式已移至 ConfigProvider

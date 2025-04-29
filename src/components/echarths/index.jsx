@@ -2,7 +2,7 @@ import { useRef, useEffect } from 'react';
 import { View } from '@tarojs/components';
 import Echarts from 'taro-react-echarts';
 // 导入 ECharts 库
-import * as echarts from 'echarts'; // <-- 改为正确的名称
+import * as echarts from '../../ec-canvas/echarts.min.js'; // <-- 改为正确的名称
 import Taro from '@tarojs/taro'; // **确保导入 Taro**
 
 export default function LineChartDemo() {

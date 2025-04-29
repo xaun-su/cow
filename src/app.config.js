@@ -53,5 +53,16 @@ export default defineAppConfig({
       iconPath: 'static/images/tabbar/manage.png',
       selectedIconPath: 'static/images/tabbar/manage1.png'
     }]
+  },
+  "requiredPrivateInfos": [
+    "getLocation",
+    "chooseLocation"
+  ],
+  // **添加这个 permission 字段**
+  "permission": {
+    "scope.userLocation": {
+      // **重要：这里的 desc 内容会显示给用户，说明你的小程序为什么需要位置信息**
+      "desc": "你的位置信息将用于在地图上显示当前位置和相关牲畜信息"
+    }
   }
 })

@@ -11,12 +11,21 @@ const Demo7 = () => {
 
   // 处理单个 Checkbox 变化的函数
   const handleCheckboxChange = (index, isChecked) => {
+    console.log(`Checkbox ${index} changed to: ${isChecked}`); // 添加日志
     // 创建一个新的数组，基于旧的 checkedItems
     const newCheckedItems = [...checkedItems];
     // 更新对应索引位置的状态
     newCheckedItems[index] = isChecked;
     // 使用新数组更新状态
     setCheckedItems(newCheckedItems);
+    console.log('Updated checkedItems:', newCheckedItems); // 添加日志
+  };
+
+  // 定义 handleSubmit 函数
+  const handleSubmit = () => {
+    console.log('确定提交 clicked!');
+    console.log('当前选中的项:', checkedItems);
+    // TODO: 在这里处理提交逻辑，例如根据 checkedItems 数组发送请求
   };
 
   return (
@@ -52,6 +61,7 @@ const Demo7 = () => {
         ))}
       </View>
       <View className='submit-button-container'>
+        {/* 确保 handleSubmit 函数已定义 */}
         <View className='submit-button' onClick={handleSubmit}>
           <Text className='submit-button-text'>确定提交</Text>
         </View>
@@ -61,3 +71,4 @@ const Demo7 = () => {
 };
 
 export default Demo7;
+

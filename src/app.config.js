@@ -19,7 +19,8 @@ export default defineAppConfig({
     'pages/selectLivestock/index',
     'pages/breedingManage/index',
     'pages/newBreeding/index',
-    'pages/message/index'
+    'pages/message/index',
+    'pages/videoSurveillance/index',
   ],
   window: {
     backgroundTextStyle: 'light',

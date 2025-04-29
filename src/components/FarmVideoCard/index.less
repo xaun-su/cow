@@ -1,0 +1,36 @@
+// 注意：这里的样式只针对卡片内部的视频和叠加层。
+// 外部的灰色背景和数量文本样式应该在页面中定义。
+
+.image-container {
+  position: relative; // 使内部绝对定位的元素相对于此容器定位
+  border-radius: 16rpx; // 圆角
+  overflow: hidden; // 隐藏超出圆角的部分
+  width: 100%; // 宽度充满父容器
+}
+
+// 为 Video 组件添加样式，确保宽度充满容器
+.image-container video {
+  width: 100%;
+  display: block; // 移除 Video 下方的空白
+}
+
+.overlay {
+  position: absolute; // 绝对定位，相对于 .image-container
+  bottom: 0; // 定位在底部
+  left: 0;
+  right: 0;
+  // 添加一个从透明到半透明黑色的渐变，使文本更易读
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 50%);
+  padding: 20rpx; // 叠加层内部的内边距
+  display: flex;
+  justify-content: space-between; // 使左右文本分开
+  align-items: flex-end; // 使文本底部对齐
+  z-index: 1; // 确保叠加层在视频上方
+}
+
+.location,
+.code {
+  color: #efefef; // 文本颜色为白色
+  font-size: 24rpx; // 文本大小
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}

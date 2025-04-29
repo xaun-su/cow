@@ -9,7 +9,7 @@ export default function LineChartDemo() {
   // echartsRef 会引用 taro-react-echarts 组件的实例，
   // taro-react-echarts 的 ref 通常会暴露底层的 ECharts 实例
   const echartsRef = useRef(null);
-
+  
   // 根据图片估算的数据点
   const dates = ['11-07', '11-08', '11-09', '11-10', '11-11', '11-12', '11-13'];
   const values = [200, 300, 400, 600, 150, 250, 370]; // 估算的数据

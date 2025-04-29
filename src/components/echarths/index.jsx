@@ -1,10 +1,13 @@
-import { useRef } from 'react';
-import { View } from '@tarojs/components'; // 确保导入 View 组件
+import { useRef, useEffect } from 'react';
+import { View } from '@tarojs/components';
 import Echarts from 'taro-react-echarts';
 // 导入 ECharts 库
-import * as echarts from 'echarts';
+import * as echarts from 'echarts'; // <-- 改为正确的名称
+import Taro from '@tarojs/taro'; // **确保导入 Taro**
 
 export default function LineChartDemo() {
+  // echartsRef 会引用 taro-react-echarts 组件的实例，
+  // taro-react-echarts 的 ref 通常会暴露底层的 ECharts 实例
   const echartsRef = useRef(null);
 
   // 根据图片估算的数据点
@@ -12,85 +15,115 @@ export default function LineChartDemo() {
   const values = [200, 300, 400, 600, 150, 250, 370]; // 估算的数据
 
   const option = {
-    // tooltip: { // 根据需要是否显示 tooltip
-    //   trigger: 'axis',
-    //   show: true,
-    //   confine: true // 限制 tooltip 在图表区域内
-    // },
+    // ... (option 配置保持不变)
     grid: {
-      left: '10%', // 调整左边距，为 Y 轴标签留出空间
-      right: '10%', // 调整右边距
-      bottom: '10%', // 调整底边距，为 X 轴标签留出空间
-      top: '10%', // 调整顶边距
-      containLabel: true // 确保标签不会被截断
+      left: '10%',
+      right: '10%',
+      bottom: '10%',
+      top: '10%',
+      containLabel: true
     },
     xAxis: {
       type: 'category',
       data: dates,
-      boundaryGap: false, // 数据点在刻度线上
+      boundaryGap: false,
       axisLine: {
         lineStyle: {
-          color: '#ccc' // X 轴线颜色
+          color: '#ccc'
         }
       },
       axisLabel: {
-        color: '#333' // X 轴标签颜色
+        color: '#333'
       },
       axisTick: {
-          alignWithLabel: true // 刻度线和标签对齐
+          alignWithLabel: true
       },
       splitLine: {
-          show: true, // 显示 X 轴网格线
+          show: true,
           lineStyle: {
-              color: '#eee' // 网格线颜色
+              color: '#eee'
           }
       }
     },
     yAxis: {
       type: 'value',
       min: 0,
-      max: 800, // 根据图片的 Y 轴最大值设置
-      interval: 200, // 根据图片的 Y 轴刻度间隔设置
+      max: 800,
+      interval: 200,
       axisLine: {
         lineStyle: {
-          color: '#ccc' // Y 轴线颜色
+          color: '#ccc'
         }
       },
        axisLabel: {
-        color: '#333' // Y 轴标签颜色
+        color: '#333'
       },
       splitLine: {
-        show: true, // 显示 Y 轴网格线
+        show: true,
         lineStyle: {
-          color: '#eee' // 网格线颜色
+          color: '#eee'
         }
       }
     },
     series: [
       {
-        // name: '数据系列', // 可选，用于 tooltip
         data: values,
         type: 'line',
-        smooth: true, // 使曲线平滑
-        symbol: 'circle', // 数据点标记为圆形
-        symbolSize: 8, // 数据点标记大小
+        smooth: true,
+        symbol: 'circle',
+        symbolSize: 8,
         itemStyle: {
-          color: '#4ECDC4' // 数据点和线的颜色 (类似图片中的颜色)
+          color: '#4ECDC4'
         },
         lineStyle: {
-            color: '#4ECDC4' // 线条颜色
+            color: '#4ECDC4'
         }
       }
     ]
   };
 
+  // 在组件挂载后调用 resize
+  useEffect(() => {
+    console.log('EchartsZ component mounted.');
+
+    // 使用 Taro.nextTick 确保在 DOM 更新完成后执行
+    Taro.nextTick(() => {
+      console.log('Inside Taro.nextTick.');
+      // 检查 ref 是否存在以及是否是有效的 ECharts 实例
+      if (echartsRef.current && typeof echartsRef.current.resize === 'function') {
+        console.log('Echarts instance found, calling resize().');
+        echartsRef.current.resize();
+
+        // 可选：再次设置 option 尝试强制刷新
+        // echartsRef.current.setOption(option);
+        // console.log('Also called setOption after resize.');
+
+      } else {
+        console.warn('Echarts ref is not available or resize method is missing.');
+        console.log('Current echartsRef.current:', echartsRef.current);
+      }
+    });
+
+    // 返回一个清理函数，在组件卸载时销毁 ECharts 实例
+    // taro-react-echarts 内部通常会处理销毁，但为了健壮性可以保留
+    return () => {
+      console.log('EchartsZ component unmounting.');
+      if (echartsRef.current && typeof echartsRef.current.dispose === 'function') {
+         console.log('Disposing Echarts instance.');
+         echartsRef.current.dispose();
+      }
+    };
+
+  }, []); // 空依赖数组表示只在组件挂载和卸载时执行
+
   return (
+    // 确保 View 有明确的尺寸
     <View style={{ width: '100%', height: '600rpx' }}>
       <Echarts
         echarts={echarts}
         option={option}
-        ref={echartsRef}
-        // isPage={false} // 根据你的使用场景决定是否需要
+        ref={echartsRef} // 将 ref 传递给 Echarts 组件
+        isPage={false} // **明确设置为 false，因为是组件内的图表**
         style={{ width: '100%', height: '100%' }}
       />
     </View>

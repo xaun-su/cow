@@ -1,6 +1,6 @@
 // src/pages/animal-details/components/BasicInfoSection.jsx
 import React from 'react';
-import { View, Text, Image } from '@tarojs/components';
+import { View, Text } from '@tarojs/components';
 import { Cell, CellGroup } from '@nutui/nutui-react-taro';
 // 假设 iconfont 已经在全局样式中引入
 

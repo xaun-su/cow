@@ -2,7 +2,6 @@ import React from 'react';
 import { View, Text, Image, Navigator } from '@tarojs/components';
 import { ArrowRight } from '@nutui/icons-react-taro'; // 导入右箭头图标
 import './index.less'; // 引入样式文件
-import { Add, Dongdong, UserAdd } from '@nutui/icons-react-taro'
 // 使用 JavaScript 函数组件
 const QuarantineRecordCard = ({
   livestockId,
@@ -18,7 +17,7 @@ const QuarantineRecordCard = ({
       {/* 顶部区域：图标、编号/IMEI、箭头 */}
       <View className='card-header'>
         <View className='icon-container'>
-          <Add />
+          <Text className='iconfont icon-yaoqingniuren' style={{ fontSize: '30px', color: '#fff' }} />
         </View>
         <View className='id-info'>
           {/* 牲畜编号 */}
@@ -27,7 +26,7 @@ const QuarantineRecordCard = ({
           <Text className='imei'>IMEI: {imei}</Text>
         </View>
         {/* 右箭头图标 */}
-        <Navigator url='/pages/animalDetails/index'>
+        <Navigator url='/homePack/pages/animalDetails/index'>
           <ArrowRight size={16} color='#ccc' className='arrow-icon' />
         </Navigator>
 
@@ -35,7 +34,7 @@ const QuarantineRecordCard = ({
       <View className='separator'></View>
       <View className='card-header'>
         <View className='icon-container'>
-          <Add />
+        <Text className='iconfont icon-yaoqingniuren' style={{ fontSize: '30px', color: '#fff' }} />
         </View>
         <View className='id-info'>
           {/* 牲畜编号 */}
@@ -44,7 +43,7 @@ const QuarantineRecordCard = ({
           <Text className='imei'>IMEI: {imei}</Text>
         </View>
         {/* 右箭头图标 */}
-        <Navigator url='/pages/animalDetails/index'>
+        <Navigator url='/animalPack/pages/animalDetails/index'>
           <ArrowRight size={16} color='#ccc' className='arrow-icon' />
         </Navigator>
 

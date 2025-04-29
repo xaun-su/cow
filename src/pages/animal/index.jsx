@@ -28,7 +28,7 @@ const Demo7 = () => {
             </View>
 
             {/* 右侧：箭头 */}
-            <Navigator className='item-right' url='/pages/animalDetails/index'> {/* 包裹箭头的容器 */}
+            <Navigator className='item-right' url='/animalPack/pages/animalDetails/index'> {/* 包裹箭头的容器 */}
               <ArrowRight /> {/* 箭头图标 */}
             </Navigator>
           </View>

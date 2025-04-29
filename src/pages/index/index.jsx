@@ -23,7 +23,7 @@ const Index = () => {
       {/* 导航栏组件，确保它在背景元素的上方 */}
       <CustomNavBar title='首页' className='index-nav-bar' />
       {/* 内容区域 */}
-      <Navigator className='bell' url='/pages/message/index' >
+      <Navigator className='bell' url='/homePack/pages/message/index' >
           <Badge value={8}>
             <i className='iconfont icon-lingdang'></i>
           </Badge>
@@ -61,7 +61,7 @@ const Index = () => {
 
         {/* 设备 */}
      
-        <Navigator className='device' url='/pages/device/index'>
+        <Navigator className='device' url='/homePack/pages/device/index'>
           <View className='device-content'>
             <i className='iconfont icon-jingtanhaogantanhao'></i>
             <Text className='device-title'>设备异常</Text>
@@ -69,10 +69,10 @@ const Index = () => {
           <Text>34</Text>
         </Navigator>
         <View className='device'>
-          <View className='device-content'>
+          <Navigator className='device-content' url='/managePack/pages/videoSurveillance/index'>
             <i className='iconfont icon-biaoshi_daolushexiangji_zaixian'></i>
             <Text className='device-title'>监控设备</Text>
-          </View>
+          </Navigator>
           <Text>34</Text>
         </View>
 

@@ -83,7 +83,7 @@ const AnimalDetails = () => {
             <Cell title="当前状态" extra="生长中" radius={0} isLink /> {/* 添加 isLink */}
           </CellGroup>
            {/* 溯源信息按钮 - 使用 Navigator 包裹 Button */}
-           <Navigator url='/pages/traceability/index' className='traceability-button-container'>
+           <Navigator url='/traceabilityPack/pages/traceability/index' className='traceability-button-container'>
               <button type='primary' size='large' className='traceability-button'>溯源信息</button>
            </Navigator>
         </ConfigProvider>

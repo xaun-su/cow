@@ -43,7 +43,7 @@ const Index = () => {
             </View>
               
             {/* 右侧：箭头 */}
-            <Navigator className='item-right' url='/pages/basicInformation/index'> {/* 包裹箭头的容器 */}
+            <Navigator className='item-right' url='/managePack/pages/basicInformation/index'> {/* 包裹箭头的容器 */}
               <ArrowRight /> {/* 箭头图标 */}
             </Navigator>
           </View>
@@ -75,19 +75,19 @@ const Index = () => {
             <Avatar icon={<Text className='iconfont icon-yaoqingniuren'></Text>}  background="#39a8ff" shape="round" size="50" />
             <Text className='text'>牲畜信息</Text>
           </View>
-          <Navigator className='icon-item' url='/pages/vaccineManagement/index'>
+          <Navigator className='icon-item' url='/managePack/pages/vaccineManagement/index'>
             <Avatar icon={<Text className='iconfont icon-zhijiandan-2'></Text>} background="#ff6969" shape="round" size="50" />
             <Text className='text'>检疫管理</Text>
           </Navigator>
-          <Navigator className='icon-item' url='/pages/quarantineManagement/index'>
+          <Navigator className='icon-item' url='/managePack/pages/quarantineManagement/index'>
             <Avatar icon={<Text className='iconfont icon-zhenguan'></Text>} background="#fecc4e" shape="round" size="50" />
             <Text className='text'>疫苗管理</Text>
           </Navigator>
-          <Navigator className='icon-item' url='/pages/breedingManage/index'>
+          <Navigator className='icon-item' url='/managePack/pages/breedingManage/index'>
             <Avatar icon={<Text className='iconfont icon-xingbie'></Text>}  background="#15d5d1" shape="round" size="50" />
             <Text className='text'>配种管理</Text>
           </Navigator>
-          <Navigator className='icon-item' url='/pages/reproductionManagement/index'>
+          <Navigator className='icon-item' url='/managePack/pages/reproductionManagement/index'>
             <Avatar icon={<Text className='iconfont icon-jilu'></Text>}  background="#26d392" shape="round" size="50" />
             <Text className='text'>繁殖管理</Text>
 
@@ -97,16 +97,16 @@ const Index = () => {
             <Text className='text'>牧场信息</Text>
 
           </View>
-          <View className='icon-item'>
+          <Navigator className='icon-item' url='/managePack/pages/videoSurveillance/index'>
             <Avatar icon={<Text className='iconfont icon-jiankongshexiangtou-xianxing'></Text>}  background="#0eafeb" shape="round" size="50" />
             <Text className='text'>视频监控</Text>
 
-          </View>
-          <View className='icon-item'>
+          </Navigator>
+          <Navigator className='icon-item'  url='/homePack/pages/message/index'>
             <Avatar icon={<Text className='iconfont icon-00-baojingjilu-05-05'></Text>} background="#fbc145" shape="round" size="50" />
             <Text className='text'>报警记录</Text>
 
-          </View>
+          </Navigator>
           {/* ))} */}
         </View>
       </View>

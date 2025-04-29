@@ -46,18 +46,13 @@ const AddVaccinationRecord = () => {
   // 处理选择牲畜点击事件
   const handleSelectLivestock = () => {
     console.log('点击了选择牲畜'); // 修正 console.log
-    // TODO: 实现跳转到选择牲畜页面或弹出选择器
-    // 例如：Taro.navigateTo({ url: '/pages/selectLivestock/index' });
-    // TODO: 选择牲畜后更新 selectedLivestock 状态
-    // setFormData(prevData => ({ ...prevData, selectedLivestock: selectedLivestockData }));
   };
 
   // 处理确定提交按钮点击事件
   const handleSubmit = () => {
     console.log('点击了确定提交'); // 修正 console.log
     console.log('待提交的数据:', formData);
-    // TODO: 收集 formData 并调用 API 提交数据
-    // TODO: 提交成功后跳转回列表页或显示成功提示
+
   };
 
   return (
@@ -149,7 +144,7 @@ const AddVaccinationRecord = () => {
             <Text className='item-label'>选择牲畜</Text>
             <View className='item-value-with-arrow'>
               {/* TODO: 显示已选择牲畜的 IMEI 或其他标识 */}
-              <Text className='item-value'>{formData.selectedLivestock.imei || '请选择牲畜'}</Text> {/* 使用 ?. 防止 selectedLivestock 为 null */}
+              <Text className='item-value'>{formData.selectedLivestock?.imei || '请选择牲畜'}</Text> {/* 使用 ?. 防止 selectedLivestock 为 null */}
               <ArrowRight size={19} color='#999' /> {/* 右箭头 (尺寸已放大) */}
             </View>
           </View>

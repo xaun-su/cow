@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Video } from '@tarojs/components'; // 导入 Video 和 Text
 import { Cell } from '@nutui/nutui-react-taro'; // 导入 Cell
-import Taro, { pxTransform } from '@tarojs/taro'; // 导入 Taro 和 pxTransform
+import { pxTransform } from '@tarojs/taro'; // 导入 Taro 和 pxTransform
 import './index.less'; // 导入样式文件
 const FarmVideoCard = ({
   source, // 视频源 URL

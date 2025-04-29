@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from '@tarojs/components';
+import { View, Text ,Navigator} from '@tarojs/components';
 // 导入之前创建的检疫记录卡片组件
 import QuarantineRecordCard from '@/components/QuarantineRecordCard';
 import './index.less'; // 引入页面样式文件
@@ -72,11 +72,11 @@ const QuarantineListPage = () => {
       </View>
 
       {/* 底部固定新增按钮 */}
-      <View className='add-button-container'>
+      <Navigator className='add-button-container' url='/recordsPack/pages/quarantineRecords/index'>
         <View className='add-button' onClick={handleAddClick}>
           <Text className='add-button-text'>新增</Text>
         </View>
-      </View>
+      </Navigator>
     </View>
   );
 };

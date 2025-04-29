@@ -11,7 +11,7 @@ export default function DeviceError () {
           <i className='iconfont icon-electricity-full'></i>
           <Text style={'color:#ff5725' }>低电量报价</Text>
         </View>
-        <Navigator  className='deviceError-content-right' url='/pages/animalDetailsError/index'>2024-01-20 20:20:20<ArrowRight /></Navigator>
+        <Navigator  className='deviceError-content-right' url='/homePack/pages/animalDetailsError/index'>2024-01-20 20:20:20<ArrowRight /></Navigator>
       </View>
        <View className='deviceError-content'>
        <View className='deviceError-content-left'>

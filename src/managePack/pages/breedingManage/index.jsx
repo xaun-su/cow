@@ -61,7 +61,7 @@ const QuarantineListPage = () => {
 
       {/* 底部固定新增按钮 */}
       <View className='add-button-container'>
-        <Navigator  className='add-button' onClick={handleAddClick} url='/pages/newBreeding/index'>
+        <Navigator  className='add-button' onClick={handleAddClick} url='/recordsPack/pages/newBreeding/index'>
           <Text className='add-button-text'>新增</Text>
         </Navigator>
       </View>

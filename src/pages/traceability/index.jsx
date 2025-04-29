@@ -10,7 +10,7 @@ import { Add, ArrowRight } from '@nutui/icons-react-taro'; // 导入电池图标
 import { Steps, Step } from '@nutui/nutui-react-taro'
 import imge2 from '../../static/images/证明.png';
 import Taro from '@tarojs/taro'; // 导入 Taro API
-
+import EchartsZ from '../../components/echarths/index'
 const gradientColor = {
   '0%': '#FF5E5E',
   '100%': '#FFA062',
@@ -21,8 +21,8 @@ const AnimalDetails = () => {
   const swiperRef = useRef(null)
   // Tab 和 Swiper 共用的当前索引状态
   const [tabIndex, setTabIndex] = useState(0)
-  // 内层 Tab 的状态（健康信息里的运动量和体温）
-  const [tab1value, setTab1value] = useState('0')
+  const [movementTabIndex, setMovementTabIndex] = useState('0'); // 运动量 Tab 状态
+  const [temperatureTabIndex, setTemperatureTabIndex] = useState('0'); // 体温 Tab 状态
 
   // 定义一个自定义主题变量对象，用于覆盖 NutUI 的默认样式变量
   const customTheme = {
@@ -59,12 +59,12 @@ const AnimalDetails = () => {
         .select(`#content-${index}`)
         .boundingClientRect(rect => {
           if (rect && rect.height > 0) {
-             // 设置 Swiper 容器的高度，确保至少有一个最小高度
+            // 设置 Swiper 容器的高度，确保至少有一个最小高度
             setSwiperHeight(rect.height);
           } else {
-             // 如果测量失败或高度为0，设置一个默认高度
-             console.warn(`Failed to measure height for tab index ${index}, using default height.`);
-             setSwiperHeight(300); // 测量失败时使用默认高度
+            // 如果测量失败或高度为0，设置一个默认高度
+            console.warn(`Failed to measure height for tab index ${index}, using default height.`);
+            setSwiperHeight(300); // 测量失败时使用默认高度
           }
         })
         .exec()
@@ -76,7 +76,7 @@ const AnimalDetails = () => {
     // 在组件挂载后测量初始 Tab 的高度
     // 使用 setTimeout 确保 DOM 已经渲染完成
     const timer = setTimeout(() => {
-       calculateHeight(tabIndex); // 测量初始选中的 Tab (tabIndex 默认为 0)
+      calculateHeight(tabIndex); // 测量初始选中的 Tab (tabIndex 默认为 0)
     }, 50); // 延迟 50ms，可以根据需要调整
 
     return () => clearTimeout(timer); // 清理定时器
@@ -84,8 +84,8 @@ const AnimalDetails = () => {
 
   // 当 tabIndex 改变时，测量新 Tab 的高度
   useEffect(() => {
-     // 只有当 tabIndex 改变时才重新测量
-     calculateHeight(tabIndex);
+    // 只有当 tabIndex 改变时才重新测量
+    calculateHeight(tabIndex);
   }, [tabIndex]); // 依赖 tabIndex，当 tabIndex 变化时触发
 
 
@@ -177,7 +177,7 @@ const AnimalDetails = () => {
                 {/* 设备信息分组 */}
                 <CellGroup title=' 设备信息' radius={0} style={
                   {
-                    backgroundColor: '#efefef', 
+                    backgroundColor: '#efefef',
                   }
                 }>
                   <Cell
@@ -195,7 +195,7 @@ const AnimalDetails = () => {
                 {/* 牲畜信息分组 */}
                 <CellGroup title=' 牲畜信息' radius={0} style={
                   {
-                    backgroundColor: '#efefef', 
+                    backgroundColor: '#efefef',
                   }
                 }>
                   <Cell title='牲畜种类' extra='牛' radius={0} />
@@ -214,7 +214,7 @@ const AnimalDetails = () => {
 
             {/* 健康信息内容 */}
             <Swiper.Item>
-               {/* !!! 为内容包裹一个 View，并设置 ID 用于测量 !!! */}
+              {/* !!! 为内容包裹一个 View，并设置 ID 用于测量 !!! */}
               <View id={`content-${tabValues.healthInfo}`}>
                 <Cell title='活跃度' radius={0} style={
                   {
@@ -245,17 +245,21 @@ const AnimalDetails = () => {
                 } />
                 <> {/* 内层 Tab 保持不变 */}
                   <Tabs
-                    value={tab1value}
-                    activeType='none'
+                    value={movementTabIndex}
                     onChange={(value) => {
-                      setTab1value(value)
+                      setMovementTabIndex(value)
+                    }}
+                    activeType='none'
+                    style={{
+                      '--nutui-tabs-titles-item-color': '#686868 !important',
+                      '--nutui-tabs-titles-item-active-color': '#56c695 !important',
                     }}
                   >
-                    <Tabs.TabPane title="Tab longitem">
-                       {/* 内层 Tab 1 的内容 */}
+                    <Tabs.TabPane title="一周内">
+                      <EchartsZ />
                     </Tabs.TabPane>
-                    <Tabs.TabPane title="Tab 2"> {/* 内层 Tab 2 的内容 */} Tab 2 </Tabs.TabPane>
-                    <Tabs.TabPane title="Tab 3"> {/* 内层 Tab 3 的内容 */} Tab 3 </Tabs.TabPane>
+                    <Tabs.TabPane title="一个月内"> <EchartsZ /></Tabs.TabPane>
+                    <Tabs.TabPane title="一年内"><EchartsZ /> </Tabs.TabPane>
                   </Tabs>
                 </>
 
@@ -267,17 +271,21 @@ const AnimalDetails = () => {
                 } />
                 <> {/* 内层 Tab 保持不变 */}
                   <Tabs
-                    value={tab1value}
                     activeType='none'
+                    value={temperatureTabIndex} 
                     onChange={(value) => {
-                      setTab1value(value)
+                      setTemperatureTabIndex(value) 
+                    }}
+                    style={{
+                      '--nutui-tabs-titles-item-color': '#686868 !important',
+                      '--nutui-tabs-titles-item-active-color': '#56c695 !important',
                     }}
                   >
-                    <Tabs.TabPane title="Tab longitem">
-                       {/* 内层 Tab 1 的内容 */}
+                    <Tabs.TabPane title="一周内">
+                      <EchartsZ />
                     </Tabs.TabPane>
-                    <Tabs.TabPane title="Tab 2"> {/* 内层 Tab 2 的内容 */} Tab 2 </Tabs.TabPane>
-                    <Tabs.TabPane title="Tab 3"> {/* 内层 Tab 3 的内容 */} Tab 3 </Tabs.TabPane>
+                    <Tabs.TabPane title="一个月内"> {/* 内层 Tab 2 的内容 */} <EchartsZ /> </Tabs.TabPane>
+                    <Tabs.TabPane title="一年内"> {/* 内层 Tab 3 的内容 */} <EchartsZ /> </Tabs.TabPane>
                   </Tabs>
                 </>
               </View>
@@ -285,7 +293,7 @@ const AnimalDetails = () => {
 
             {/* 检疫信息内容 */}
             <Swiper.Item>
-               {/* !!! 为内容包裹一个 View，并设置 ID 用于测量 !!! */}
+              {/* !!! 为内容包裹一个 View，并设置 ID 用于测量 !!! */}
               <View id={`content-${tabValues.quarantineInfo}`}>
                 <Cell title='检疫信息' radius={0} style={
                   {
@@ -355,7 +363,7 @@ const AnimalDetails = () => {
 
             {/* 疫苗信息内容 */}
             <Swiper.Item>
-               {/* !!! 为内容包裹一个 View，并设置 ID 用于测量 !!! */}
+              {/* !!! 为内容包裹一个 View，并设置 ID 用于测量 !!! */}
               <View id={`content-${tabValues.vaccineInfo}`}>
                 <Cell title='证明材料' radius={0} style={
                   {
@@ -417,7 +425,7 @@ const AnimalDetails = () => {
 
             {/* 繁殖信息内容 */}
             <Swiper.Item>
-               {/* !!! 为内容包裹一个 View，并设置 ID 用于测量 !!! */}
+              {/* !!! 为内容包裹一个 View，并设置 ID 用于测量 !!! */}
               <View id={`content-${tabValues.breedingInfo}`}>
                 <Cell title='繁殖记录' radius={0} style={
                   {
@@ -516,4 +524,3 @@ const AnimalDetails = () => {
 };
 
 export default AnimalDetails;
-  

@@ -3,6 +3,7 @@ import { View, Text, Textarea } from '@tarojs/components'; // 导入 Textarea
 import Taro from '@tarojs/taro';
 import { ArrowRight } from '@nutui/icons-react-taro'; // 导入右箭头图标
 import './index.less'; // 引入页面样式文件
+import { TextArea } from '@nutui/nutui-react-taro'
 
 const AddMatingRecord = () => {
   // 使用 useState 管理表单数据
@@ -131,13 +132,11 @@ const AddMatingRecord = () => {
             <Text className='item-label'>备注</Text>
           </View>
           {/* Textarea 用于多行输入 */}
-          <Textarea
-            className='notes-textarea'
+          <TextArea
             placeholder='请输入备注信息' // 截图上备注下方没有内容，这里添加一个 Textarea 的占位符
             value={formData.notes} // 绑定状态
             onInput={(e) => handleInputChange('notes', e.detail.value)} // 更新状态
-            autoHeight // 根据内容自动调整高度
-            maxlength={200} // 设置最大输入长度
+            autoSize maxLength={-1} 
           />
         </View>
 

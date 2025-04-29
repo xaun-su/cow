@@ -3,6 +3,8 @@ import { View, Text, Textarea, Input } from '@tarojs/components'; // 导入 Inpu
 import Taro from '@tarojs/taro';
 import { ArrowRight } from '@nutui/icons-react-taro'; // 移除未使用的 Add 图标
 import './index.less'; // 引入页面样式文件
+import { TextArea } from '@nutui/nutui-react-taro'
+
 
 const AddReproductionRecord = () => {
   // 使用 useState 管理表单数据
@@ -49,7 +51,7 @@ const AddReproductionRecord = () => {
 
   // 处理日期选择点击事件 (实际/预计时间)
   const handleTimeSelect = (key) => {
-      console.log(`点击了选择${key === 'actualBreedingTime' ? '实际' : '预计'}时间`);
+    console.log(`点击了选择${key === 'actualBreedingTime' ? '实际' : '预计'}时间`);
   };
 
 
@@ -76,17 +78,17 @@ const AddReproductionRecord = () => {
           <View className='list-item' /* onClick={() => handleInputClick('herdsmanName')} */>
             <Text className='item-label'>牧民</Text>
             {/* TODO: 替换为 Input 或其他组件 */}
-             <Text className={`item-value ${!formData.herdsmanName && 'placeholder'}`}>
-               {formData.herdsmanName || '请输入牧民姓名'}
-             </Text>
+            <Text className={`item-value ${!formData.herdsmanName && 'placeholder'}`}>
+              {formData.herdsmanName || '请输入牧民姓名'}
+            </Text>
           </View>
           <View className='divider'></View> {/* 分隔线 */}
 
           {/* 电话 */}
-           {/* 这里应该是一个输入框 */}
+          {/* 这里应该是一个输入框 */}
           <View className='list-item' /* onClick={() => handleInputClick('herdsmanPhone')} */>
             <Text className='item-label'>电话</Text>
-             {/* TODO: 替换为 Input 或其他组件 */}
+            {/* TODO: 替换为 Input 或其他组件 */}
             <Text className={`item-value ${!formData.herdsmanPhone && 'placeholder'}`}>
               {formData.herdsmanPhone || '请输入联系电话'}
             </Text>
@@ -94,24 +96,24 @@ const AddReproductionRecord = () => {
           <View className='divider'></View>
 
           {/* 地址 */}
-           {/* 这里应该是一个输入框或选择器 */}
+          {/* 这里应该是一个输入框或选择器 */}
           <View className='list-item' /* onClick={() => handleInputClick('herdsmanAddress')} */>
             <Text className='item-label'>地址</Text>
-             {/* TODO: 替换为 Input 或其他组件 */}
+            {/* TODO: 替换为 Input 或其他组件 */}
             <Text className={`item-value ${!formData.herdsmanAddress && 'placeholder'}`}>
-               {formData.herdsmanAddress || '请输入地址'}
+              {formData.herdsmanAddress || '请输入地址'}
             </Text>
           </View>
           <View className='divider'></View>
 
-           {/* 检疫证明上传 (保留，如果繁殖记录也需要上传证明) */}
-           {/* 如果不需要，可以删除此部分 */}
+          {/* 检疫证明上传 (保留，如果繁殖记录也需要上传证明) */}
+          {/* 如果不需要，可以删除此部分 */}
           <View className='list-item' onClick={handleProofUpload}>
             <Text className='item-label'>证明上传</Text> {/* 根据实际用途修改标签 */}
             <View className='upload-icon-container'>
-               {/* TODO: 如果已上传，这里可以显示缩略图 */}
-               {/* {formData.proofImage ? <Image src={formData.proofImage} className='uploaded-image' /> : <Camera size={27} color='#999' />} */}
-               <View className='upload-icon'></View> {/* 使用样式绘制相机图标 */}
+              {/* TODO: 如果已上传，这里可以显示缩略图 */}
+              {/* {formData.proofImage ? <Image src={formData.proofImage} className='uploaded-image' /> : <Camera size={27} color='#999' />} */}
+              <View className='upload-icon'></View> {/* 使用样式绘制相机图标 */}
             </View>
           </View>
         </View>
@@ -137,7 +139,7 @@ const AddReproductionRecord = () => {
           {/* 这里应该是一个日期选择器 */}
           <View className='list-item' onClick={() => handleTimeSelect('actualBreedingTime')}>
             <Text className='item-label'>绝育时间</Text>
-             {/* TODO: 替换为日期选择器 */}
+            {/* TODO: 替换为日期选择器 */}
             <Text className={`item-value ${!formData.actualBreedingTime && 'placeholder'}`}>
               {formData.actualBreedingTime || '请选择时间'}
             </Text>
@@ -151,13 +153,11 @@ const AddReproductionRecord = () => {
             <Text className='item-label'>备注</Text>
           </View>
           {/* Textarea 用于多行输入 */}
-          <Textarea
-            className='notes-textarea'
+          <TextArea
             placeholder='请输入备注信息'
             value={formData.notes} // 绑定状态
             onInput={(e) => handleInputChange('notes', e.detail.value)} // 更新状态
-            autoHeight // 根据内容自动调整高度
-            maxlength={200} // 设置最大输入长度
+            autoSize maxLength={-1}
           />
         </View>
 

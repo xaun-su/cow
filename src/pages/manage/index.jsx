@@ -75,38 +75,38 @@ const Index = () => {
         <View className='icon-container'>
           {/* {Array.from({ length: 8 }, (_, i) => ( */}
           <View className='icon-item'>
-            <Avatar icon={<User />} color="#fff" background="#0bcb77" shape="round" size="50" />
+            <Avatar icon={<Text className='iconfont icon-yaoqingniuren'></Text>}  background="#39a8ff" shape="round" size="50" />
             <Text className='text'>牲畜信息</Text>
           </View>
           <Navigator className='icon-item' url='/pages/vaccineManagement/index'>
-            <Avatar icon={<User />} color="#fff" background="#0bcb77" shape="round" size="50" />
+            <Avatar icon={<Text className='iconfont icon-zhijiandan-2'></Text>} background="#ff6969" shape="round" size="50" />
             <Text className='text'>检疫管理</Text>
           </Navigator>
           <Navigator className='icon-item' url='/pages/quarantineManagement/index'>
-            <Avatar icon={<User />} color="#fff" background="#0bcb77" shape="round" size="50" />
+            <Avatar icon={<Text className='iconfont icon-zhenguan'></Text>} background="#fecc4e" shape="round" size="50" />
             <Text className='text'>疫苗管理</Text>
           </Navigator>
           <Navigator className='icon-item' url='/pages/breedingManage/index'>
-            <Avatar icon={<User />} color="#fff" background="#0bcb77" shape="round" size="50" />
+            <Avatar icon={<Text className='iconfont icon-xingbie'></Text>}  background="#15d5d1" shape="round" size="50" />
             <Text className='text'>配种管理</Text>
           </Navigator>
           <Navigator className='icon-item' url='/pages/reproductionManagement/index'>
-            <Avatar icon={<User />} color="#fff" background="#0bcb77" shape="round" size="50" />
+            <Avatar icon={<Text className='iconfont icon-jilu'></Text>}  background="#26d392" shape="round" size="50" />
             <Text className='text'>繁殖管理</Text>
 
           </Navigator>
           <View className='icon-item'>
-            <Avatar icon={<User />} color="#fff" background="#0bcb77" shape="round" size="50" />
+            <Avatar icon={<Text className='iconfont icon-weibiaoti--copy'></Text>}  background="#fd7425" shape="round" size="50" />
             <Text className='text'>牧场信息</Text>
 
           </View>
           <View className='icon-item'>
-            <Avatar icon={<User />} color="#fff" background="#0bcb77" shape="round" size="50" />
+            <Avatar icon={<Text className='iconfont icon-jiankongshexiangtou-xianxing'></Text>}  background="#0eafeb" shape="round" size="50" />
             <Text className='text'>视频监控</Text>
 
           </View>
           <View className='icon-item'>
-            <Avatar icon={<User />} color="#fff" background="#0bcb77" shape="round" size="50" />
+            <Avatar icon={<Text className='iconfont icon-00-baojingjilu-05-05'></Text>} background="#fbc145" shape="round" size="50" />
             <Text className='text'>报警记录</Text>
 
           </View>

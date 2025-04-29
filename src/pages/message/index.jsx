@@ -9,7 +9,6 @@ const AlertList = () => {
     { id: 1, dateGroup: '今天', type: '活跃度降低', livestockLabel: '牲畜编号', livestockValue: '866452264124', imeiLabel: 'IMEI', imeiValue: '866452264124' },
     { id: 2, dateGroup: '今天', type: '设备异常', livestockLabel: '牲畜编号', livestockValue: '866452264124', imeiLabel: 'IMEI', imeiValue: '866452264124' },
     { id: 3, dateGroup: '今天', type: '设备异常', livestockLabel: '牲畜编号', livestockValue: '866452264124', imeiLabel: 'IMEI', imeiValue: '866452264124' },
-    // ... 更多数据，如果需要不同日期，可以在这里添加
   ]);
 
   // 简单按日期分组（如果数据中有不同日期，需要此步骤）
@@ -23,8 +22,6 @@ const AlertList = () => {
 
   const handleAlertClick = (alert) => {
     console.log('点击了告警:', alert);
-    // 在实际应用中，可以通过 Taro.navigateTo 实现跳转到详情页
-    // Taro.navigateTo({ url: `/pages/alert-detail/index?id=${alert.id}` });
   };
 
   return (

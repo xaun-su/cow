@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, Textarea } from '@tarojs/components';
+import { View, Text } from '@tarojs/components';
+import { TextArea } from '@nutui/nutui-react-taro'
 import Taro from '@tarojs/taro';
 import { Add, ArrowRight } from '@nutui/icons-react-taro'; 
 import './index.less'; // 引入页面样式文件
@@ -151,14 +152,7 @@ const AddQuarantineRecord = () => {
                 <Text className='item-label'>备注</Text>
             </View>
              {/* Textarea 用于多行输入 */}
-            <Textarea
-                className='notes-textarea'
-                placeholder='请输入备注信息'
-                value={defaultData.notes} // TODO: 绑定状态
-                // onInput={(e) => setNotes(e.detail.value)} // TODO: 更新状态
-                autoHeight // 根据内容自动调整高度
-                maxlength={200} // 设置最大输入长度
-            />
+            <TextArea autoSize maxLength={-1} />
          </View>
 
       </View>

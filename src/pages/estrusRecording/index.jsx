@@ -3,6 +3,7 @@ import { View, Text, Textarea, Input } from '@tarojs/components'; // 导入 Inpu
 import Taro from '@tarojs/taro';
 import { ArrowRight } from '@nutui/icons-react-taro'; // 移除未使用的 Add 图标
 import './index.less'; // 引入页面样式文件
+import { TextArea } from '@nutui/nutui-react-taro'
 
 const AddReproductionRecord = () => {
   // 使用 useState 管理表单数据
@@ -150,14 +151,12 @@ const AddReproductionRecord = () => {
             <Text className='item-label'>备注</Text>
           </View>
           {/* Textarea 用于多行输入 */}
-          <Textarea
-            className='notes-textarea'
-            placeholder='请输入备注信息'
-            value={formData.notes} // 绑定状态
-            onInput={(e) => handleInputChange('notes', e.detail.value)} // 更新状态
-            autoHeight // 根据内容自动调整高度
-            maxlength={200} // 设置最大输入长度
-          />
+            <TextArea
+                 placeholder='请输入备注信息'
+                 value={formData.notes} // 绑定状态
+                 onInput={(e) => handleInputChange('notes', e.detail.value)} // 更新状态
+                 autoSize maxLength={-1}
+               />
         </View>
 
       </View>

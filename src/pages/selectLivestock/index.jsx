@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { SearchBar, Avatar ,Checkbox} from '@nutui/nutui-react-taro';
+import { SearchBar, Avatar, Checkbox } from '@nutui/nutui-react-taro';
 import { View, Text, Navigator } from '@tarojs/components';
-import { ArrowRight, User, Add } from '@nutui/icons-react-taro';
 import './index.less';
 
 const Demo7 = () => {
@@ -31,7 +30,7 @@ const Demo7 = () => {
           <View key={i} className='category-item'>
             {/* 左侧：头像和文本 */}
             <View className='item-left'>
-              <Avatar icon={<User />} size="normal" color="#fff"
+              <Avatar icon={<Text className='iconfont icon-yaoqingniuren'></Text>} size="normal" color="#fff"
                 background="#0bcb77" className='normal' />
               <View className='item-text'>
                 <Text className='item-title'>牲畜编号</Text>
@@ -52,15 +51,11 @@ const Demo7 = () => {
           </View>
         ))}
       </View>
-      <Avatar
-        color="#fff"
-        background="#0bcb77"
-        size="large"
-        className='add-btn'
-        // 修正这里：JSX 属性值需要花括号 {} 包裹
-        icon={<Add />}
-      >
-      </Avatar>
+      <View className='submit-button-container'>
+        <View className='submit-button' onClick={handleSubmit}>
+          <Text className='submit-button-text'>确定提交</Text>
+        </View>
+      </View>
     </View>
   );
 };

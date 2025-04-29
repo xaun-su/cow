@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { View, Text } from '@tarojs/components';
 // 导入之前创建的检疫记录卡片组件
-import Estrus from '../../components/estrus/index';
-import BirthControl from '../../components/birthControl/index';
+import Estrus from '@/components/estrus/index';
+import BirthControl from '@/components/birthControl/index';
 import './index.less'; // 引入页面样式文件
 import Taro from '@tarojs/taro'; // 导入 Taro API
 import { Tabs } from '@nutui/nutui-react-taro'

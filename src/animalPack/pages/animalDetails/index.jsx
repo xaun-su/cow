@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Image,Navigator } from '@tarojs/components';
 import './index.less'; // 引入样式文件
-import imge from '../../static/images/animal.png';
+import imge from '@/static/images/animal.png';
 import {Cell, ConfigProvider, CellGroup } from '@nutui/nutui-react-taro';
 
 

@@ -5,8 +5,8 @@ import './index.less'; // 确保你的样式文件存在
 
 // 引入你需要使用的图标图片
 // 请将这里的路径替换为你项目中的实际图片路径
-import greenCircleIcon from '../../static/images/原点.png'; // 绿色圆形图标
-import customGreenIcon from '../../static/images/animal.png'; // 绿色自定义图标 (牛头图标)
+import greenCircleIcon from '@/static/images/原点.png'; // 绿色圆形图标
+import customGreenIcon from '@/static/images/animal.png'; // 绿色自定义图标 (牛头图标)
 
 // --- 辅助函数：判断点是否在多边形内 (Ray Casting Algorithm) ---
 // point: { longitude, latitude }

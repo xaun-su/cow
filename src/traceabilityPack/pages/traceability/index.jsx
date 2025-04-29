@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { View, Text, Image } from '@tarojs/components';
 import './index.less'; // 引入样式文件
-import imge from '../../static/images/animal.png';
+import imge from '@/static/images/animal.png';
 // 导入需要的 NutUI 组件，包括 ConfigProvider, Cell, CellGroup, Tabs, Swiper
 import { ConfigProvider, Tabs, Swiper } from '@nutui/nutui-react-taro';
 // 导入 NutUI 图标，如果需要在父组件中使用
@@ -9,11 +9,11 @@ import { ConfigProvider, Tabs, Swiper } from '@nutui/nutui-react-taro';
 import Taro from '@tarojs/taro'; // 导入 Taro API
 
 // 导入分离出的组件
-import BasicInfoSection from './components/BasicInfoSection';
-import HealthInfoSection from './components/HealthInfoSection';
-import QuarantineInfoSection from './components/QuarantineInfoSection';
-import VaccineInfoSection from './components/VaccineInfoSection';
-import BreedingInfoSection from './components/BreedingInfoSection';
+import BasicInfoSection from '@/components/traceabilityComponents/BasicInfoSection';
+import HealthInfoSection from '@/components/traceabilityComponents/HealthInfoSection';
+import QuarantineInfoSection from '@/components/traceabilityComponents/QuarantineInfoSection';
+import VaccineInfoSection from '@/components/traceabilityComponents/VaccineInfoSection';
+import BreedingInfoSection from '@/components/traceabilityComponents/BreedingInfoSection';
 
 
 const AnimalDetails = () => {

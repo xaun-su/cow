@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from '@tarojs/components'; // 导入 View 和 Text
-import FarmVideoCard from '../../components/FarmVideoCard'; // **确保导入 FarmVideoCard**
+import FarmVideoCard from '@/components/FarmVideoCard'; // **确保导入 FarmVideoCard**
 import './index.less'; // 导入页面样式文件 (如果需要)
 
 const MyPage = () => {

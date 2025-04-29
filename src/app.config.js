@@ -4,23 +4,47 @@ export default defineAppConfig({
     'pages/manage/index',
     'pages/map/index',
     'pages/animal/index',
-    'pages/device/index',
-    'pages/animalDetails/index',
-    'pages/traceability/index',
-    'pages/animalDetailsError/index',
-    'pages/basicInformation/index',
-    'pages/vaccineManagement/index',
-    'pages/reproductionManagement/index',
-    'pages/quarantineRecords/index',
-    'pages/birthControlRecords/index',
-    'pages/estrusRecording/index',
-    'pages/vaccineRecords/index',
-    'pages/quarantineManagement/index',
-    'pages/selectLivestock/index',
-    'pages/breedingManage/index',
-    'pages/newBreeding/index',
-    'pages/message/index',
-    'pages/videoSurveillance/index',
+  ],
+  subPackages: [
+    {
+      root: 'animalPack', 
+      pages: [
+        "pages/animalDetails/index",
+      ]
+    } ,{
+      root: 'managePack',
+      pages: [
+        "pages/basicInformation/index",
+        "pages/vaccineManagement/index" ,  
+        "pages/quarantineManagement/index",
+        "pages/reproductionManagement/index",
+        "pages/breedingManage/index",
+        "pages/videoSurveillance/index",
+      ]
+    },{
+      root:'homePack',
+      pages: [
+        "pages/animalDetailsError/index",
+        "pages/device/index",
+        "pages/message/index",
+      ]
+    },{
+      root:'recordsPack',
+      pages: [
+        "pages/quarantineRecords/index",
+        "pages/birthControlRecords/index",
+        "pages/estrusRecording/index",
+        "pages/vaccineRecords/index",
+        "pages/newBreeding/index",
+        "pages/selectLivestock/index",
+      ]
+    },
+    {
+      root:'traceabilityPack',
+      pages: [
+        "pages/traceability/index",
+      ] 
+    }
   ],
   window: {
     backgroundTextStyle: 'light',

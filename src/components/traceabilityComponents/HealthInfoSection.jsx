@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { View, Text } from '@tarojs/components';
 import { Cell, CircleProgress, Tabs } from '@nutui/nutui-react-taro';
-import EchartsZ from '../../../components/echarths/index'; // 确保路径正确
+import EchartsZ from '@/components/echarths/index'; // 确保路径正确
 
 const gradientColor = {
   '0%': '#FF5E5E',

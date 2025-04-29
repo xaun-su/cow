@@ -2,7 +2,7 @@
 import React from 'react';
 import { View, Text, Image } from '@tarojs/components';
 import { Cell, Steps, Step } from '@nutui/nutui-react-taro';
-import imge2 from '../../../static/images/证明.png'; // 确保路径正确
+import imge2 from '@/static/images/证明.png'; // 确保路径正确
 
 const QuarantineInfoSection = () => {
   return (

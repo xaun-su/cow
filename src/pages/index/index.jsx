@@ -2,12 +2,11 @@
 
 import React, { useState } from 'react';
 import Taro from '@tarojs/taro';
-import CustomNavBar from '../../components/CustomNavBar/CustomNavBar';
+import CustomNavBar from '@/components/CustomNavBar/CustomNavBar';
 import './index.less'; // 引入首页的样式文件
-import { View, Text, Image, Navigator } from '@tarojs/components';
+import { View, Text, Navigator } from '@tarojs/components';
 import { Clock } from '@nutui/icons-react-taro'
 import { Tabs ,Badge} from '@nutui/nutui-react-taro'
-// ... 获取系统信息计算导航栏高度的代码 ...
 const systemInfo = Taro.getSystemInfoSync();
 const statusBarHeight = systemInfo.statusBarHeight;
 const customNavHeight = 44; // 自定义导航栏的高度

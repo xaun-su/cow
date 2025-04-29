@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text } from '@tarojs/components';
 // 导入之前创建的检疫记录卡片组件
-import Vaccine from '../../components/vaccine/index';
+import Vaccine from '@/components/vaccine/index';
 import './index.less'; // 引入页面样式文件
 import Taro from '@tarojs/taro'; // 导入 Taro API
 

@@ -3,6 +3,7 @@ import { defineConfig } from '@tarojs/cli'
 
 import devConfig from './dev'
 import prodConfig from './prod'
+const path = require('path'); // 导入 path 模块
 
 // https://taro-docs.jd.com/docs/next/config#defineconfig-辅助函数
 export default defineConfig(async (merge, { command, mode }) => {
@@ -26,15 +27,20 @@ export default defineConfig(async (merge, { command, mode }) => {
     },
     framework: 'react',
     compiler: {
-    type: 'webpack5',
-    prebundle: {
-      exclude: ['@nutui/nutui-react-taro', '@nutui/icons-react-taro']
-    }
-  },
+      type: 'webpack5',
+      prebundle: {
+        exclude: ['@nutui/nutui-react-taro', '@nutui/icons-react-taro']
+      }
+    },
     cache: {
       enable: false // Webpack 持久化缓存配置，建议开启。默认配置请参考：https://docs.taro.zone/docs/config-detail#cache
     },
     mini: {
+      // *** 在 mini 配置中添加 webpackChain ***
+      webpackChain (chain) {
+        chain.resolve.alias
+          .set('@', path.resolve(__dirname, '..', 'src'));
+      },
       postcss: {
         pxtransform: {
           enable: true,
@@ -50,6 +56,11 @@ export default defineConfig(async (merge, { command, mode }) => {
       },
     },
     h5: {
+      // *** 在 h5 配置中添加 webpackChain ***
+      webpackChain (chain) {
+        chain.resolve.alias
+          .set('@', path.resolve(__dirname, '..', 'src'));
+      },
       publicPath: '/',
       staticDirectory: 'static',
       output: {
@@ -82,6 +93,11 @@ export default defineConfig(async (merge, { command, mode }) => {
           enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
         }
       }
+      // 如果需要，也可以在这里添加 webpackChain
+      // webpackChain (chain) {
+      //   chain.resolve.alias
+      //     .set('@', path.resolve(__dirname, '..', 'src'));
+      // },
     },
     // 这里是你提供的配置，加入 designWidth 和 deviceRatio
     designWidth(input) {

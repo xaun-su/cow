@@ -2,7 +2,7 @@ import { useRef, useEffect } from 'react';
 import { View } from '@tarojs/components';
 import Echarts from 'taro-react-echarts';
 // 导入 ECharts 库
-import * as echarts from '../../ec-canvas/echarts.min.js'; // <-- 改为正确的名称
+import * as echarts from '../../ec-canvas/echarts.min.js'; 
 import Taro from '@tarojs/taro'; // **确保导入 Taro**
 
 export default function LineChartDemo() {
@@ -118,7 +118,7 @@ export default function LineChartDemo() {
 
   return (
     // 确保 View 有明确的尺寸
-    <View style={{ width: '100%', height: '600rpx' }}>
+    <View style={{ width: '100%', height: '500rpx' }}>
       <Echarts
         echarts={echarts}
         option={option}

@@ -34,8 +34,10 @@ const Index = () => {
             {/* 左侧：头像和文本 */}
             <View className='item-left'> {/* 包裹头像和文本的容器，水平 flex */}
               {/* 确保导入了 User 图标 */}
-              <Avatar icon=<Add /> size="50" color="#fff"
-                background="#0bcb77" className='normal' /> {/* 头像 */}
+              <Avatar icon={<Text className='iconfont icon-yaoqingniuren' style={{fontSize:'40px'}}></Text>} size="50" color="#fff"
+                background="#0bcb77" className='normal' style={{
+                  border: '2px solid #fff', // 白色边框
+                }} /> {/* 头像 */}
               <View className='item-text'> {/* 包裹文本的容器，垂直 flex */}
                 <Text className='item-title'>牲畜编号</Text> {/* 标题文本 */}
                 <Text className='item-imei'>IMEI: 1234567890</Text> {/* IMEI 文本 */}

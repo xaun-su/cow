@@ -6,7 +6,8 @@ import CustomNavBar from '@/components/CustomNavBar/CustomNavBar';
 import './index.less'; // 引入首页的样式文件
 import { View, Text, Navigator } from '@tarojs/components';
 import { Clock } from '@nutui/icons-react-taro'
-import { Tabs, Badge } from '@nutui/nutui-react-taro'
+import { Tabs } from '@nutui/nutui-react-taro'
+import TitleH2 from '@/components/Title2/index';
 
 const systemInfo = Taro.getSystemInfoSync();
 const statusBarHeight = systemInfo.statusBarHeight;
@@ -22,14 +23,10 @@ const Index = () => {
       {/* 背景图片元素 */}
       <View className='index-background'></View>
       {/* 导航栏组件，确保它在背景元素的上方 */}
-      <CustomNavBar title='首页' className='index-nav-bar' />
-      {/* 内容区域 */}
-      <Navigator className='index-bell' url='/homePack/pages/message/index' >
-        <Badge value={8}>
-          {/* iconfont 是全局类名，不加前缀 */}
-          <i className='iconfont icon-lingdang'></i>
-        </Badge>
-      </Navigator>
+      <View>
+        <CustomNavBar title='首页' className='index-nav-bar' />
+        {/* {process.env.TARO_ENV === 'h5' && <TitleH2 title='首页' />} */}
+      </View>
       <View
         className='index-content'
         style={{
@@ -88,7 +85,11 @@ const Index = () => {
             }}
             align="left"
             // autoHeight={true} // 注释掉不使用的属性
-            activeColor="#4CAF50" // <-- 设置选中 Tab 的颜色为绿色
+            // activeColor="#4CAF50" // <-- 设置选中 Tab 的颜色为绿色
+            style={{
+              '--nutui-tabs-titles-item-color': '#686868',
+              '--nutui-tabs-titles-item-active-color': '#56c695',
+            }}
           >
             {/* NutUI Tabs.TabPane 组件 */}
             <Tabs.TabPane title="养殖棚1号" >

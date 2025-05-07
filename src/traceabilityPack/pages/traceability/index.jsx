@@ -7,6 +7,8 @@ import { ConfigProvider, Tabs, Swiper } from '@nutui/nutui-react-taro';
 // 导入 NutUI 图标，如果需要在父组件中使用
 // import { Add, ArrowRight } from '@nutui/icons-react-taro';
 import Taro from '@tarojs/taro'; // 导入 Taro API
+import TitleH5 from '@/components/TitleH5/index';
+
 
 // 导入分离出的组件
 import BasicInfoSection from '@/components/traceabilityComponents/BasicInfoSection';
@@ -100,6 +102,9 @@ const AnimalDetails = () => {
 
   return (
     <View className='animal-detail'>
+      <View>
+      {process.env.TARO_ENV === 'h5' && <TitleH5 title='溯源记录' />}
+      </View>
       {/* 条件渲染：只有在 "基本信息" Tab (索引为0) 中才显示图片 */}
       {tabIndex === tabValues.basicInfo && (
         <View className='animal-detail-header'>
@@ -119,10 +124,10 @@ const AnimalDetails = () => {
               // setTabIndex(page) // tabIndex 的更新交给 Swiper 的 onChange
             }}
             activeType='none' // 样式已移至 ConfigProvider
-             style={{    // 将原来 Tabs 上的 inline 样式也移到这里
-              '--nutui-tabs-titles-item-color': '#686868 !important',
-              '--nutui-tabs-titles-item-active-color': '#56c695 !important',
-            }} // 样式已移至 ConfigProvider
+            style={{
+            '--nutui-tabs-titles-item-color': '#686868',
+            '--nutui-tabs-titles-item-active-color': '#56c695',
+          }}
           >
             {/* TabPane 只保留标题，内容移至 Swiper.Item */}
             <Tabs.TabPane title='基本信息' value={tabValues.basicInfo} />

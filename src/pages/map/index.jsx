@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { View, Map, Image, Text, Button } from '@tarojs/components'; // 引入 Button
 import Taro from '@tarojs/taro';
 import './index.less'; // 确保你的样式文件存在
+import TitleH5 from '@/components/TitleH5/index';
+
 
 // 引入你需要使用的图标图片
 // 请将这里的路径替换为你项目中的实际图片路径
@@ -394,8 +396,12 @@ function MyMapComponent() {
 
 
   return (
+    
     <View className="map-page-container" style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
       {/* 地图组件占据上方区域 */}
+      <View>
+      {process.env.TARO_ENV === 'h5' && <TitleH5 title='围栏' />}
+      </View>
       <Map
         scale={14}  // 初始缩放级别
         polygons={polygons}

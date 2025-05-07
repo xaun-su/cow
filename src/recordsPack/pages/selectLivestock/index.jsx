@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { SearchBar, Avatar, Checkbox } from '@nutui/nutui-react-taro';
 import { View, Text, Navigator } from '@tarojs/components';
 import './index.less';
+import TitleH5 from '@/components/TitleH5/index';
 
 const Demo7 = () => {
   const [value, setValue] = useState('');
@@ -30,6 +31,9 @@ const Demo7 = () => {
 
   return (
     <View className='animal'>
+      <View>
+      {process.env.TARO_ENV === 'h5' && <TitleH5 title='选中牲畜' />}
+      </View>
       {/* SearchBar */}
       <SearchBar onChange={(val) => setValue(val)} maxLength={10} />
 

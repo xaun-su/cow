@@ -5,6 +5,8 @@ import Estrus from '@/components/estrus/index';
 import BirthControl from '@/components/birthControl/index';
 import './index.less'; // 引入页面样式文件
 import { Tabs } from '@nutui/nutui-react-taro'
+import TitleH5 from '@/components/TitleH5/index';
+
 const ReproductionManagement = () => {
   // 模拟一些检疫记录数据
   const estrus = [
@@ -80,6 +82,9 @@ const ReproductionManagement = () => {
   return (
 
     <View className='quarantine-list-page'>
+      <View>
+      {process.env.TARO_ENV === 'h5' && <TitleH5 title='繁殖管理' />}
+      </View>
       {/* 检疫记录卡片列表容器 */}
       <>
         <Tabs

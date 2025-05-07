@@ -3,9 +3,16 @@ import Taro from '@tarojs/taro';
 import { View, Text,Image,Navigator } from '@tarojs/components'
 import './index.less'
 import { ArrowRight} from '@nutui/icons-react-taro'
+import TitleH5 from '@/components/TitleH5/index';
+
+
 export default function DeviceError () {
   return (
+    
     <View className='deviceError'>
+      <View>
+      {process.env.TARO_ENV === 'h5' && <TitleH5 title='异常设备' />}
+      </View>
       <View className='deviceError-content'>
         <View className='deviceError-content-left'>
           <i className='iconfont icon-electricity-full'></i>

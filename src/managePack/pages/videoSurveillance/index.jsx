@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text } from '@tarojs/components'; // 导入 View 和 Text
 import FarmVideoCard from '@/components/FarmVideoCard'; // **确保导入 FarmVideoCard**
 import './index.less'; // 导入页面样式文件 (如果需要)
+import TitleH5 from '@/components/TitleH5/index';
 
 const MyPage = () => {
   const farmData = {
@@ -28,6 +29,9 @@ const MyPage = () => {
   return (
     // 页面整体容器，可以设置灰色背景和内边距
     <View className='my-page-container'> {/* 给页面容器一个类名 */}
+      <View>
+      {process.env.TARO_ENV === 'h5' && <TitleH5 title='视频监控列表' />}
+      </View>
        {/* 数量文本 */}
        <View className='quantity'>数量 {farmData.quantity}</View>
 

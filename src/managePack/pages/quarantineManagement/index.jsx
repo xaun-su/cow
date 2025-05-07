@@ -4,6 +4,7 @@ import { View, Text ,Navigator} from '@tarojs/components';
 import Vaccine from '@/components/vaccine/index';
 import './index.less'; // 引入页面样式文件
 import Taro from '@tarojs/taro'; // 导入 Taro API
+import TitleH5 from '@/components/TitleH5/index';
 
 const QuarantineListPage = () => {
   // 模拟一些检疫记录数据
@@ -50,6 +51,9 @@ const QuarantineListPage = () => {
 
   return (
     <View className='quarantine-list-page'>
+      <View>
+      {process.env.TARO_ENV === 'h5' && <TitleH5 title='疫苗管理' />}
+      </View>
       {/* 检疫记录卡片列表容器 */}
       <View className='card-list-container'>
         {/* 遍历数据，渲染多个 QuarantineRecordCard 组件 */}

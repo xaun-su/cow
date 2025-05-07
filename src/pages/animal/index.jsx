@@ -2,15 +2,20 @@ import React, { useState } from 'react';
 import { SearchBar, Avatar } from '@nutui/nutui-react-taro';
 import { View, Text, Navigator } from '@tarojs/components'; // 确保导入了 Text
 import { ArrowRight, Add } from '@nutui/icons-react-taro'; // 确保导入了 User 和 ArrowRight
+import TitleH5 from '../../components/TitleH5/index';
 import './index.less';
 
 const Demo7 = () => {
   const [value, setValue] = useState('');
 
   return (
+
     <View className='animal'>
+      <View>
+      {process.env.TARO_ENV === 'h5' && <TitleH5 title='牲畜管理' />}
+      </View>
       {/* SearchBar */}
-      <SearchBar onChange={(val) => setValue(val)} maxLength={10} placeholder="输入牲畜名称或IMEI查询"/>
+      <SearchBar onChange={(val) => setValue(val)} maxLength={10} placeholder="输入牲畜名称或IMEI查询" />
 
       <View className='category'>
         {/* 动态生成 category-item */}

@@ -3,6 +3,7 @@ import { View, Text, Image, Input } from '@tarojs/components';
 // 确保导入 NutUI 的 Picker 组件
 import { Cell, CellGroup, ConfigProvider, Picker } from '@nutui/nutui-react-taro';
 import './index.less'; // 引入样式文件
+import TitleH5 from '@/components/TitleH5/index';
 
 // 导入一个占位的头像图片，请替换为你自己的图片路径
 import defaultAvatar from '@/static/images/证明.png';
@@ -133,6 +134,9 @@ const UserProfile = () => {
 
   return (
     <ConfigProvider themeVars={customCellTheme}>
+      <View>
+      {process.env.TARO_ENV === 'h5' && <TitleH5 title='基本信息' />}
+      </View>
       <View className='user-profile-page'>
         {/* 头像 - 通常是图片上传，不在此处实现文本编辑 */}
         <Cell

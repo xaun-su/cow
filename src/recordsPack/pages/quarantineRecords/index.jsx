@@ -4,6 +4,7 @@ import { TextArea } from '@nutui/nutui-react-taro'
 import Taro from '@tarojs/taro';
 import { Add, ArrowRight } from '@nutui/icons-react-taro';
 import './index.less'; // 引入页面样式文件
+import TitleH5 from '@/components/TitleH5/index';
 
 const AddQuarantineRecord = () => {
   // 使用 useState 创建状态变量
@@ -16,7 +17,7 @@ const AddQuarantineRecord = () => {
   const [quarantineProof, setQuarantineProof] = useState(null);
   const [quarantineTime, setQuarantineTime] = useState('');
   const [selectedLivestock, setSelectedLivestock] = useState(null); // 初始为 null
-  const [notes, setNotes] = useState('');
+  const [notes, setNotes] = useState(''); // 备注的状态变量
 
   // 处理检疫证明上传点击事件
   const handleProofUpload = () => {
@@ -58,7 +59,7 @@ const AddQuarantineRecord = () => {
       quarantineProof: quarantineProof,
       quarantineTime: quarantineTime,
       selectedLivestock: selectedLivestock,
-      notes: notes,
+      notes: notes, // 从 notes 状态变量获取值
     };
     console.log('提交的数据:', formData);
     // TODO: 调用 API 提交数据，使用 formData
@@ -67,6 +68,9 @@ const AddQuarantineRecord = () => {
 
   return (
     <View className='add-quarantine-record-page'>
+      <View>
+      {process.env.TARO_ENV === 'h5' && <TitleH5 title='检疫记录' />}
+      </View>
       {/* 页面内容区域 */}
       <View className='page-content'>
         {/* 检疫信息部分 */}
@@ -101,7 +105,7 @@ const AddQuarantineRecord = () => {
               className='item-value'
               value={contactPhone}
               onInput={(e) => setContactPhone(e.detail.value)}
-              placeholder='请输入联系电话'
+              placeholder='请输入联系电话' // 修正了 placeholder
               type='number' // 建议使用 number 类型键盘
             />
           </View>
@@ -194,8 +198,8 @@ const AddQuarantineRecord = () => {
           {/* Textarea 用于多行输入 */}
           <TextArea
             placeholder='请输入备注信息'
-            value={formData.notes} // 绑定状态
-            onChange={(value) => handleInputChange('notes', value)}
+            value={notes} // <--- 改为绑定 notes 状态
+            onChange={setNotes} // <--- 改为直接使用 setNotes 更新状态
             autoSize maxLength={-1}
             style={{ border: 'none', padding: '10px 0' }}
           />

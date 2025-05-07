@@ -6,11 +6,12 @@
   left: 0;
   right: 0;
   display: flex;
-  width: 85%;
+  width: 100%; // 将宽度修改为 100%
   align-items: center;
   justify-content: space-between; // 使返回按钮、标题、右侧内容分开
   z-index: 100; // 确保在页面内容之上
   box-sizing: border-box; // 包含 padding 在高度内
+
 }
 
 .back-button {
@@ -25,17 +26,15 @@
 .navbar-title {
   flex-grow: 1; // 标题占据剩余空间
   text-align: center; // 标题居中
-  font-size: 25px; // 标题字体大小
-  font-weight: bold;
-  // 确保标题不会被返回按钮或右侧内容挤压
+  font-size: 40x; // 标题字体大小
+  color: #000; // 添加字体颜色，确保可见
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  transform: translateX(60px);
 }
 
 .right-placeholder {
-  width: 40px; 
+  width: 40px; // 与返回按钮宽度一致，有助于标题居中
 }
 .back-icon{
   width: 80px;

@@ -2,13 +2,15 @@
 
 import React, { useEffect, useState } from 'react';
 import Taro from '@tarojs/taro';
-import { ArrowLeft } from '@nutui/icons-react-taro'
 import './index.less';
-import { View, Text ,Image} from '@tarojs/components';
-// 获取系统信息，用于计算状态栏高度和导航栏总高度
+import { View, Text, Navigator } from '@tarojs/components';
+import { Badge } from '@nutui/nutui-react-taro'
+
+// 获取系统信息，用于计算状态栏高度
 const systemInfo = Taro.getSystemInfoSync();
 const statusBarHeight = systemInfo.statusBarHeight; // 状态栏高度
-const customNavHeight = 44; // 自定义导航栏的高度，通常是 44px
+
+// 注意：customNavHeight 和 totalNavHeight 不再用于计算总高度，因为我们使用 vh 单位
 
 const CustomNavBar = (props) => {
   const { title = '页面标题' } = props; // 接收标题作为 props，并设置默认值
@@ -30,33 +32,34 @@ const CustomNavBar = (props) => {
     Taro.navigateBack();
   };
 
-  // 计算导航栏的总高度
-  const totalNavHeight = statusBarHeight + customNavHeight;
+  // 导航栏的总高度将设置为 8vh，其中包含状态栏的 paddingTop
 
   return (
     <View
       className='custom-navbar'
       style={{
         paddingTop: `${statusBarHeight}px`, // 顶部填充状态栏高度
-        height: `${totalNavHeight}px`, // 导航栏总高度 = 状态栏高度 + 自定义高度
+        height: '10vh', // 导航栏总高度设置为视口高度的 8%
+        boxSizing: 'border-box', // 确保 padding 包含在 height 内，使总高度精确为 8vh
       }}
     >
       {/* 返回按钮区域，只有当 showBackButton 为 true 时才渲染 */}
-      {showBackButton && (
-        <View className='back-button' onClick={handleBack}>
-          <ArrowLeft />
-        </View>
-      ) }
+      {showBackButton || (
+        <Navigator className='index-bell' url='/homePack/pages/message/index' style={ { marginRight: 16 }} >
+          <Badge value={8}>
+            {/* iconfont 是全局类名，不加前缀 */}
+            <i className='iconfont icon-lingdang'></i>
+          </Badge>
+        </Navigator>
+      )}
+
 
       {/* 导航栏标题 */}
       <View className='navbar-title'>
         <Text>{title}</Text>
       </View>
-
-      {/* 右侧占位或其他按钮（如果需要） */}
       <View className='right-placeholder'></View>
     </View>
-
   );
 };
 

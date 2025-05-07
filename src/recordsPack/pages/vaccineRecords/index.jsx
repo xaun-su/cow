@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { View, Text, Input } from '@tarojs/components'; // 导入 Input 组件
-import Taro from '@tarojs/taro';
-import { Add, ArrowRight } from '@nutui/icons-react-taro'; // 导入 Camera 图标
+import { ArrowRight } from '@nutui/icons-react-taro'; // 导入 Camera 图标
 import './index.less'; // 引入页面样式文件
 import { TextArea } from '@nutui/nutui-react-taro' // 导入 NutUI TextArea
-
+import TitleH5 from '@/components/TitleH5/index';
 const AddVaccinationRecord = () => {
   // 使用 useState 管理表单数据
   const [formData, setFormData] = useState({
@@ -48,6 +47,9 @@ const AddVaccinationRecord = () => {
 
   return (
     <View className='add-vaccination-record-page'> {/* 更新类名 */}
+      <View>
+      {process.env.TARO_ENV === 'h5' && <TitleH5 title='新增疫苗记录' />}
+      </View>
       {/* 页面内容区域 */}
       <View className='page-content'>
         {/* 牧民信息部分 */}

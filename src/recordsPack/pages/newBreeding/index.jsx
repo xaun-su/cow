@@ -4,6 +4,7 @@ import Taro from '@tarojs/taro'; // 导入 Taro 用于可能的跳转或提示
 import { ArrowRight } from '@nutui/icons-react-taro'; // 导入右箭头图标
 import './index.less'; // 引入页面样式文件
 import { TextArea } from '@nutui/nutui-react-taro' // 导入 NutUI TextArea
+import TitleH5 from '@/components/TitleH5/index';
 
 const AddMatingRecord = () => {
   // 使用 useState 管理表单数据
@@ -77,6 +78,9 @@ const AddMatingRecord = () => {
 
   return (
     <View className='add-mating-record-page'> {/* 页面主容器 */}
+      <View>
+      {process.env.TARO_ENV === 'h5' && <TitleH5 title='新增配种记录' />}
+      </View>
       {/* 页面内容区域 */}
       <View className='page-content'>
 

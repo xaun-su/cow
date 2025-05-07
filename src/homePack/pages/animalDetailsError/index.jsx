@@ -4,6 +4,7 @@ import { View, Text, Image,Navigator } from '@tarojs/components';
 import './index.less'; // 引入样式文件
 import imge from '@/static/images/animal.png';
 import { Cell, ConfigProvider, CellGroup } from '@nutui/nutui-react-taro';
+import TitleH5 from '@/components/TitleH5/index';
 
 const AnimalDetails = () => {
 
@@ -44,6 +45,9 @@ const AnimalDetails = () => {
 
   return (
     <View className='animal-detail'>
+      <View>
+      {process.env.TARO_ENV === 'h5' && <TitleH5 title='牲畜详情' />}
+      </View>
       <View className='animal-detail-header'>
         <Image src={imge} className='animal-detail-header-image' mode='aspectFill' /> {/* 添加 mode='aspectFill' */}
       </View>

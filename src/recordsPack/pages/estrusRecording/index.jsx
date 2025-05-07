@@ -4,6 +4,7 @@ import Taro from '@tarojs/taro';
 import { ArrowRight } from '@nutui/icons-react-taro'; // 移除未使用的 Add 图标
 import './index.less'; // 引入页面样式文件
 import { TextArea } from '@nutui/nutui-react-taro'
+import TitleH5 from '@/components/TitleH5/index';
 
 const AddReproductionRecord = () => {
   // 使用 useState 管理表单数据
@@ -64,6 +65,9 @@ const AddReproductionRecord = () => {
 
   return (
     <View className='add-quarantine-record-page'> {/* 沿用 Less 中的类名 */}
+      <View>
+      {process.env.TARO_ENV === 'h5' && <TitleH5 title='发情记录' />}
+      </View>
       {/* 页面内容区域 */}
       <View className='page-content'>
         {/* 牧民信息部分 */}

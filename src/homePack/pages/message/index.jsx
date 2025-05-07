@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text } from '@tarojs/components';
 import { ArrowRight } from '@nutui/icons-react-taro'; // 导入箭头图标
 import './index.less'; // 引入样式文件
+import TitleH5 from '@/components/TitleH5/index';
 
 const AlertList = () => {
   // 模拟告警数据，结构更贴近图片展示
@@ -26,6 +27,9 @@ const AlertList = () => {
 
   return (
     <View className='alert-list-page'>
+      <View>
+      {process.env.TARO_ENV === 'h5' && <TitleH5 title='消息' />}
+      </View>
       {Object.keys(groupedAlerts).map(dateGroup => (
         <View key={dateGroup}>
           {/* 日期分组标题 */}

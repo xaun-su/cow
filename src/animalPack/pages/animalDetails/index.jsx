@@ -84,7 +84,7 @@ const AnimalDetails = () => {
           </CellGroup>
            {/* 溯源信息按钮 - 使用 Navigator 包裹 Button */}
            <Navigator url='/traceabilityPack/pages/traceability/index' className='traceability-button-container'>
-              <button type='primary' size='large' className='traceability-button'>溯源信息</button>
+              <button type='primary' size='large' className='btn'>溯源信息</button>
            </Navigator>
         </ConfigProvider>
       </View>

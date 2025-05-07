@@ -10,16 +10,16 @@
 }
 
 .index-nav-bar {
-  position: absolute; /* 绝对定位 */
-  top: 0; /* 位于容器顶部 */
+  position: absolute;
+  top: 0;
   left: 0;
   right: 0;
   z-index: 2; /* 较高的 z-index，确保它在背景上方 */
 }
 
 .index-background {
-  position: absolute; /* 绝对定位 */
-  top: 0; /* 位于容器顶部 */
+  position: absolute;
+  top: 0;
   left: 0;
   right: 0;
   background: linear-gradient(to bottom right, #13c762,#00c557, #05c65a);
@@ -41,7 +41,8 @@
   flex-direction: column;
   align-items: center;
 }
-.reports{
+
+.index-reports{
   width:90% ;
   height: 25vh;
   background-color: #fff;
@@ -52,142 +53,142 @@
   flex-direction: column;
   align-items: center;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  .report{
+  .index-report{
     margin-top: 30px;
     width: 100%;
     height: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    .title{
+    .index-title{
       margin-top: 25px;
-      font-size: 40px; // 根据实际需要调整字号
+      font-size: 40px;
       color: #0bcb75;
     }
-    .time{
-      font-size: 30px; // 根据实际需要调整字号
+    .index-time{
+      font-size: 30px;
       color: #a0a0a0;
     }
   }
-  .report-list{
+  .index-report-list{
     width: 80%;
     height: 50%;
     display: flex;
     justify-content: space-between;
   }
-  .report-item{
+  .index-report-item{
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    .num{
-      font-size: 60px; // 根据实际需要调整字号
+    .index-num{
+      font-size: 60px;
       color: #000;
       font-weight: 600;
     }
-    .prompt{
-      font-size: 60px; // 根据实际需要调整字号
+    .index-prompt{
+      font-size: 60px;
       color: #ffbc44;
     }
-    .text{
-      font-size: 30px; // 根据实际需要调整字号
+    .index-text{
+      font-size: 30px;
       color: #dfdfdf;
     }
   }
 }
 
-.device{
-  margin-top: 110px; 
+.index-device{
+  margin-top: 110px;
   width: 85%;
   height: 70px;
   display: flex;
   background-color: #fff;
   align-items: center;
   border-radius: 20px;
-  padding: 20px; // 根据实际需要调整内边距
+  padding: 20px;
   justify-content: space-between;
   .device-icon { // Image 组件的样式
      width:40px;
      height: 40px;
      margin-right: 25px;
   }
-  .device-content{
+  .index-device-content{
     display: flex;
     align-items: center; // 垂直居中图标和文字
   }
 }
-.device:nth-child(3){ /* 定位第二个 .device 元素，调整其顶部外边距 */
+.index-device:nth-child(3){ /* 定位第二个 .index-device 元素，调整其顶部外边距 */
   margin-top: 25px;
 }
 
-.environment{
-  margin-top: 20px; 
+.index-environment{
+  margin-top: 20px;
   width: 100%;
-  flex:1; 
+  flex:1;
   background-color: #fff;
-  padding-top: 40px; 
+  padding-top: 40px;
   display: flex;
   flex-direction: column;
-  .environment-content{
+  .index-environment-content{
     width: 100%;
     height: 140px;
     display: flex;
     justify-content: space-around;
   }
-  .environment-title{
-    padding-left: 20px; 
-    padding-bottom:20px ; 
-    border-bottom: 1px solid #eee; 
+  .index-environment-title{
+    padding-left: 20px;
+    padding-bottom:20px ;
+    border-bottom: 1px solid #eee;
     font-size: 30px;
     font-weight: bold;
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
   }
 
   // 卡片样式
-  .environment-card {
+  .index-environment-card {
     background-color: #e7f6f0; // 卡片背景色，类似图片中的淡绿色
-    border-radius: 20px; // 圆角
-    margin-top: 10px; 
+    border-radius: 20px;
+    margin-top: 10px;
     width: 40%;
     height: 100%;
     display: flex;
   }
 
-  .card-title {
+  .index-card-title {
     font-size: 14px;
     color: #333;
   }
 
-  .indicator-circle {
+  .index-indicator-circle {
     height: 70%;
     aspect-ratio: 1 / 1;
     background-color: #79e0b2; // 圆形颜色，类似图片中的绿色
     border-radius: 50%; // 使其成为圆形
   }
 
-  .card-body {
+  .index-card-body {
     display: flex;
     align-items: baseline; // 使数值和单位底部对齐
     margin-bottom: 5px;
   }
 
-  .humidity-value {
-    font-size: 24px; 
+  .index-humidity-value {
+    font-size: 24px;
     font-weight: bold;
-    margin-right: 5px; 
+    margin-right: 5px;
   }
 
-  .humidity-unit {
-    font-size: 12px; 
+  .index-humidity-unit {
+    font-size: 12px;
     color: #555;
   }
-  .update-time {
+  .index-update-time {
     font-size: 12px;
-    color: #777; 
+    color: #777;
   }
 
-    .card-left{
+    .index-card-left{
       padding: 10px;
       width: 60%;
       height: 100%;
@@ -195,7 +196,7 @@
       flex-direction: column;
       justify-content: space-evenly;
     }
-    .card-right{
+    .index-card-right{
       width: 40%;
       height: 100%;
       display: flex;
@@ -203,17 +204,19 @@
       align-items: center;
     }
 }
+
+// NutUI 和 Iconfont 的全局类名，保持不变
 .nut-tabpane{
   padding: 20px;
 }
 .icon-lingdang{
-  font-size: 40px; 
+  font-size: 40px;
   color: #000;
   z-index: 9999;
 }
-.bell{
+.index-bell{
   position: absolute;
-  top: 9vh; 
+  top: 9vh;
   left: 2vh;
 }
 .icon-jingtanhaogantanhao{

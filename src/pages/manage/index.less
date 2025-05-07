@@ -1,6 +1,6 @@
 /* src/pages/index/index.less */
 
-.index-container {
+.manage-container { /* 将 index-container 修改为 manage-container */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,7 +9,7 @@
   background-color: #f7f8f9;
 }
 
-.index-nav-bar {
+.manage-nav-bar { /* 将 index-nav-bar 修改为 manage-nav-bar */
   position: absolute; /* 绝对定位 */
   top: 0; /* 位于容器顶部 */
   left: 0;
@@ -17,7 +17,7 @@
   z-index: 2; /* 较高的 z-index，确保它在背景上方 */
 }
 
-.index-background {
+.manage-background { /* 将 index-background 修改为 manage-background */
   position: absolute; /* 绝对定位 */
   top: 0; /* 位于容器顶部 */
   left: 0;
@@ -29,7 +29,7 @@
   z-index: 1; /* 较低的 z-index，使其位于导航栏下方 */
 }
 
-.index-content {
+.manage-content { /* 将 index-content 修改为 manage-content */
   flex-grow: 1;
   padding: 20px;
   width: 100%;
@@ -41,7 +41,8 @@
   flex-direction: column;
   align-items: center;
 }
-.reports{
+
+.manage-reports{ /* 在 reports 前添加 manage- */
   width:90% ;
   height: 15vh;
   background-color: #fff;
@@ -53,37 +54,37 @@
   flex-direction: column;
   align-items: center;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  .report-list{
+  .manage-report-list{ /* 在 report-list 前添加 manage- */
     width: 80%;
     height: 50%;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
-  .report-item{
+  .manage-report-item{ /* 在 report-item 前添加 manage- */
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    .num{
+    .manage-num{ /* 在 num 前添加 manage- */
       font-size: 60px; // 根据实际需要调整字号
       color: #000;
       font-weight: 600;
     }
-    .prompt{
+    .manage-prompt{ /* 在 prompt 前添加 manage- */
       font-size: 60px; // 根据实际需要调整字号
       color: #ffbc44;
     }
-    .text{
+    .manage-text{ /* 在 text 前添加 manage- */
       font-size: 30px; // 根据实际需要调整字号
       color: #dfdfdf;
     }
   }
 }
 
-.device{
-  margin-top: 110px; 
+.manage-device{ /* 在 device 前添加 manage- */
+  margin-top: 110px;
   width: 85%;
   height: 70px;
   display: flex;
@@ -92,29 +93,32 @@
   border-radius: 20px;
   padding: 20px; // 根据实际需要调整内边距
   justify-content: space-between;
-  .device-icon { // Image 组件的样式
+  .manage-device-icon { /* 在 device-icon 前添加 manage- */
      width:40px;
      height: 40px;
      margin-right: 25px;
   }
-  .device-content{
+  .manage-device-content{ /* 在 device-content 前添加 manage- */
     display: flex;
     align-items: center; // 垂直居中图标和文字
   }
 }
-.category{
+
+.manage-category{ /* 在 category 前添加 manage- */
   position: absolute;
   top: 5vh;
   width: 100%;
-  height: 100%; 
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.item-title{
+
+.manage-item-title{ /* 在 item-title 前添加 manage- */
   font-size: 35px;
 }
-.category-item{
+
+.manage-category-item{ /* 在 category-item 前添加 manage- */
   margin-top: 20px;
   width: 90%;
   height: 15%;
@@ -122,23 +126,27 @@
   align-items: center;
   justify-content: space-between;
 }
-.item-text{
+
+.manage-item-text{ /* 在 item-text 前添加 manage- */
   color: #fff;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-.item-left{
+
+.manage-item-left{ /* 在 item-left 前添加 manage- */
   height: 100%;
   display: flex;
   align-items: center;
 }
-.normal{
+
+.manage-normal{ /* 在 normal 前添加 manage- */
   margin-left: 20px;
   margin-right: 20px;
 }
-.add-btn{
+
+.manage-add-btn{ /* 在 add-btn 前添加 manage- */
   position: absolute;
   bottom: 0;
   left: 50%;
@@ -146,11 +154,18 @@
   margin-bottom: 20px;
   box-shadow: 0 0 10px rgba(0,0,0,0.5) ;
 }
-.item-imei{
+
+.manage-item-imei{ /* 在 item-imei 前添加 manage- */
   color: #fff;
   font-size: 30px;
 }
-.icon-container{
+
+.manage-item-right{ /* 在 item-right 前添加 manage- */
+  margin-right: 10px;
+  color: #afafaf;
+}
+
+.manage-icon-container{ /* 在 icon-container 前添加 manage- */
   position: absolute;
   top: 35vh;
   height: 25vh;
@@ -162,19 +177,21 @@
   border-radius: 0; // 如果不需要圆角
   // 确保没有 clip-path
 }
-.icon-item{
+
+.manage-icon-item{ /* 在 icon-item 前添加 manage- */
   width: 25%;
   height: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  .text{
+  .manage-text{ /* 在 text 前添加 manage- */
     margin-top: 10px;
     font-size: 25px;
   }
 }
-.iconfont{
+
+.manage-container .iconfont{ /* 在 iconfont 前添加 manage- */
   font-size: 60px; // 根据实际需要调整字号
   color: #fff; // 根据实际需要调整颜色
 }

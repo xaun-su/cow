@@ -1,15 +1,30 @@
 .my-page-container {
-  background-color: #f0f0f0; // 浅灰色背景
-  padding: 20rpx; // 内边距，根据需要调整
-  display: flex;
-  flex-direction: column; // 垂直布局
-  align-items: center; // 水平居中卡片
+  background-color: #f0f0f0; // 示例背景色
+  padding: 10px; // 示例内边距
+  min-height: 100vh; // 确保页面至少占满视口高度
 }
 
-.quantity {
-  font-size: 28rpx; // 数量文本大小
-  color: #333; // 文本颜色
-  margin-bottom: 20rpx; // 数量和卡片之间的间距
-  width: 100%; // 让数量文本靠左对齐
-  text-align: left; // 靠左对齐
+.total-quantity {
+  margin-bottom: 10px;
+  font-weight: bold;
+  padding: 0 10px; // 与页面内边距对齐
+}
+
+.video-card-wrapper {
+  margin-bottom: 15px; // 控制每个视频卡片之间的间距
+  // 可以添加背景、阴影等样式来区分卡片
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden; // 确保圆角生效
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.loading-text, .error-text, .empty-text {
+  text-align: center;
+  margin-top: 20px;
+  color: #666;
+}
+
+.error-text {
+  color: red;
 }

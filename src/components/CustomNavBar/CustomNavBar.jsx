@@ -14,6 +14,7 @@ const statusBarHeight = systemInfo.statusBarHeight; // 状态栏高度
 
 const CustomNavBar = (props) => {
   const { title = '页面标题' } = props; // 接收标题作为 props，并设置默认值
+  const {number=0} = props; // 接收标题作为 props，并设置默认值
   const [showBackButton, setShowBackButton] = useState(false);
 
   useEffect(() => {
@@ -46,7 +47,7 @@ const CustomNavBar = (props) => {
       {/* 返回按钮区域，只有当 showBackButton 为 true 时才渲染 */}
       {showBackButton || (
         <Navigator className='index-bell' url='/homePack/pages/message/index' style={ { marginRight: 16 }} >
-          <Badge value={8}>
+          <Badge value={number}>
             {/* iconfont 是全局类名，不加前缀 */}
             <i className='iconfont icon-lingdang'></i>
           </Badge>

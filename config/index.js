@@ -100,12 +100,19 @@ export default defineConfig(async (merge, { command, mode }) => {
         cssModules: {
           enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
         }
-      }
-      // 如果需要，也可以在这里添加 webpackChain
-      // webpackChain (chain) {
-      //   chain.resolve.alias
-      //     .set('@', path.resolve(__dirname, '..', 'src'));
-      // },
+      },
+      output: {
+        iosSourceMapUrl: '', // sourcemap 文件url
+        iosSourcemapOutput: '../taro-native-shell/ios/main.map', // sourcemap 文件输出路径
+        iosSourcemapSourcesRoot: '', // 将 sourcemap 资源路径转为相对路径时的根目录
+        androidSourceMapUrl: '',
+        androidSourcemapOutput: '../taro-native-shell/android/app/src/main/assets/index.android.map',
+        androidSourcemapSourcesRoot: '',
+        ios: '../taro-native-shell/ios/main.jsbundle',
+        iosAssetsDest: '../taro-native-shell/ios',
+        android: '../taro-native-shell/android/app/src/main/assets/index.android.bundle',
+        androidAssetsDest: '../taro-native-shell/android/app/src/main/res'
+      },
     },
     // 这里是你提供的配置，加入 designWidth 和 deviceRatio
     designWidth(input) {

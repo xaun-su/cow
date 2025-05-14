@@ -12,3 +12,17 @@ export const getVaccineListData=async ()=>{
 export const getVaccineDetailsData=async (id)=>{
   return await request.get(`${vaccineDetails}?F_Id=${id}`) 
 }
+
+//获取配种管理列表
+const matingList='/manageRight/getBreed'
+
+export const getMatingListData=async ()=>{
+  return await request.get(matingList)
+}
+
+//获取检疫管理列表
+const quarantineList='/manageLeft/quarantine'
+
+export const getQuarantineListData=async ()=>{
+  return await request.get(quarantineList)
+}

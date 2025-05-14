@@ -1,47 +1,32 @@
-import React from 'react';
-import { View, Text ,Navigator} from '@tarojs/components';
+import React, { useEffect, useState } from 'react';
+import { View, Text, Navigator } from '@tarojs/components';
 // 导入之前创建的检疫记录卡片组件
 import Vaccine from '@/components/vaccine/index';
 import './index.less'; // 引入页面样式文件
 import Taro from '@tarojs/taro'; // 导入 Taro API
+import { getVaccineListData } from '@/api/manage';
 import TitleH5 from '@/components/TitleH5/index';
 
 const QuarantineListPage = () => {
-  // 模拟一些检疫记录数据
-  const quarantineRecords = [
-    {
-      id: 1,
-      livestockId: '牲畜编号',
-      imei: '866452264124',
-      quarantineUnit: '雷山县动物卫生监督所',
-      quarantineType: '《动物产地检疫合格证明》',
-      operator: '韩梅梅',
-      date: '2024-01-23',
-    },
-    {
-      id: 2,
-      livestockId: '牲畜编号',
-      imei: '866452264125',
-      quarantineUnit: '某个检疫站',
-      quarantineType: '《动物运输检疫证明》',
-      operator: '李华',
-      date: '2024-02-10',
-    },
-    // 你可以在这里添加更多模拟数据
-    {
-      id: 3,
-      livestockId: '牲畜编号',
-      imei: '866452264126',
-      quarantineUnit: '另一个检疫点',
-      quarantineType: '《动物临时检疫证明》',
-      operator: '王明',
-      date: '2024-03-01',
-    },
-  ];
+  const [data, setData] = React.useState([])
+  useEffect(() => {
+    //获取数据列表
+    const getData = async () => {
+      await getVaccineListData().then((res) => {
+        console.log(res.data);
+        setData(res.data);
+      });
+    };
+    getData();
+
+  }, []);
 
 
   const handleCardClick = (record) => {
     console.log('点击了检疫记录:', record);
+  Taro.navigateTo({
+    url: '/managePack/pages/vaccineDetails/index?id=' + record.F_Id
+  })
   };
 
   // 处理“新增”按钮点击事件
@@ -52,20 +37,20 @@ const QuarantineListPage = () => {
   return (
     <View className='quarantine-list-page'>
       <View>
-      {process.env.TARO_ENV === 'h5' && <TitleH5 title='疫苗管理' />}
+        {process.env.TARO_ENV === 'h5' && <TitleH5 title='疫苗管理' />}
       </View>
       {/* 检疫记录卡片列表容器 */}
       <View className='card-list-container'>
         {/* 遍历数据，渲染多个 QuarantineRecordCard 组件 */}
-        {quarantineRecords.map(record => (
+        {data.map(record => (
           <Vaccine
-            key={record.id} // 列表渲染时需要 key
+            key={record.F_Id} // 列表渲染时需要 key
             livestockId={record.livestockId}
-            imei={record.imei}
-            quarantineUnit={record.quarantineUnit}
-            quarantineType={record.quarantineType}
-            operator={record.operator}
-            date={record.date}
+            imei={record.F_IMEI}
+            quarantineUnit={record.F_Batch}
+            quarantineType={record.F_Title}
+            operator={record.F_Name}
+            date={record.F_CreateTime}
             onClick={() => handleCardClick(record)} // 传递点击事件处理函数
           />
         ))}

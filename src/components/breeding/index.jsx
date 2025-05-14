@@ -6,6 +6,8 @@ import './index.less'; // 引入样式文件
 const QuarantineRecordCard = ({
   livestockId,
   imei,
+  livestockId1,
+  imei1,
   operator,
   date,
   onClick
@@ -38,9 +40,9 @@ const QuarantineRecordCard = ({
         </View>
         <View className='id-info'>
           {/* 牲畜编号 */}
-          <Text className='id-label'>{livestockId}</Text>
+          <Text className='id-label'>{livestockId1}</Text>
           {/* IMEI */}
-          <Text className='imei'>IMEI: {imei}</Text>
+          <Text className='imei'>IMEI: {imei1}</Text>
         </View>
         {/* 右箭头图标 */}
         <Navigator url='/animalPack/pages/animalDetails/index'>

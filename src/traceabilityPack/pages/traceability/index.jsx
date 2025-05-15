@@ -2,13 +2,9 @@ import React, { useRef, useState, useEffect } from 'react';
 import { View, Text, Image } from '@tarojs/components';
 import './index.less'; // 引入样式文件
 import imge from '@/static/images/animal.png';
-// 导入需要的 NutUI 组件，包括 ConfigProvider, Cell, CellGroup, Tabs, Swiper
 import { ConfigProvider, Tabs, Swiper } from '@nutui/nutui-react-taro';
-// 导入 NutUI 图标，如果需要在父组件中使用
-// import { Add, ArrowRight } from '@nutui/icons-react-taro';
 import Taro from '@tarojs/taro'; // 导入 Taro API
 import TitleH5 from '@/components/TitleH5/index';
-
 
 // 导入分离出的组件
 import BasicInfoSection from '@/components/traceabilityComponents/BasicInfoSection';
@@ -19,6 +15,14 @@ import BreedingInfoSection from '@/components/traceabilityComponents/BreedingInf
 
 
 const AnimalDetails = () => {
+  const [id ,setId] = useState('')
+  useEffect(() => {
+    console.log('id是', Taro.getCurrentInstance().router.params.id);
+    const id = Taro.getCurrentInstance().router.params.id;
+    setId(id)
+    //获取溯源数据
+  })
+
   // Swiper 的 ref
   const swiperRef = useRef(null)
   // Tab 和 Swiper 共用的当前索引状态
@@ -52,10 +56,10 @@ const AnimalDetails = () => {
 
   // 动态计算内容高度
   const calculateHeight = (index) => {
-     // 只有当对应的组件被渲染时才尝试测量高度
+    // 只有当对应的组件被渲染时才尝试测量高度
     if (tabIndex !== index) {
-        // console.log(`Skipping height calculation for index ${index} as it's not active.`);
-        return; // 如果不是当前激活的Tab，不进行测量
+      // console.log(`Skipping height calculation for index ${index} as it's not active.`);
+      return; // 如果不是当前激活的Tab，不进行测量
     }
 
     // 确保在 DOM 更新后执行
@@ -103,7 +107,7 @@ const AnimalDetails = () => {
   return (
     <View className='animal-detail'>
       <View>
-      {process.env.TARO_ENV === 'h5' && <TitleH5 title='溯源记录' />}
+        {process.env.TARO_ENV === 'h5' && <TitleH5 title='溯源记录' />}
       </View>
       {/* 条件渲染：只有在 "基本信息" Tab (索引为0) 中才显示图片 */}
       {tabIndex === tabValues.basicInfo && (
@@ -125,9 +129,9 @@ const AnimalDetails = () => {
             }}
             activeType='none' // 样式已移至 ConfigProvider
             style={{
-            '--nutui-tabs-titles-item-color': '#686868',
-            '--nutui-tabs-titles-item-active-color': '#56c695',
-          }}
+              '--nutui-tabs-titles-item-color': '#686868',
+              '--nutui-tabs-titles-item-active-color': '#56c695',
+            }}
           >
             {/* TabPane 只保留标题，内容移至 Swiper.Item */}
             <Tabs.TabPane title='基本信息' value={tabValues.basicInfo} />
@@ -158,47 +162,47 @@ const AnimalDetails = () => {
               {/* 将分离出的组件放在这个 View 内部 */}
               <View id={`content-${tabValues.basicInfo}`}>
                 {/* 只有当主 Tab 是基本信息时，才渲染 BasicInfoSection */}
-                 {tabIndex === tabValues.basicInfo && <BasicInfoSection />}
+                {tabIndex === tabValues.basicInfo && <BasicInfoSection id={id}/>}
               </View>
             </Swiper.Item>
 
             {/* 健康信息内容 - **添加条件渲染** */}
             <Swiper.Item>
               {/* !!! 为内容包裹一个 View，并设置 ID 用于测量 !!! */}
-               {/* 将分离出的组件放在这个 View 内部 */}
+              {/* 将分离出的组件放在这个 View 内部 */}
               <View id={`content-${tabValues.healthInfo}`}>
-                 {/* 只有当主 Tab 是健康信息时，才渲染 HealthInfoSection */}
-                 {tabIndex === tabValues.healthInfo && <HealthInfoSection />}
+                {/* 只有当主 Tab 是健康信息时，才渲染 HealthInfoSection */}
+                {tabIndex === tabValues.healthInfo && <HealthInfoSection id={id} />}
               </View>
             </Swiper.Item>
 
             {/* 检疫信息内容 - **添加条件渲染** */}
             <Swiper.Item>
               {/* !!! 为内容包裹一个 View，并设置 ID 用于测量 !!! */}
-               {/* 将分离出的组件放在这个 View 内部 */}
+              {/* 将分离出的组件放在这个 View 内部 */}
               <View id={`content-${tabValues.quarantineInfo}`}>
-                 {/* 只有当主 Tab 是检疫信息时，才渲染 QuarantineInfoSection */}
-                 {tabIndex === tabValues.quarantineInfo && <QuarantineInfoSection />}
+                {/* 只有当主 Tab 是检疫信息时，才渲染 QuarantineInfoSection */}
+                {tabIndex === tabValues.quarantineInfo && <QuarantineInfoSection id={id}/>}
               </View>
             </Swiper.Item>
 
             {/* 疫苗信息内容 - **添加条件渲染** */}
             <Swiper.Item>
               {/* !!! 为内容包裹一个 View，并设置 ID 用于测量 !!! */}
-               {/* 将分离出的组件放在这个 View 内部 */}
+              {/* 将分离出的组件放在这个 View 内部 */}
               <View id={`content-${tabValues.vaccineInfo}`}>
-                 {/* 只有当主 Tab 是疫苗信息时，才渲染 VaccineInfoSection */}
-                 {tabIndex === tabValues.vaccineInfo && <VaccineInfoSection />}
+                {/* 只有当主 Tab 是疫苗信息时，才渲染 VaccineInfoSection */}
+                {tabIndex === tabValues.vaccineInfo && <VaccineInfoSection id={id}/>}
               </View>
             </Swiper.Item>
 
             {/* 繁殖信息内容 - **添加条件渲染** */}
             <Swiper.Item>
               {/* !!! 为内容包裹一个 View，并设置 ID 用于测量 !!! */}
-               {/* 将分离出的组件放在这个 View 内部 */}
+              {/* 将分离出的组件放在这个 View 内部 */}
               <View id={`content-${tabValues.breedingInfo}`}>
-                 {/* 只有当主 Tab 是繁殖信息时，才渲染 BreedingInfoSection */}
-                 {tabIndex === tabValues.breedingInfo && <BreedingInfoSection />}
+                {/* 只有当主 Tab 是繁殖信息时，才渲染 BreedingInfoSection */}
+                {tabIndex === tabValues.breedingInfo && <BreedingInfoSection id={id} />}
               </View>
             </Swiper.Item>
           </Swiper>

@@ -3,7 +3,8 @@ import React from 'react';
 import { View, Text } from '@tarojs/components';
 import { Cell, Steps, Step } from '@nutui/nutui-react-taro';
 
-const BreedingInfoSection = () => {
+const BreedingInfoSection = (id) => {
+  
   return (
     <> {/* 使用 Fragment 包裹 */}
       <Cell title='繁殖记录' radius={0} style={

@@ -9,7 +9,7 @@ const gradientColor = {
   '100%': '#FFA062',
 };
 
-const HealthInfoSection = () => {
+const HealthInfoSection = (id) => {
   const [movementTabIndex, setMovementTabIndex] = useState('0'); // 运动量 Tab 状态
   const [temperatureTabIndex, setTemperatureTabIndex] = useState('0'); // 体温 Tab 状态
 

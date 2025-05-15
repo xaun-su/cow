@@ -5,7 +5,6 @@ import request from '../utils/request';
 const vaccineList='/manageRight/getVaccineList'
 //获取疫苗管理详情
 const vaccineDetails='/manageLeft/vaccineDetail'
-
 export const getVaccineListData=async ()=>{
   return await request.get(vaccineList)
 }

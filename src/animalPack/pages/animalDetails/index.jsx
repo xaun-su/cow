@@ -10,10 +10,12 @@ import TitleH5 from '@/components/TitleH5/index';
 const AnimalDetails = () => {
   const [animalDetails, setAnimalDetails] = useState({});
   const [loading, setLoading] = useState(true); // 添加加载状态
+  const [id, setId] = useState(Taro.getCurrentInstance().router.params.id);
 
   useEffect(() => {
     console.log('id是', Taro.getCurrentInstance().router.params.id);
     const id = Taro.getCurrentInstance().router.params.id;
+    setId(id);
 
     // 获取牲畜详情数据
     const getAnimalDetails = async () => {
@@ -126,11 +128,15 @@ const AnimalDetails = () => {
             <Cell title="当前状态" extra={animalDetails.cowinfo[0].F_Type_Id} radius={0} isLink />
           </CellGroup>
 
-          <Navigator url='/traceabilityPack/pages/traceability/index' className='traceability-button-container'>
+          <View className='traceability-button-container' onClick={()=>{
+            Taro.navigateTo({
+              url:`/traceabilityPack/pages/traceability/index?id=${id}`
+            })
+          }}>
             <button type='primary' size='large' className='btn'>
               溯源信息
             </button>
-          </Navigator>
+          </View>
         </ConfigProvider>
       </View>
     </View>

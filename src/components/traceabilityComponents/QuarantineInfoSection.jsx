@@ -4,7 +4,8 @@ import { View, Text, Image } from '@tarojs/components';
 import { Cell, Steps, Step } from '@nutui/nutui-react-taro';
 import imge2 from '@/static/images/证明.png'; // 确保路径正确
 
-const QuarantineInfoSection = () => {
+const QuarantineInfoSection = (id) => {
+  
   return (
     <> {/* 使用 Fragment 包裹 */}
       <Cell title='检疫信息' radius={0} style={

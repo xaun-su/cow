@@ -9,67 +9,6 @@ import TitleH5 from '@/components/TitleH5/index';
 import {getBreedingListData} from '@/api/manage'
 
 const ReproductionManagement = () => {
-  // 模拟一些检疫记录数据
-  const estrus = [
-    {
-      id: 1,
-      livestockId: '牲畜编号',
-      imei: '866452264124',
-      quarantineUnit: '2022-11-11',
-      quarantineType: '2011-11-11',
-      operator: '韩梅梅',
-      date: '2024-01-23',
-    },
-    {
-      id: 2,
-      livestockId: '牲畜编号',
-      imei: '866452264125',
-      quarantineUnit: '2011-11-11',
-      quarantineType: '2011-11-11',
-      operator: '李华',
-      date: '2024-02-10',
-    },
-    
-    // 你可以在这里添加更多模拟数据
-    {
-      id: 3,
-      livestockId: '牲畜编号',
-      imei: '866452264126',
-      quarantineUnit: '2011-11-11',
-      quarantineType: '2011-11-11',
-      operator: '王明',
-      date: '2024-03-01',
-    },
-  ];
-  const birthControl = [
-    {
-      id: 1,
-      livestockId: '牲畜编号',
-      imei: '866452264124',
-      quarantineUnit: '2022-11-11',
-      operator: '韩梅梅',
-      date: '2024-01-23',
-    },
-    {
-      id: 2,
-      livestockId: '牲畜编号',
-      imei: '866452264125',
-      quarantineUnit: '2011-11-11',
-      operator: '李华',
-      date: '2024-02-10',
-    },
-    
-    // 你可以在这里添加更多模拟数据
-    {
-      id: 3,
-      livestockId: '牲畜编号',
-      imei: '866452264126',
-      quarantineUnit: '2011-11-11',
-      quarantineType: '2011-11-11',
-      operator: '王明',
-      date: '2024-03-01',
-    },
-  ];
   //获取繁殖管理的数据
   // const [breedingList,setBreedingList]=useState([])
   //发情

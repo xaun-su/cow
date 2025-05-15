@@ -4,7 +4,7 @@ import { View, Text } from '@tarojs/components';
 import { Cell, Steps, Step } from '@nutui/nutui-react-taro';
 import { ArrowRight } from '@nutui/icons-react-taro'; // 导入箭头图标
 
-const VaccineInfoSection = () => {
+const VaccineInfoSection = (id) => {
   return (
     <> {/* 使用 Fragment 包裹 */}
       <Cell title='证明材料' radius={0} style={

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, Text } from '@tarojs/components';
 // 导入之前创建的检疫记录卡片组件
 import Estrus from '@/components/estrus/index';
@@ -6,6 +6,7 @@ import BirthControl from '@/components/birthControl/index';
 import './index.less'; // 引入页面样式文件
 import { Tabs } from '@nutui/nutui-react-taro'
 import TitleH5 from '@/components/TitleH5/index';
+import {getBreedingListData} from '@/api/manage'
 
 const ReproductionManagement = () => {
   // 模拟一些检疫记录数据
@@ -69,6 +70,23 @@ const ReproductionManagement = () => {
       date: '2024-03-01',
     },
   ];
+  //获取繁殖管理的数据
+  // const [breedingList,setBreedingList]=useState([])
+  //发情
+  const [estrusData,setEstrusData]=useState([])
+  //节育
+  const [birthControlData,setBirthControlData]=useState([])
+  useEffect(() => {
+    const getData=async()=>{
+      const res=await getBreedingListData()
+      console.log('繁殖管理',res.data)
+      //发情
+      setEstrusData(res.data.breedingList)
+      //节育
+      setBirthControlData(res.data.neverbreedList)
+    }
+    getData()  
+  },[])
 
   const handleCardClick = (record) => {
     console.log('点击了检疫记录:', record);
@@ -97,15 +115,15 @@ const ReproductionManagement = () => {
           <Tabs.TabPane title="繁殖">
             <View className='card-list-container'>
               {/* 遍历数据，渲染多个 QuarantineRecordCard 组件 */}
-              {estrus.map(record => (
+              {estrusData.map((record,index) => (
                 <Estrus
-                  key={record.id} // 列表渲染时需要 key
-                  livestockId={record.livestockId}
-                  imei={record.imei}
-                  quarantineUnit={record.quarantineUnit}
-                  quarantineType={record.quarantineType}
-                  operator={record.operator}
-                  date={record.date}
+                  key={index} // 列表渲染时需要 key
+                  livestockId={record.F_liveid}
+                  imei={record.F_IMEI}
+                  quarantineUnit={record.F_EsTimateTime}
+                  quarantineType={record.F_SjTimateTime}
+                  operator={record.F_Opert}
+                  date={record.F_CreateTime}
                   onClick={() => handleCardClick(record)} // 传递点击事件处理函数
                 />
               ))}
@@ -114,16 +132,16 @@ const ReproductionManagement = () => {
           <Tabs.TabPane title="节育">
             <View className='card-list-container'>
               {/* 遍历数据，渲染多个 QuarantineRecordCard 组件 */}
-              {birthControl.map(record => (
+              {birthControlData.map((record,index) => (
                 <BirthControl
                   
-                  key={record.id} // 列表渲染时需要 key
-                  livestockId={record.livestockId}
-                  imei={record.imei}
-                  quarantineUnit={record.quarantineUnit}
-                  quarantineType={record.quarantineType}
-                  operator={record.operator}
-                  date={record.date}
+                  key={index} // 列表渲染时需要 key
+                  livestockId={record.F_liveid}
+                  imei={record.F_IMEI}
+                  quarantineUnit={record.F_SjTimateTime}
+                  quarantineType={record.F_SjTimateTime}
+                  operator={record.F_Opert}
+                  date={record.F_CreateTime}
                   onClick={() => handleCardClick(record)} // 传递点击事件处理函数
                 />
               ))}

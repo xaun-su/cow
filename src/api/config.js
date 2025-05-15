@@ -1,1 +1,8 @@
-const baseURL= 'http://8.137.157.16:9999';
+import  request from "@/utils/request";
+
+//获取地图数据
+const mapApi = "/map/fence";
+
+export const getMapData = async() => {
+  return await request.get(mapApi);
+}

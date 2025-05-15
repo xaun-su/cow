@@ -26,3 +26,11 @@ const quarantineList='/manageLeft/quarantine'
 export const getQuarantineListData=async ()=>{
   return await request.get(quarantineList)
 }
+
+//获取繁殖管理列表
+const breedingList='/manageLeft/breedingList'
+
+export const getBreedingListData=async ()=>{
+  return await request.get(breedingList)
+
+}

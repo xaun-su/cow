@@ -20,7 +20,7 @@ export const getQuarantineInfoData=(id)=>{
   return request.get(`${quarantineInfoApi}?id=${id}`) 
 }
 export const getVaccineInfoData=(id)=>{
-   return request.get(`${vaccineInfoApi}?id=${id}`)
+   return request.get(`${vaccineInfoApi}?F_liveid=${id}`)
 }
 export const getBreedingInfoData=(id)=>{
   return request.get(`${breedingInfoApi}?id=${id}`)

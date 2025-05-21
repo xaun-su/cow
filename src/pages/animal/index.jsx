@@ -33,7 +33,7 @@ const Demo7 = () => {
 
       <View className='category'>
         {/* 动态生成 category-item */}
-        { listData.length > 0 && listData.map((item, i)=> (
+        {listData.length > 0 && listData.map((item, i) => (
           <View key={i} className='category-item'> {/* 将 className 和 key 放在同一层 View */}
             {/* 左侧：头像和文本 */}
             <View className='item-left'> {/* 包裹头像和文本的容器，水平 flex */}
@@ -60,14 +60,32 @@ const Demo7 = () => {
           </View>
         ))}
       </View>
-      <Avatar
-        color="#fff"
-        background="#0bcb77"
-        size="large"
-        className='animal_add'
-        icon=<Add />
-      >
-      </Avatar>
+      {/* 小程序显示 */}
+      {process.env.TARO_ENV === 'weapp' && (
+        <Avatar
+          color="#fff"
+          background="#0bcb77"
+          size="large"
+          className='animal_add'
+          icon=<Add />
+        >
+        </Avatar>
+      )}
+      {/* H5显示 */}
+      {process.env.TARO_ENV === 'h5' && (
+        <Avatar
+          color="#fff"
+          background="#0bcb77"
+          size="large"
+          className='animal_add'
+          style={{
+            bottom: '8%'
+          }}
+          icon=<Add />
+        >
+        </Avatar>
+      )}
+
     </View>
   );
 };

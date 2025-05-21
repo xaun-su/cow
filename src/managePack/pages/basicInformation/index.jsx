@@ -1,24 +1,20 @@
 import React, { useState } from 'react';
 import { View, Text, Image, Input } from '@tarojs/components';
-// 确保导入 NutUI 的 Picker 组件
 import { Cell, CellGroup, ConfigProvider, Picker } from '@nutui/nutui-react-taro';
 import './index.less'; // 引入样式文件
 import TitleH5 from '@/components/TitleH5/index';
 
-// 导入一个占位的头像图片，请替换为你自己的图片路径
 import defaultAvatar from '@/static/images/证明.png';
 
 const UserProfile = () => {
-  // 模拟用户数据，实际应用中这些数据会从后端获取或通过状态管理维护
   const [userInfo, setUserInfo] = useState({
-    avatarUrl: defaultAvatar, // 用户头像 URL
+    avatarUrl: defaultAvatar, 
     name: '未填写',
-    gender: '男', // 默认为男
+    gender: '男', 
     email: '未填写',
     phone: '未填写',
   });
 
-  // 状态：跟踪当前正在编辑的字段 (用于文本输入)
   const [editingField, setEditingField] = useState(null);
 
   // 状态：控制性别选择器的显示/隐藏 (使用 NutUI Picker 的 visible prop)
@@ -57,13 +53,11 @@ const UserProfile = () => {
   // 处理输入框失去焦点的函数 (通常在这里触发保存操作)
   const handleInputBlur = (field) => {
     console.log(`字段 ${field} 失去焦点，准备保存值: ${userInfo[field]}`);
-    // TODO: 在这里调用后端 API 保存 userInfo[field] 的新值
     setEditingField(null); // 失去焦点后退出编辑模式
   };
 
-  // 处理输入框确认（例如按回车键）的函数 (也可以在这里触发保存操作)
+  // 处理输入框确认
   const handleInputConfirm = (field) => {
-    // TODO: 在这里调用后端 API 保存 userInfo[field] 的新值
     setEditingField(null); // 确认后退出编辑模式
   };
 
@@ -91,12 +85,11 @@ const UserProfile = () => {
               onBlur={() => handleInputBlur(field)}
               onConfirm={() => handleInputConfirm(field)}
               autoFocus
-              className='editable-input' // 自定义样式类
-              placeholder={`请输入${title}`} // 添加 placeholder
-              style={{ width: '100%' }} // 确保 Input 宽度足够显示内容
+              className='editable-input' 
+              placeholder={`请输入${title}`} 
+              style={{ width: '100%' }} 
             />
           ) : (
-            // 展示模式：渲染 Text
             <Text>{userInfo[field]}</Text>
           )
         }
@@ -127,7 +120,6 @@ const UserProfile = () => {
   // 根据当前的 userInfo.gender 找到对应的 value，用于 NutUI Picker 的 value 属性
   const getCurrentGenderValue = () => {
     const foundOption = genderOptions[0].find(option => option.label === userInfo.gender);
-    // NutUI Picker 的 value 期望一个数组，包含选中项的 value
     return foundOption ? [foundOption.value] : [genderOptions[0][0].value]; // 如果当前性别不在选项中，默认选中第一个
   };
 

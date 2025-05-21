@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react'; // 导入 useEffect
-import { View, Text, Input, Navigator } from '@tarojs/components'; // 导入 Input 组件
-import { ArrowRight } from '@nutui/icons-react-taro'; // 导入 Camera 图标
-import './index.less'; // 引入页面样式文件
-import { TextArea } from '@nutui/nutui-react-taro' // 导入 NutUI TextArea
+import React, { useState, useEffect } from 'react'; 
+import { View, Text, Input, Navigator } from '@tarojs/components'; 
+import { ArrowRight } from '@nutui/icons-react-taro'; 
+import './index.less'; 
+import { TextArea } from '@nutui/nutui-react-taro' 
 import TitleH5 from '@/components/TitleH5/index';
-import Taro, { useRouter } from '@tarojs/taro'; // 导入 Taro 和 useRouter 钩子
-import { addVaccineData } from '@/api/manage'; // 导入提交疫苗记录的 API 函数
+import Taro, { useRouter } from '@tarojs/taro'; 
+import { addVaccineData } from '@/api/manage'; 
 
 const AddVaccinationRecord = () => {
   // 使用 useState 管理表单数据
@@ -20,7 +20,6 @@ const AddVaccinationRecord = () => {
     notes: '', // 备注 -> F_Remark
   });
 
-  // 使用 useRouter 钩子获取路由信息
   const router = useRouter();
 
   // 在组件加载时获取并处理传递过来的参数
@@ -59,7 +58,7 @@ const AddVaccinationRecord = () => {
         icon: 'none'
       });
     }
-  }, [router.params.selectedIds]); // 依赖 router.params.selectedIds，当这个参数变化时重新执行
+  }, [router.params.selectedIds]); 
 
   // 通用的输入框变化处理函数
   const handleInputChange = (key, value) => {
@@ -70,8 +69,8 @@ const AddVaccinationRecord = () => {
   };
 
   // 处理确定提交按钮点击事件
-  const handleSubmit = async () => { // 将函数修改为 async，因为 API 调用通常是异步的
-    console.log('点击了确定提交'); // 修正 console.log
+  const handleSubmit = async () => { 
+    console.log('点击了确定提交'); 
     console.log('当前表单数据:', formData);
 
     // 检查必填项和是否选择了牲畜
@@ -83,7 +82,6 @@ const AddVaccinationRecord = () => {
       return;
     }
     const submitData = {
-      // 将 selectedLivestockIds 数组转换为逗号分隔的字符串
       F_liveid: formData.selectedLivestockIds.join(','),
       F_Title: formData.vaccineName,
       F_Address: formData.herdsmanAddress,

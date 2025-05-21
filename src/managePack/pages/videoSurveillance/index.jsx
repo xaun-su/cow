@@ -1,12 +1,10 @@
-// src/pages/myPage/index.js (或者您的页面文件路径)
 import React, { useState, useEffect } from 'react';
-import { View, Text, ScrollView } from '@tarojs/components'; // 导入 ScrollView
-import Taro, { useReachBottom } from '@tarojs/taro'; // 导入 Taro 和 useReachBottom hook
-import FarmVideoCard from '@/components/FarmVideoCard'; // 导入 FarmVideoCard 组件
-import './index.less'; // 导入页面样式文件
-import TitleH5 from '@/components/TitleH5/index'; // 导入 TitleH5 (如果需要)
-import { getMonitorData } from '@/api/index'; // 导入 API 函数
-
+import { View, Text, ScrollView } from '@tarojs/components'; 
+import Taro, { useReachBottom } from '@tarojs/taro'; 
+import FarmVideoCard from '@/components/FarmVideoCard'; 
+import './index.less'; 
+import TitleH5 from '@/components/TitleH5/index'; 
+import { getMonitorData } from '@/api/index'; 
 const MyPage = () => {
   // 状态管理
   const [videoList, setVideoList] = useState([]); // 存储视频列表数据 (数组)
@@ -19,8 +17,6 @@ const MyPage = () => {
 
   // 临时的假视频地址，用于测试
   const FAKE_VIDEO_URL = 'https://storage.360buyimg.com/nutui/video/video_NutUI.mp4';
-  // 您也可以换成其他标准的视频地址，例如：
-  // const FAKE_VIDEO_URL = 'http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4';
 
 
   // 获取视频数据函数
@@ -50,14 +46,11 @@ const MyPage = () => {
                 F_Address: FAKE_VIDEO_URL // 替换为假视频地址
             };
         });
-        // -------------------------------------------------
 
         setTotalItems(res.total || 0); // 更新总条数
 
         if (page === 1) {
-          // 如果是第一页，直接设置列表
           setVideoList(processedVideos);
-           // 判断是否还有更多数据
           setHasMore(processedVideos.length < res.total);
         } else {
           // 如果不是第一页，将新数据追加到现有列表后面
@@ -110,28 +103,20 @@ const MyPage = () => {
       }
   }, [currentPage]); // 依赖项为currentPage
 
-  // 您可以在这里定义事件处理函数，并传递给 FarmVideoCard
   const handlePlay = (e) => {
-    // console.log('Video is playing', e);
   };
 
   const handlePause = (e) => {
-    // console.log('Video is paused', e);
   };
 
   const handleVideoEnded = (e) => {
-    // console.log('Video ended', e);
   };
 
 
   return (
-    // 页面整体容器，使用 ScrollView 可以在H5和小程序中更好地处理滚动和触底
     <ScrollView
       className='my-page-container'
-      scrollY // 允许纵向滚动
-      // useReachBottom 替代了 onScrollToLower 和 lowerThreshold
-      // onScrollToLower={this.onScrollToLower}
-      // lowerThreshold="50"
+      scrollY 
     >
       {/* 页面标题 (H5 环境下显示) */}
       <View>
@@ -161,9 +146,6 @@ const MyPage = () => {
             onPlay={handlePlay}
             onPause={handlePause}
             onEnded={handleVideoEnded}
-            // 如果 FarmVideoCard 需要其他数据，例如 F_Code 或 F_Token，也需要传递
-            // code={item.F_Code}
-            // token={item.F_Token}
           />
         </View>
       ))}

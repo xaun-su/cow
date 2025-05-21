@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from 'react'; // 导入 useEffect
-import { View, Text, Input, Image } from '@tarojs/components'; // 导入 Image 组件用于图片回显
-import { TextArea } from '@nutui/nutui-react-taro'; // 导入 TextArea
-import Taro, { useRouter } from '@tarojs/taro'; // 导入 Taro 和 useRouter
-import { ArrowRight, Add } from '@nutui/icons-react-taro'; // 导入 ArrowRight 和 Camera 图标
-import './index.less'; // 引入页面样式文件 (可以沿用或创建新的)
+import React, { useState, useEffect } from 'react'; 
+import { View, Text, Input, Image } from '@tarojs/components'; 
+import { TextArea } from '@nutui/nutui-react-taro'; 
+import Taro, { useRouter } from '@tarojs/taro'; 
+import { ArrowRight, Add } from '@nutui/icons-react-taro';
+import './index.less'; 
 import TitleH5 from '@/components/TitleH5/index';
-// TODO: 导入你的繁殖记录提交 API 函数
 // import { addBreedingRecordApi } from '@/api/manage'; // 假设你的 API 在这里
 
-// 定义一个常量作为事件名称，避免写错，与 selectLivestock 中定义的一致
-// 沿用配种的事件，但在 selectLivestock 中通过 purpose 区分
+
 const MATING_LIVESTOCK_SELECTED_EVENT = 'matingLivestockSelected';
 
 const AddBreedingRecord = () => {
@@ -25,10 +23,8 @@ const AddBreedingRecord = () => {
     proofImage: null, // 证明图片 (存储本地临时路径或上传后的 URL)
   });
 
-  // 使用 useRouter 钩子获取路由信息 (当前页面未使用路由参数，但保留)
   const router = useRouter();
 
-  // 使用 useEffect 设置和清理事件监听器，用于接收选择的牲畜数据
   useEffect(() => {
     // 监听选择牲畜页面返回时触发的事件
     const handleLivestockSelected = (data) => {
@@ -37,9 +33,7 @@ const AddBreedingRecord = () => {
       // 或者我们可以在 selectLivestock 中传递 purpose='breeding' 来区分
       // 这里假设 selectLivestock 会传递 type='cow' 或 'bull'
       if (data && (data.type === 'cow' || data.type === 'bull') && data.livestock) {
-         // TODO: 根据你的繁殖记录需求，可能需要选择公牛和母牛两个牲畜
-         // 当前 UI 只展示一个“选择牲畜”，这里假设是选择母牛
-         // 如果需要选择公牛，需要修改 UI 和状态管理
+         // 当前 UI 只展示一个“选择牲畜”，
         setFormData(prevData => ({
           ...prevData,
           selectedLivestock: data.livestock, // 将完整的牲畜对象存储起来
@@ -107,12 +101,8 @@ const AddBreedingRecord = () => {
   // 处理选择牲畜点击事件
   const handleSelectLivestock = () => {
     console.log('点击了选择牲畜');
-    // 跳转到选择牲畜页面，并通过 URL 参数告知是用于繁殖记录的单选
-    // 可以在 selectLivestock 中根据 purpose='breeding' 来判断并触发 MATING_LIVESTOCK_SELECTED_EVENT
     Taro.navigateTo({
       url: `/recordsPack/pages/selectLivestock/index?purpose=breeding`
-      // 如果需要选择特定性别的牲畜，可以传递 type 参数，例如 type=cow 或 type=bull
-      // url: `/recordsPack/pages/selectLivestock/index?type=cow&purpose=breeding` // 示例：选择母牛
     });
   };
 
@@ -131,7 +121,6 @@ const AddBreedingRecord = () => {
     console.log('当前表单数据:', formData);
 
     // 检查必填项
-    // 您可以根据实际需求调整哪些字段是必填的
     if (!formData.herdsmanName || !formData.herdsmanPhone || !formData.herdsmanAddress ||
         !formData.selectedLivestock || !formData.actualBreedingTime || !formData.expectedBreedingTime) {
       Taro.showToast({
@@ -141,12 +130,10 @@ const AddBreedingRecord = () => {
       return; // 阻止提交
     }
 
-    // TODO: 如果 proofImage 存储的是本地路径，需要在提交前上传并获取服务器 URL
-    // 示例：假设 proofImage 已经是上传后的 URL 或文件标识符
+    // 检查日期格式
     const finalProofImage = formData.proofImage; // 或者上传后的 URL
 
     // 构造要提交给 API 的数据对象
-    // TODO: 根据你的实际后端 API 接口文档调整这里的字段名和数据格式
     const submitData = {
       F_HerdsmanName: formData.herdsmanName,
       F_HerdsmanPhone: formData.herdsmanPhone,
@@ -156,7 +143,6 @@ const AddBreedingRecord = () => {
       F_ExpectedBreedingTime: formData.expectedBreedingTime, // 文本格式日期时间
       F_Remark: formData.notes,
       F_ProofImage: finalProofImage, // 假设 API 接收图片 URL 或文件信息
-      // 如果 API 还需要其他字段，也在这里添加
     };
 
     console.log('准备提交到 API 的数据:', submitData);
@@ -170,10 +156,8 @@ const AddBreedingRecord = () => {
 
       // const response = await addBreedingRecordApi(submitData); // 调用你的 API 函数
 
-      // !!! 模拟 API 调用成功，请替换为实际的 API 调用和结果处理 !!!
       const response = { code: 200, message: '提交成功' }; // 模拟成功响应
-      // !!! 模拟 API 调用失败，可以取消上面成功模拟，使用下面失败模拟进行测试 !!!
-      // const response = { code: 500, message: '服务器内部错误' }; // 模拟失败响应
+
 
 
       console.log('API 提交结果:', response);

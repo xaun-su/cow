@@ -22,12 +22,12 @@ const AnimalDetails = () => {
     const batteryColor = percentage > 20 ? '#0bcb75' : '#ff4d4f'; // 绿色或红色
     const batteryIcon = (
       <Text
-        className='iconfont icon-electricity-full' // iconfont 的基础类和你的电池图标类
+        className='iconfont icon-electricity-full' 
         style={{
-          color: batteryColor, // 根据百分比动态设置颜色
-          fontSize: '16px', // 设置图标大小，根据需要调整
-          verticalAlign: 'middle', // 垂直居中对齐
-          marginRight: '5px' // 图标和 IMEI 之间的间距
+          color: batteryColor, 
+          fontSize: '16px', 
+          verticalAlign: 'middle', 
+          marginRight: '5px' 
         }}
       ></Text>
     );
@@ -78,14 +78,14 @@ const AnimalDetails = () => {
 
           {/* 牲畜信息分组 */}
           <CellGroup title="牲畜信息" radius={0}>
-            <Cell title="牲畜种类" extra="牛" radius={0} isLink /> {/* 添加 isLink */}
-            <Cell title="品种" extra="小黄牛" radius={0} isLink /> {/* 添加 isLink */}
-            <Cell title="性别" extra="公" radius={0} isLink /> {/* 添加 isLink */}
-            <Cell title="年龄" extra="5岁两个月" radius={0} isLink /> {/* 添加 isLink */}
-            <Cell title="当前体重" extra="900KG" radius={0} isLink /> {/* 添加 isLink */}
-            <Cell title="当前状态" extra="生长中" radius={0} isLink /> {/* 添加 isLink */}
-            <Cell title="是否绝育" extra="否" radius={0} isLink /> {/* 添加 isLink */}
-            <Cell title="疫苗" extra="2022-22-22 22:22" radius={0} isLink /> {/* 添加 isLink */}
+            <Cell title="牲畜种类" extra="牛" radius={0} isLink />
+            <Cell title="品种" extra="小黄牛" radius={0} isLink /> 
+            <Cell title="性别" extra="公" radius={0} isLink /> 
+            <Cell title="年龄" extra="5岁两个月" radius={0} isLink /> 
+            <Cell title="当前体重" extra="900KG" radius={0} isLink />
+            <Cell title="当前状态" extra="生长中" radius={0} isLink /> 
+            <Cell title="是否绝育" extra="否" radius={0} isLink /> 
+            <Cell title="疫苗" extra="2022-22-22 22:22" radius={0} isLink /> 
           </CellGroup>
            {/* 溯源信息按钮 - 使用 Navigator 包裹 Button */}
            <Navigator url='/pages/traceability/index' className='traceability-button-container'>

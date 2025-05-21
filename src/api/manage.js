@@ -47,3 +47,9 @@ const addMating='/manageRight/addBreed'
 export const addMatingData=async (data)=>{
   return await request.post(addMating,data)
 }
+//新增检疫
+const addQuarantine='/manageLeft/addQuarantine'
+
+export const addQuarantineData=async (data)=>{
+  return await request.post(addQuarantine,data)
+}

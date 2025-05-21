@@ -1,13 +1,10 @@
 // src/pages/animal-details/components/QuarantineInfoSection.jsx
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image } from '@tarojs/components'; // 使用 Text 代替 p 在 Taro 中更常见
+import { View, Text, Image } from '@tarojs/components'; 
 import { Cell, Steps, Step } from '@nutui/nutui-react-taro';
-import imge2 from '@/static/images/证明.png'; // 确保路径正确，如果图片是动态获取的，则需要从API数据中获取URL
 import { getQuarantineInfoData } from '@/api/traceability';
 
-// 假设组件接收一个名为 id 的 prop，它是动物的实际ID值
 const QuarantineInfoSection = ({ id }) => {
-  // 将 data 初始化为空数组，以便正确判断 length
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -19,12 +16,10 @@ const QuarantineInfoSection = ({ id }) => {
           // 将 id 值传递给 API 函数
           const res = await getQuarantineInfoData(id);
           console.log('检疫信息', res.data);
-          // 假设 res.data 是一个包含检疫记录的数组
-          // 如果 res.data 可能为 null 或 undefined，使用 || [] 提供默认值
+          //  res.data 可能为 null 或 undefined，使用 || [] 提供默认值
           setData(res.data || []);
         } catch (error) {
           console.error('获取检疫信息失败:', error);
-          // 发生错误时也清空数据
           setData([]);
         }
       };
@@ -60,21 +55,16 @@ const QuarantineInfoSection = ({ id }) => {
         }}>
           {/* value 设置为数据的长度，表示所有步骤都已完成 */}
           <Steps direction='vertical' dot value={data.length}>
-            {/* 使用 map 方法遍历 data 数组，并返回 Step 组件数组 */}
             {data.map((item, index) => (
               <Step
-                key={item.id || index} // 列表渲染需要 key，如果数据中有唯一ID更佳，否则使用 index
+                key={item.id || index} 
                 value={index + 1} // Step 的 value 通常从 1 开始
-                title={item.F_StTime} // 假设数据项中有 date 属性
+                title={item.F_StTime} 
                 description={
                   <View>
-                    {/* 假设数据项中有 unit, type, personnel 属性，并使用 Text 组件 */}
                     <Text>检疫单位: {item.F_Stand}</Text>
                     <Text>检疫类型: {item.F_Title}</Text>
                     <Text>检疫人员: {item.F_UserName}</Text>
-                    {/* 如果图片是动态的，这里使用 item.imageUrl */}
-                    {/* {item.imageUrl && <Image src={item.imageUrl} style={{ width: '250px', height: '400px' }} />} */}
-                    {/* 如果图片是静态的，继续使用 imge2 */}
                     {item.F_ResultImage?
                     <Image src={`http://8.137.157.16:9999${item.F_ResultImage}`} style={{ width: '250px', height: '400px' }} />
                     :''}

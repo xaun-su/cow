@@ -3,8 +3,8 @@ import { SearchBar, Avatar, Checkbox } from '@nutui/nutui-react-taro';
 import { View, Text } from '@tarojs/components';
 import './index.less';
 import TitleH5 from '@/components/TitleH5/index';
-import { getAnimalListData } from '@/api/animal'; // 导入获取牲畜列表的 API 函数
-import Taro, { useRouter } from '@tarojs/taro'; // 导入 Taro 和 useRouter 钩子
+import { getAnimalListData } from '@/api/animal'; 
+import Taro, { useRouter } from '@tarojs/taro'; 
 
 // 定义常量作为事件名称，避免写错，与各个新增页面中定义的一致
 const MATING_LIVESTOCK_SELECTED_EVENT = 'matingLivestockSelected'; // 配种事件
@@ -38,14 +38,12 @@ const SelectLivestockPage = () => {
           const transformedData = res.data.map(apiItem => ({
             id: apiItem.F_Id,
             imei: apiItem.F_IMEI,
-            number: apiItem.F_IMEI, // 假设牲畜编号就是 IMEI
+            number: apiItem.F_IMEI, // 牲畜编号
             gender: apiItem.F_Gender, // 保留性别信息
             checked: false // 添加 checked 属性，默认未选中 (主要用于多选模式)
           }));
 
-          // ** 不再根据 selectionType 进行性别过滤，展示所有牲畜 **
-
-          setLivestockList(transformedData); // 将转换后的数据设置到 livestockList 状态
+          setLivestockList(transformedData); 
           setError(null); // 清除错误
         } else {
           // 处理 API 返回数据不是数组的情况
@@ -62,7 +60,7 @@ const SelectLivestockPage = () => {
       }
     };
     fetchData();
-  }, []); // 空依赖数组表示只在组件初次挂载时运行一次，不依赖任何参数，获取所有数据
+  }, []); 
 
   // 处理列表项点击事件 (根据模式不同)
   const handleItemClick = (item) => {
@@ -76,7 +74,7 @@ const SelectLivestockPage = () => {
           livestock: item // 传递完整的牲畜对象
          });
       } else if (selectionPurpose === 'breeding' || selectionType) {
-         // 触发配种事件 (兼容旧的 type 参数)
+         // 触发配种事件 
          Taro.eventCenter.trigger(MATING_LIVESTOCK_SELECTED_EVENT, {
           type: selectionType, // 传递 type (如果存在)
           purpose: selectionPurpose, // 传递 purpose (如果存在)
@@ -92,7 +90,7 @@ const SelectLivestockPage = () => {
       // 返回上一页
       Taro.navigateBack();
 
-    } else { // 如果是多选模式 (原有的逻辑，例如从疫苗记录页面过来)
+    } else { 
       // 调用原有的复选框处理函数，模拟点击整行选中/取消选中复选框
       handleCheckboxChange(item.id, !item.checked);
     }

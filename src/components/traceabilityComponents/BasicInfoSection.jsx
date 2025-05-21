@@ -26,16 +26,15 @@ const BasicInfoSection = (props) => {
             // API 返回的 data 对象没有 cowinfo 字段，或者 cowinfo 是空数组
             console.warn('获取到的基本信息数据结构不完整或无牛信息', result.data);
             setData({}); // 设置为空对象，完整或无牛信息', result.data);
-            setData({}); // 设置为空对象，表示没有有效数据
+            setData({}); 
           }
         } else {
           console.error('获取基本信息失败或返回数据无效', result);
-          setData({}); // 设置为空对象，表示数据获取失败或无效
+          setData({}); 
         }
       } catch (error) {
-        // 捕获网络请求本身的错误
         console.error('获取基本信息请求出错', error);
-        setData({}); // 请求出错时也设置为空对象
+        setData({}); 
       }
     };
 
@@ -52,12 +51,12 @@ const BasicInfoSection = (props) => {
     const batteryColor = percentage > 20 ? '#0bcb75' : '#ff4d4f'; // 绿色或红色
     const batteryIcon = (
       <Text
-        className='iconfont icon-electricity-full' // iconfont 的基础类和你的电池图标类
+        className='iconfont icon-electricity-full'
         style={{
-          color: batteryColor, // 根据百分比动态设置颜色
-          fontSize: '16px', // 设置图标大小，根据需要调整
-          verticalAlign: 'middle', // 垂直居中对齐
-          marginRight: '5px' // 图标和 IMEI 之间的间距
+          color: batteryColor, 
+          fontSize: '16px', 
+          verticalAlign: 'middle', 
+          marginRight: '5px' 
         }}
       ></Text>
     );
@@ -91,9 +90,9 @@ const BasicInfoSection = (props) => {
                   ? '偏胖'
                   : '未知'
             : 'N/A'}
-        </Text>} // 右侧内容
-        isLink // 添加箭头
-        radius={0} // Cell 本身不带圆角
+        </Text>}
+        isLink 
+        radius={0} 
       />
 
       {/* 设备信息分组 */}

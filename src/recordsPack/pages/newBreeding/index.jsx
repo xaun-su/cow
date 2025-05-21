@@ -21,10 +21,8 @@ const AddMatingRecord = () => {
     notes: '', // 备注
   });
 
-  // 使用 useRouter 钩子获取路由信息 (虽然这个页面自身不接收参数，但保留以备将来需要)
   const router = useRouter();
 
-  // 使用 useEffect 设置和清理事件监听器
   useEffect(() => {
     // 监听选择牲畜页面返回时触发的事件
     const handleLivestockSelected = (data) => {

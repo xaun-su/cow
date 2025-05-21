@@ -64,7 +64,7 @@ const Demo7 = () => {
         color="#fff"
         background="#0bcb77"
         size="large"
-        className='add-btn'
+        className='animal_add'
         icon=<Add />
       >
       </Avatar>

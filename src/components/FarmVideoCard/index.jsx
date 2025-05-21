@@ -1,18 +1,17 @@
 // src/components/FarmVideoCard/index.js
 import React from 'react';
-import { View, Text, Video } from '@tarojs/components'; // 导入 Video 和 Text
-import { Cell } from '@nutui/nutui-react-taro'; // 导入 Cell (如果您的样式依赖它)
-import { pxTransform } from '@tarojs/taro'; // 导入 Taro 和 pxTransform
-import './index.less'; // 导入样式文件
-
+import { View, Text, Video } from '@tarojs/components'; 
+import { Cell } from '@nutui/nutui-react-taro'; 
+import { pxTransform } from '@tarojs/taro';
+import './index.less'; 
 const FarmVideoCard = ({
-  source, // 视频源 URL (现在是假地址)
+  source, 
   locationText,
   codeText,
   onPlay,
   onPause,
-  onEnded, // 使用 onEnded 对应播放结束事件
-  ...rest // 捕获并传递其他标准的 Video props
+  onEnded, 
+  ...rest 
 }) => {
 
   return (

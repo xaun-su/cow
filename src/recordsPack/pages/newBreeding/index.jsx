@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
-import { View, Text, Input } from '@tarojs/components'; // 导入 Input 组件
-import Taro from '@tarojs/taro'; // 导入 Taro 用于可能的跳转或提示
-import { ArrowRight } from '@nutui/icons-react-taro'; // 导入右箭头图标
-import './index.less'; // 引入页面样式文件
-import { TextArea } from '@nutui/nutui-react-taro' // 导入 NutUI TextArea
+import React, { useState, useEffect } from 'react'; // 导入 useEffect
+import { View, Text, Input } from '@tarojs/components';
+import Taro, { useRouter } from '@tarojs/taro'; // 导入 Taro 和 useRouter
+import { ArrowRight } from '@nutui/icons-react-taro';
+import './index.less';
+import { TextArea } from '@nutui/nutui-react-taro';
 import TitleH5 from '@/components/TitleH5/index';
+import { addMatingData } from '@/api/manage';
+
+// 定义一个常量作为事件名称，避免写错
+const MATING_LIVESTOCK_SELECTED_EVENT = 'matingLivestockSelected';
 
 const AddMatingRecord = () => {
   // 使用 useState 管理表单数据
@@ -12,13 +16,52 @@ const AddMatingRecord = () => {
     herdsmanName: '韩梅梅', // 牧民姓名
     herdsmanPhone: '', // 电话
     matingAddress: '', // 配种地址
-    selectedBull: null, // 已选择的公牛对象
-    selectedCow: null, // 已选择的母牛对象
+    selectedBull: null, // 已选择的公牛对象 (包括 id, imei 等信息)
+    selectedCow: null, // 已选择的母牛对象 (包括 id, imei 等信息)
     notes: '', // 备注
   });
 
+  // 使用 useRouter 钩子获取路由信息 (虽然这个页面自身不接收参数，但保留以备将来需要)
+  const router = useRouter();
+
+  // 使用 useEffect 设置和清理事件监听器
+  useEffect(() => {
+    // 监听选择牲畜页面返回时触发的事件
+    const handleLivestockSelected = (data) => {
+      console.log('接收到选择牲畜数据:', data);
+      if (data && data.type && data.livestock) {
+        if (data.type === 'bull') {
+          setFormData(prevData => ({
+            ...prevData,
+            selectedBull: data.livestock, // 将完整的牲畜对象存储起来
+          }));
+          Taro.showToast({
+            title: `已选择公牛: ${data.livestock.imei}`,
+            icon: 'none',
+          });
+        } else if (data.type === 'cow') {
+          setFormData(prevData => ({
+            ...prevData,
+            selectedCow: data.livestock, // 将完整的牲畜对象存储起来
+          }));
+          Taro.showToast({
+            title: `已选择母牛: ${data.livestock.imei}`,
+            icon: 'none',
+          });
+        }
+      }
+    };
+
+    // 注册事件监听器
+    Taro.eventCenter.on(MATING_LIVESTOCK_SELECTED_EVENT, handleLivestockSelected);
+
+    // 清理函数：在组件卸载时移除事件监听器
+    return () => {
+      Taro.eventCenter.off(MATING_LIVESTOCK_SELECTED_EVENT, handleLivestockSelected);
+    };
+  }, []); // 空依赖数组表示只在组件挂载和卸载时运行
+
   // 通用的输入框变化处理函数
-  // 这个函数适用于 Input 和 TextArea 的 onInput 事件，它们都通过 e.detail.value 提供输入值
   const handleInputChange = (key, value) => {
     setFormData(prevData => ({
       ...prevData,
@@ -28,28 +71,28 @@ const AddMatingRecord = () => {
 
   // 处理选择公牛点击事件
   const handleSelectBull = () => {
-    console.log('点击了选择公牛'); // 修正 console.log
-    // TODO: 实现跳转到选择牲畜页面或弹出选择器，选择类型为公牛
-    // 例如：Taro.navigateTo({ url: '/pages/selectLivestock/index?type=bull' });
-    // TODO: 选择后更新 selectedBull 状态，例如：
-    // setFormData(prevData => ({ ...prevData, selectedBull: { imei: '牛A001' } }));
+    console.log('点击了选择公牛');
+    // 跳转到选择牲畜页面，并通过 URL 参数告知是选择公牛
+    Taro.navigateTo({
+      url: `/recordsPack/pages/selectLivestock/index?type=bull`
+    });
   };
 
   // 处理选择母牛点击事件
   const handleSelectCow = () => {
-    console.log('点击了选择母牛'); // 修正 console.log
-    // TODO: 实现跳转到选择牲畜页面或弹出选择器，选择类型为母牛
-    // 例如：Taro.navigateTo({ url: '/pages/selectLivestock/index?type=cow' });
-    // TODO: 选择后更新 selectedCow 状态，例如：
-    // setFormData(prevData => ({ ...prevData, selectedCow: { imei: '牛B002' } }));
+    console.log('点击了选择母牛');
+    // 跳转到选择牲畜页面，并通过 URL 参数告知是选择母牛
+    Taro.navigateTo({
+      url: `/recordsPack/pages/selectLivestock/index?type=cow`
+    });
   };
 
-  // 处理确定提交按钮点击事件 (如果界面有提交按钮的话，截图未显示)
-  const handleSubmit = () => {
-    console.log('点击了确定提交'); // 修正 console.log
+  // 处理确定提交按钮点击事件
+  const handleSubmit = async () => { // 将函数修改为 async
+    console.log('点击了确定提交');
     console.log('待提交的数据:', formData);
-    // TODO: 收集 formData 并调用 API 提交数据
-    // 提交前可以进行数据校验
+
+    // 检查必填项和是否选择了公牛和母牛
     if (!formData.herdsmanName || !formData.herdsmanPhone || !formData.selectedBull || !formData.selectedCow) {
       Taro.showToast({
         title: '请填写必填项并选择公牛和母牛',
@@ -57,29 +100,35 @@ const AddMatingRecord = () => {
       });
       return;
     }
-    // 执行提交，例如：
-    // Taro.request({
-    //   url: 'YOUR_API_ENDPOINT', // 替换为你的后端API地址
-    //   method: 'POST',
-    //   data: formData,
-    //   success: function (res) {
-    //     console.log('提交成功', res.data);
-    //     Taro.showToast({ title: '提交成功', icon: 'success' });
-    //     // 提交成功后可以返回上一页或重置表单
-    //     // Taro.navigateBack();
-    //   },
-    //   fail: function (error) {
-    //     console.error('提交失败', error);
-    //     Taro.showToast({ title: '提交失败', icon: 'none' });
-    //   }
-    // });
+
+    const submitData = {
+      F_UserName: formData.herdsmanName,
+      F_Phone: formData.herdsmanPhone,
+      F_Address: formData.matingAddress,
+      F_PaternalLine	: formData.selectedBull.id, 
+      F_Matriarchal: formData.selectedCow.id, 
+      F_Remark: formData.notes,
+    };
+
+    console.log('准备提交到 API 的数据:', submitData);
+    addMatingData(submitData)
+      .then(() => {
+        Taro.showToast({
+          title: '配种记录提交成功',
+          icon: 'success',
+        });
+      })
+      .catch(error => {
+        console.error('提交配种记录失败:', error);
+
+      });
+
   };
 
-
   return (
-    <View className='add-mating-record-page'> {/* 页面主容器 */}
+    <View className='add-mating-record-page'>
       <View>
-      {process.env.TARO_ENV === 'h5' && <TitleH5 title='新增配种记录' />}
+        {process.env.TARO_ENV === 'h5' && <TitleH5 title='新增配种记录' />}
       </View>
       {/* 页面内容区域 */}
       <View className='page-content'>
@@ -94,36 +143,37 @@ const AddMatingRecord = () => {
             <Text className='item-label'>牧民</Text>
             <Input
               className='item-value'
-              placeholder='请输入牧民姓名' // 如果是输入框，可以加占位符
-              value={formData.herdsmanName} // **正确：通过 value 属性绑定状态**
-              onInput={(e) => handleInputChange('herdsmanName', e.detail.value)} // **正确：监听输入变化并更新状态**
-            />
-          </View>
-          <View className='divider'></View> {/* 分隔线 */}
-
-          {/* 电话 - 改为 Input 并正确绑定 value 和 onInput */}
-          <View className='list-item'>
-            <Text className='item-label'>电话</Text>
-            <Input
-              className={`item-value ${!formData.herdsmanPhone && 'placeholder'}`}
-              placeholder='请输入联系电话' // 使用 placeholder 属性
-              value={formData.herdsmanPhone} // 绑定状态值
-              onInput={(e) => handleInputChange('herdsmanPhone', e.detail.value)} // 监听输入变化并更新状态
-              type='number' // 设置输入类型为数字键盘
+              placeholder='请输入牧民姓名'
+              value={formData.herdsmanName}
+              onInput={(e) => handleInputChange('herdsmanName', e.detail.value)}
             />
           </View>
           <View className='divider'></View>
 
-          {/* 配种地址 - 改为 Input 并正确绑定 value 和 onInput */}
+          {/* 电话 */}
+          <View className='list-item'>
+            <Text className='item-label'>电话</Text>
+            <Input
+              className={`item-value ${!formData.herdsmanPhone && 'placeholder'}`}
+              placeholder='请输入联系电话' // 修正 placeholder
+              value={formData.herdsmanPhone}
+              onInput={(e) => handleInputChange('herdsmanPhone', e.detail.value)}
+              type='number'
+            />
+          </View>
+          <View className='divider'></View>
+
+          {/* 配种地址 */}
           <View className='list-item'>
             <Text className='item-label'>配种地址</Text>
             <Input
               className={`item-value ${!formData.matingAddress && 'placeholder'}`}
-              placeholder='请输入配种地址' // 使用 placeholder 属性
-              value={formData.matingAddress} // 绑定状态值
-              onInput={(e) => handleInputChange('matingAddress', e.detail.value)} // 监听输入变化并更新状态
+              placeholder='请输入配种地址'
+              value={formData.matingAddress}
+              onInput={(e) => handleInputChange('matingAddress', e.detail.value)}
             />
           </View>
+          <View className='divider'></View> {/* 添加分隔线 */}
         </View>
 
         {/* 选择配种对象部分 */}
@@ -134,30 +184,29 @@ const AddMatingRecord = () => {
 
           {/* 选择公牛 */}
           <View className='list-item select-livestock-item' onClick={handleSelectBull}>
-            <Text className='item-label'>选择公牛</Text> {/* 修正标签文本 */}
+            <Text className='item-label'>选择公牛</Text>
             <View className='item-value-with-arrow'>
-              {/* 使用 Text 显示已选择公牛的信息 */}
+              {/* 显示已选择公牛的 IMEI，如果没有选择则显示占位符 */}
               <Text className={`item-value ${!formData.selectedBull && 'placeholder'}`}>
-                {formData.selectedBull ? formData.selectedBull.imei : '请选择公牛'} {/* 示例显示 IMEI */}
+                {formData.selectedBull ? formData.selectedBull.imei : '请选择公牛'}
               </Text>
-              <ArrowRight size={19} color='#999' /> {/* 右箭头 (尺寸已放大) */}
+              <ArrowRight size={19} color='#999' />
             </View>
           </View>
-          <View className='divider'></View> {/* 分隔线 */}
+          <View className='divider'></View>
 
           {/* 选择母牛 */}
           <View className='list-item select-livestock-item' onClick={handleSelectCow}>
-            <Text className='item-label'>选择母牛</Text> {/* 修正标签文本 */}
+            <Text className='item-label'>选择母牛</Text>
             <View className='item-value-with-arrow'>
-              {/* 使用 Text 显示已选择母牛的信息 */}
+              {/* 显示已选择母牛的 IMEI，如果没有选择则显示占位符 */}
               <Text className={`item-value ${!formData.selectedCow && 'placeholder'}`}>
-                {formData.selectedCow ? formData.selectedCow.imei : '请选择母牛'} {/* 示例显示 IMEI */}
+                {formData.selectedCow ? formData.selectedCow.imei : '请选择母牛'}
               </Text>
-              <ArrowRight size={19} color='#999' /> {/* 右箭头 (尺寸已放大) */}
+              <ArrowRight size={19} color='#999' />
             </View>
           </View>
-          {/* 截图上选择母牛下方没有分隔线，如果需要请添加 */}
-          {/* <View className='divider'></View> */}
+          <View className='divider'></View> {/* 添加分隔线 */}
         </View>
 
         {/* 备注部分 */}
@@ -165,10 +214,9 @@ const AddMatingRecord = () => {
           <View className='list-item'>
             <Text className='item-label'>备注</Text>
           </View>
-          {/* Textarea 用于多行输入，已正确绑定 value 和 onInput */}
           <TextArea
             placeholder='请输入备注信息'
-            value={formData.notes} // 绑定状态
+            value={formData.notes}
             onChange={(value) => handleInputChange('notes', value)}
             autoSize maxLength={-1}
             style={{ border: 'none', padding: '10px 0' }}

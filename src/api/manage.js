@@ -33,3 +33,17 @@ export const getBreedingListData=async ()=>{
   return await request.get(breedingList)
 
 }
+
+//新增疫苗
+const addVaccine='/manageRight/addVaccine'
+
+export const addVaccineData=async (data)=>{
+  return await request.post(addVaccine,data)
+}
+
+//新增配种
+const addMating='/manageRight/addBreed'
+
+export const addMatingData=async (data)=>{
+  return await request.post(addMating,data)
+}

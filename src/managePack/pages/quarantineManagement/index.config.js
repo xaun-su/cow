@@ -1,3 +1,3 @@
 export default definePageConfig({
-  navigationBarTitleText: '疫苗管理'
+  navigationBarTitleText: '检疫管理'
 })

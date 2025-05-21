@@ -37,7 +37,7 @@ const QuarantineListPage = () => {
   return (
     <View className='quarantine-list-page'>
       <View>
-        {process.env.TARO_ENV === 'h5' && <TitleH5 title='疫苗管理' />}
+        {process.env.TARO_ENV === 'h5' && <TitleH5 title='检疫管理' />}
       </View>
       {/* 检疫记录卡片列表容器 */}
       <View className='card-list-container'>

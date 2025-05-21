@@ -17,7 +17,7 @@ const QuarantineListPage = () => {
       })
     }
     getData()
-  })
+  },[])
 
   const handleCardClick = (record) => {
     console.log('点击了检疫记录:', record);

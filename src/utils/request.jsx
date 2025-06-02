@@ -5,7 +5,7 @@ import interceptors from './interceptors'; // 引入之前定义的请求拦截�
 // 它接收请求的路径（例如 '/user/good'）作为参数
 const getBaseUrl = (url) => {
   // 你的假设的基地址
-  const BASE_API_URL = 'http://8.137.157.16:9999';
+  const BASE_API_URL = 'api';
   // 将基地址和请求路径拼接起来
   // 为了防止出现重复的斜杠或缺少斜杠，可以进行一些处理
   // 这里简单地拼接，假设 url 已经是以 '/' 开头

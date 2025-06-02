@@ -41,7 +41,7 @@ const Demo7 = () => {
               <Avatar icon={<Text className='iconfont icon-yaoqingniuren'></Text>} size="normal" color="#fff"
                 background="#0bcb77" className='normal' /> {/* 头像 */}
               <View className='item-text'> {/* 包裹文本的容器，垂直 flex */}
-                <Text className='item-title'>{item.F_Id}</Text> {/* 标题文本 */}
+                <Text className='item-title'>牲畜编号</Text> {/* 标题文本 */}
                 <Text className='item-imei'>IMEI:{item.F_IMEI}</Text> {/* IMEI 文本 */}
               </View>
             </View>

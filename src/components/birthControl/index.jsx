@@ -23,7 +23,7 @@ const QuarantineRecordCard = ({
         </View>
         <View className='id-info'>
           {/* 牲畜编号 */}
-          <Text className='id-label'>{livestockId}</Text>
+          <Text className='id-label'>牲畜编号</Text>
           {/* IMEI */}
           <Text className='imei'>IMEI: {imei}</Text>
         </View>

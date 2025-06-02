@@ -62,7 +62,7 @@ class httpRequest {
       header: { // 请求头
         'content-type': contentType, // 设置 content-type
         // ## token已在拦截器中实现
-        // 'Authorization': Taro.getStorageSync('Authorization') // 原始代码中注释掉了在这里添加 Token 的方式，因为已在拦截器中处理
+        'Authorization': Taro.getStorageSync('Authorization') // 原始代码中注释掉了在这里添加 Token 的方式，因为已在拦截器中处理
       },
     };
 
